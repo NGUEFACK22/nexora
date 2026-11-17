@@ -8,7 +8,6 @@ import { Input } from '@gitroom/react/form/input';
 import { useMemo, useState } from 'react';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import { LoginUserDto } from '@gitroom/nestjs-libraries/dtos/auth/login.user.dto';
-import { GithubProvider } from '@gitroom/frontend/components/auth/providers/github.provider';
 import { OauthProvider } from '@gitroom/frontend/components/auth/providers/oauth.provider';
 import { GoogleProvider } from '@gitroom/frontend/components/auth/providers/google.provider';
 import { AppleProvider } from '@gitroom/frontend/components/auth/providers/apple.provider';
@@ -81,8 +80,6 @@ export function Login() {
           <div className="flex flex-col">
             {isGeneral && genericOauth ? (
               <OauthProvider />
-            ) : !isGeneral ? (
-              <GithubProvider />
             ) : (
               <div className="gap-[8px] flex">
                 <GoogleProvider />

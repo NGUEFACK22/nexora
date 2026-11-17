@@ -8,7 +8,6 @@ import { Input } from '@gitroom/react/form/input';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import { CreateOrgUserDto } from '@gitroom/nestjs-libraries/dtos/auth/create.org.user.dto';
-import { GithubProvider } from '@gitroom/frontend/components/auth/providers/github.provider';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { LoadingComponent } from '@gitroom/frontend/components/layout/loading';
 import clsx from 'clsx';
@@ -169,21 +168,18 @@ export function RegisterAfter({
             {t('continue_with', 'Continue With')}
           </div>
           <div className="flex flex-col text-[14px]">
-            {!isAfterProvider &&
-              (!isGeneral ? (
-                <GithubProvider />
-              ) : (
-                <div className="gap-[8px] flex">
-                  {genericOauth && isGeneral ? (
-                    <OauthProvider />
-                  ) : (
-                    <GoogleProvider />
-                  )}
-                  {!!appleClientId && <AppleProvider />}
-                  {!!neynarClientId && <FarcasterProvider />}
-                  {billingEnabled && <WalletProvider />}
-                </div>
-              ))}
+            {!isAfterProvider && (
+              <div className="gap-[8px] flex">
+                {genericOauth && isGeneral ? (
+                  <OauthProvider />
+                ) : (
+                  <GoogleProvider />
+                )}
+                {!!appleClientId && <AppleProvider />}
+                {!!neynarClientId && <FarcasterProvider />}
+                {billingEnabled && <WalletProvider />}
+              </div>
+            )}
             {!isAfterProvider && (
               <div className="h-[20px] mb-[24px] mt-[24px] relative">
                 <div className="absolute w-full h-[1px] bg-fifth top-[50%] -translate-y-[50%]" />
@@ -230,22 +226,10 @@ export function RegisterAfter({
                   'By registering you agree to our'
                 )}
                 &nbsp;
-                <a
-                  href={`https://postiz.com/terms`}
-                  className="underline hover:font-bold"
-                  rel="nofollow"
-                >
-                  {t('terms_of_service', 'Terms of Service')}
-                </a>
+                {t('terms_of_service', 'Terms of Service')}
                 &nbsp;
                 {t('and', 'and')}&nbsp;
-                <a
-                  href={`https://postiz.com/privacy`}
-                  rel="nofollow"
-                  className="underline hover:font-bold"
-                >
-                  {t('privacy_policy', 'Privacy Policy')}
-                </a>
+                {t('privacy_policy', 'Privacy Policy')}
                 &nbsp;
               </div>
               <div className="text-center mt-6">
