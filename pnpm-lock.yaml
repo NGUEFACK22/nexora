@@ -540,6 +540,9 @@ importers:
       sass:
         specifier: ^1.89.2
         version: 1.97.3
+      serverless-http:
+        specifier: ^3.2.0
+        version: 3.2.0
       sha256:
         specifier: ^0.2.0
         version: 0.2.0
@@ -14161,6 +14164,10 @@ packages:
 
   server-only@0.0.1:
     resolution: {integrity: sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==}
+
+  serverless-http@3.2.0:
+    resolution: {integrity: sha512-QvSyZXljRLIGqwcJ4xsKJXwkZnAVkse1OajepxfjkBXV0BMvRS5R546Z4kCBI8IygDzkQY0foNPC/rnipaE9pQ==}
+    engines: {node: '>=12.0'}
 
   set-blocking@2.0.0:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
@@ -33299,6 +33306,8 @@ snapshots:
       - supports-color
 
   server-only@0.0.1: {}
+
+  serverless-http@3.2.0: {}
 
   set-blocking@2.0.0: {}
 
