@@ -69,3 +69,4 @@ analyse-projet/
 var/*.log
 uploads/
 reports/*.log
+env.vercel
