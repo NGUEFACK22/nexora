@@ -1,18 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { BaseMessage, HumanMessage } from '@langchain/core/messages';
 import { END, START, StateGraph } from '@langchain/langgraph';
-import { ChatOpenAI } from '@langchain/openai';
 import { ChatPromptTemplate } from '@langchain/core/prompts';
+import { langchainModel } from '@gitroom/nestjs-libraries/chat/ai.model';
 import { agentCategories } from '@gitroom/nestjs-libraries/agent/agent.categories';
 import { z } from 'zod';
 import { agentTopics } from '@gitroom/nestjs-libraries/agent/agent.topics';
 import { PostsService } from '@gitroom/nestjs-libraries/database/prisma/posts/posts.service';
 
-const model = new ChatOpenAI({
-  apiKey: process.env.OPENAI_API_KEY || 'sk-proj-',
-  model: 'gpt-4o-2024-08-06',
-  temperature: 0,
-});
+const model = langchainModel('gpt-4o-2024-08-06', 0);
 
 interface WorkflowChannelsState {
   messages: BaseMessage[];

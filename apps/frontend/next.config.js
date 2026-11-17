@@ -6,7 +6,7 @@ const nextConfig = {
   experimental: {
     proxyTimeout: 90_000,
   },
-  // Document-Policy header for browser profiling
+  // Document-Policy header for browser profiling + PWA assets
   async headers() {
     return [
       {
@@ -15,6 +15,37 @@ const nextConfig = {
           {
             key: 'Document-Policy',
             value: 'js-profiling',
+          },
+        ],
+      },
+      {
+        // the service worker must be re-validated on every load so updates ship
+        source: '/sw.js',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, must-revalidate',
+          },
+        ],
+      },
+      {
+        source: '/manifest.webmanifest',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600',
+          },
+        ],
+      },
+      {
+        // PWA icons have FIXED names (icon-180/192/512/maskable-512.png): any icon
+        // change must ship under a NEW filename (and bump the sw.js VERSION for the
+        // service-worker cache), otherwise clients keep the old icon up to 1 year.
+        source: '/pwa/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },

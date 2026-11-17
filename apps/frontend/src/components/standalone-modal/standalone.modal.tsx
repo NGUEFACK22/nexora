@@ -5,7 +5,15 @@ import { FC, useCallback } from 'react';
 import useSWR from 'swr';
 import { useFetch } from '@gitroom/helpers/utils/custom.fetch';
 import { useParams } from 'next/navigation';
-import { AddEditModal } from '@gitroom/frontend/components/new-launch/add.edit.modal';
+import dynamic from 'next/dynamic';
+
+const AddEditModal = dynamic(
+  () =>
+    import('@gitroom/frontend/components/new-launch/add.edit.modal').then(
+      (m) => ({ default: m.AddEditModal })
+    ),
+  { ssr: false }
+);
 import {
   fromUtc,
   newDayjs,

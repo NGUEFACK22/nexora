@@ -27,7 +27,15 @@ import { CustomVariables } from '@gitroom/frontend/components/launches/add.provi
 import { useRouter } from 'next/navigation';
 import { useVariables } from '@gitroom/react/helpers/variable.context';
 import { useT } from '@gitroom/react/translation/get.transation.service.client';
-import { AddEditModal } from '@gitroom/frontend/components/new-launch/add.edit.modal';
+import dynamic from 'next/dynamic';
+
+const AddEditModal = dynamic(
+  () =>
+    import('@gitroom/frontend/components/new-launch/add.edit.modal').then(
+      (m) => ({ default: m.AddEditModal })
+    ),
+  { ssr: false }
+);
 import { fromUtc } from '@gitroom/frontend/components/layout/set.timezone';
 import { ModalWrapperComponent } from '@gitroom/frontend/components/new-launch/modal.wrapper.component';
 import copy from 'copy-to-clipboard';

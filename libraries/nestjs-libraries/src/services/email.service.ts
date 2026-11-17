@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { EmailInterface } from '@gitroom/nestjs-libraries/emails/email.interface';
+import { AgentMailProvider } from '@gitroom/nestjs-libraries/emails/agentmail.provider';
 import { ResendProvider } from '@gitroom/nestjs-libraries/emails/resend.provider';
 import { EmptyProvider } from '@gitroom/nestjs-libraries/emails/empty.provider';
 import { NodeMailerProvider } from '@gitroom/nestjs-libraries/emails/node.mailer.provider';
@@ -27,6 +28,8 @@ export class EmailService {
 
   selectProvider(provider: string) {
     switch (provider) {
+      case 'agentmail':
+        return new AgentMailProvider();
       case 'resend':
         return new ResendProvider();
       case 'nodemailer':

@@ -1,5 +1,5 @@
-// Contract of the media normalization service (postiz-uploader schema/v1).
-// The service knows nothing about Postiz: URLs in, metadata out.
+// Contract of the media normalization service (Nexora-uploader schema/v1).
+// The service knows nothing about Nexora: URLs in, metadata out.
 export interface MediaProcessorJob {
   version: 1;
   type: 'video' | 'image';

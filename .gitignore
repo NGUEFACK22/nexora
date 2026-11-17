@@ -68,3 +68,4 @@ apps/frontend/public/g.js
 analyse-projet/
 var/*.log
 uploads/
+reports/*.log

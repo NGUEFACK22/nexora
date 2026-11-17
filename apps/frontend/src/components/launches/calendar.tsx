@@ -32,6 +32,7 @@ import 'dayjs/locale/vi';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import { useModals } from '@gitroom/frontend/components/layout/new-modal';
 import clsx from 'clsx';
+import dynamic from 'next/dynamic';
 import { useFetch } from '@gitroom/helpers/utils/custom.fetch';
 import { ExistingDataContextProvider } from '@gitroom/frontend/components/launches/helpers/use.existing.data';
 import { useDrag, useDrop } from 'react-dnd';
@@ -54,7 +55,13 @@ import { StatisticsModal } from '@gitroom/frontend/components/launches/statistic
 import { MissingReleaseModal } from '@gitroom/frontend/components/launches/missing-release.modal';
 import { useT } from '@gitroom/react/translation/get.transation.service.client';
 import i18next from 'i18next';
-import { AddEditModal } from '@gitroom/frontend/components/new-launch/add.edit.modal';
+const AddEditModal = dynamic(
+  () =>
+    import('@gitroom/frontend/components/new-launch/add.edit.modal').then(
+      (m) => ({ default: m.AddEditModal })
+    ),
+  { ssr: false }
+);
 import { CreationMethodBadge } from '@gitroom/frontend/components/launches/creation.method.badge';
 import { deleteDialog } from '@gitroom/react/helpers/delete.dialog';
 import { useVariables } from '@gitroom/react/helpers/variable.context';
@@ -66,6 +73,10 @@ import {
 } from '@gitroom/frontend/components/layout/set.timezone';
 import { Button } from '@gitroom/react/form/button';
 import { ChevronUpIcon } from '@gitroom/frontend/components/ui/icons';
+import {
+  BottomSheet,
+  BottomSheetRow,
+} from '@gitroom/frontend/components/ui/bottom.sheet.component';
 
 // Extend dayjs with necessary plugins
 extend(isSameOrAfter);
@@ -538,6 +549,7 @@ export const WeekView = () => {
       const day = weekStart.add(i, 'day');
       days.push({
         name: day.format('dddd'),
+        short: day.format('ddd'),
         day: day.format('L'),
         date: day,
       });
@@ -548,15 +560,18 @@ export const WeekView = () => {
   return (
     <div className="flex flex-col text-textColor flex-1">
       <div className="flex-1 relative">
-        <div className="grid [grid-template-columns:136px_repeat(7,_minmax(0,_1fr))] tablet:[grid-template-columns:72px_repeat(7,_minmax(100px,_1fr))] gap-[4px] rounded-[10px] absolute h-full start-0 top-0 w-full overflow-auto scrollbar scrollbar-thumb-fifth scrollbar-track-newBgColor">
+        <div className="grid [grid-template-columns:136px_repeat(7,_minmax(0,_1fr))] tablet:[grid-template-columns:72px_repeat(7,_minmax(100px,_1fr))] mobile:![grid-template-columns:36px_repeat(7,_minmax(0,_1fr))] gap-[4px] rounded-[10px] absolute h-full start-0 top-0 w-full overflow-auto scrollbar scrollbar-thumb-fifth scrollbar-track-newBgColor">
           <div className="z-10 bg-newTableHeader flex justify-center items-center flex-col h-[62px] rounded-[8px] sticky top-0"></div>
           {localizedDays.map((day, index) => (
             <div
               key={day.name}
-              className="p-2 text-center bg-newTableHeader flex justify-center items-center flex-col h-[62px] rounded-[8px] sticky top-0 z-[20]"
+              className="p-2 text-center bg-newTableHeader flex justify-center items-center flex-col h-[62px] mobile:h-[36px] mobile:p-0 rounded-[8px] sticky top-0 z-[20]"
             >
-              <div className="text-[14px] font-[500] text-newTableText">
+              <div className="text-[14px] font-[500] text-newTableText mobile:hidden">
                 {day.name}
+              </div>
+              <div className="hidden mobile:block text-[12px] font-[500] text-newTableText">
+                {day.short}
               </div>
               <div
                 className={clsx(
@@ -574,7 +589,7 @@ export const WeekView = () => {
           ))}
           {hours.map((hour) => (
             <Fragment key={hour}>
-              <div className="p-2 pe-4 tablet:px-[4px] text-center items-center justify-center flex text-[14px] tablet:text-[12px] tablet:whitespace-nowrap text-newTableText">
+              <div className="p-2 pe-4 tablet:px-[4px] text-center items-center justify-center flex text-[14px] tablet:text-[12px] tablet:whitespace-nowrap text-newTableText mobile:text-[10px] mobile:p-[2px] mobile:pe-[2px]">
                 {convertTimeFormatBasedOnLocality(hour)}
               </div>
               {localizedDays.map((day, indexDay) => (
@@ -1138,12 +1153,12 @@ export const CalendarColumn: FC<{
               {display !== 'day' && (
                 <div
                   className={clsx(
-                    'group hover:before:h-[30px] w-full h-full rounded-[10px] flex justify-center items-center text-white'
+                    'group hover:before:h-[30px] w-full h-full rounded-[10px] flex justify-center items-center text-white mobile:before:h-[30px]'
                   )}
                 >
                   {/* z-[16]: above the now line (z-[15]), under the sticky day headers (z-[20]) */}
                   <div
-                    className={`group-hover:before:content-["+"] pb-[5px] flex justify-center items-center rounded-[8px] transition-all group-hover:bg-btnPrimary w-full h-full max-w-[40px] max-h-[40px] relative z-[16]`}
+                    className={`group-hover:before:content-["+"] mobile:before:content-["+"] mobile:bg-btnPrimary pb-[5px] flex justify-center items-center rounded-[8px] transition-all group-hover:bg-btnPrimary w-full h-full max-w-[40px] max-h-[40px] relative z-[16]`}
                   />
                 </div>
               )}
@@ -1158,7 +1173,7 @@ export const CalendarColumn: FC<{
                       className={clsx(
                         'relative',
                         !isBrandMark(selectedIntegrations.identifier) &&
-                          'opacity-30 grayscale group-hover/day:grayscale-0 group-hover/day:opacity-100'
+                          'opacity-30 grayscale group-hover/day:grayscale-0 group-hover/day:opacity-100 mobile:opacity-100 mobile:grayscale-0'
                       )}
                       key={selectedIntegrations.id}
                     >
@@ -1174,7 +1189,7 @@ export const CalendarColumn: FC<{
                           className={clsx(
                             'rounded-[8px]',
                             isBrandMark(selectedIntegrations.identifier) &&
-                              'opacity-30 grayscale group-hover/day:grayscale-0 group-hover/day:opacity-100'
+                              'opacity-30 grayscale group-hover/day:grayscale-0 group-hover/day:opacity-100 mobile:opacity-100 mobile:grayscale-0'
                           )}
                           alt={selectedIntegrations.identifier}
                           width={32}
@@ -1185,7 +1200,7 @@ export const CalendarColumn: FC<{
                           size={20}
                           className="absolute z-10 -bottom-[5px] -end-[5px]"
                           iconClassName="rounded-[8px] border border-fifth"
-                          markClassName="bg-newBgColorInner hidden group-hover/day:flex"
+                          markClassName="bg-newBgColorInner hidden group-hover/day:flex mobile:flex"
                         />
                       </div>
                     </div>
@@ -1239,6 +1254,17 @@ const CalendarItem: FC<{
   const { disableXAnalytics } = useVariables();
   const user = useUser();
   const brandMark = isBrandMark(post.integration?.providerIdentifier);
+  const [actionsOpen, setActionsOpen] = useState(false);
+  const canOpenPost =
+    (state === 'PUBLISHED' || state === 'ERROR') &&
+    !post.intervalInDays &&
+    post.releaseURL?.startsWith('http');
+  const showMissingRelease = post.releaseId === 'missing' && !!missingRelease;
+  const showStatistics =
+    !!post.releaseId &&
+    (state === 'PUBLISHED' || state === 'ERROR') &&
+    post.releaseId !== 'missing' &&
+    !(post.integration.providerIdentifier === 'x' && disableXAnalytics);
   const showCreationMethodBadge =
     user?.impersonate &&
     post.creationMethod &&
@@ -1276,10 +1302,7 @@ const CalendarItem: FC<{
     >
       {state === 'ERROR' && (
         <div
-          className={clsx(
-            'absolute -top-[6px] -start-[6px] z-20 w-[18px] h-[18px] rounded-full bg-red-500 flex items-center justify-center text-white text-[11px] font-bold cursor-pointer',
-            display === 'month' && 'mobile:hidden'
-          )}
+          className="absolute -top-[6px] -start-[6px] z-20 w-[18px] h-[18px] rounded-full bg-red-500 flex items-center justify-center text-white text-[11px] font-bold cursor-pointer"
           data-tooltip-id="tooltip"
           data-tooltip-class-name="!max-w-[400px] break-words"
           data-tooltip-content={post.error || 'An error occurred while publishing this post'}
@@ -1289,14 +1312,20 @@ const CalendarItem: FC<{
       )}
       {state === 'PUBLISHED' && (
         <div
-          className={clsx(
-            'absolute -top-[6px] -start-[6px] z-20 w-[18px] h-[18px] rounded-full bg-green-500 flex items-center justify-center text-white text-[11px] font-bold',
-            display === 'month' && 'mobile:hidden'
-          )}
+          className="absolute -top-[6px] -start-[6px] z-20 w-[18px] h-[18px] rounded-full bg-green-500 flex items-center justify-center text-white text-[11px] font-bold"
         >
           ✓
         </div>
       )}
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+          setActionsOpen(true);
+        }}
+        className="hidden mobile:flex absolute -top-[6px] -end-[6px] z-20 w-[20px] h-[20px] rounded-full bg-newBgColorInner border border-newTableBorder items-center justify-center text-[13px] leading-none cursor-pointer"
+      >
+        ⋯
+      </div>
       {showCreationMethodBadge && (
         <div className="absolute -bottom-[4px] -right-[4px] z-10">
           <CreationMethodBadge
@@ -1469,6 +1498,67 @@ const CalendarItem: FC<{
           </div>
         )}
       </div>
+      {actionsOpen && (
+        <BottomSheet
+          title={t('post_actions', 'Post actions')}
+          onClose={() => setActionsOpen(false)}
+        >
+          <BottomSheetRow
+            icon={<Preview />}
+            label={t('preview_post', 'Preview Post')}
+            onClick={() => {
+              setActionsOpen(false);
+              preview();
+            }}
+          />
+          {canOpenPost && (
+            <BottomSheetRow
+              icon={<OpenPost />}
+              label={t('open_post', 'Open Post')}
+              onClick={() => {
+                setActionsOpen(false);
+                openPost();
+              }}
+            />
+          )}
+          {showMissingRelease && (
+            <BottomSheetRow
+              icon={<Statistics />}
+              label={t('missing_release', 'Missing release')}
+              onClick={() => {
+                setActionsOpen(false);
+                missingRelease!();
+              }}
+            />
+          )}
+          {showStatistics && (
+            <BottomSheetRow
+              icon={<Statistics />}
+              label={t('post_statistics', 'Post Statistics')}
+              onClick={() => {
+                setActionsOpen(false);
+                statistics();
+              }}
+            />
+          )}
+          <BottomSheetRow
+            icon={<Duplicate />}
+            label={t('duplicate_post', 'Duplicate Post')}
+            onClick={() => {
+              setActionsOpen(false);
+              duplicatePost();
+            }}
+          />
+          <BottomSheetRow
+            icon={<DeletePost />}
+            label={t('delete_post', 'Delete Post')}
+            onClick={() => {
+              setActionsOpen(false);
+              deletePost();
+            }}
+          />
+        </BottomSheet>
+      )}
     </div>
   );
 });

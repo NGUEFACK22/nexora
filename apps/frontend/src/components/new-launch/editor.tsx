@@ -13,8 +13,12 @@ import React, {
 } from 'react';
 import clsx from 'clsx';
 import { makeId } from '@gitroom/nestjs-libraries/services/make.is';
-import EmojiPicker from 'emoji-picker-react';
-import { Theme } from 'emoji-picker-react';
+import dynamic from 'next/dynamic';
+import type { Theme } from 'emoji-picker-react';
+
+const EmojiPicker = dynamic(() => import('emoji-picker-react'), {
+  ssr: false,
+});
 import { BoldText } from '@gitroom/frontend/components/new-launch/bold.text';
 import { UText } from '@gitroom/frontend/components/new-launch/u.text';
 import { SignatureBox } from '@gitroom/frontend/components/signature';
@@ -1098,8 +1102,7 @@ export const Editor: FC<{
                             <EmojiPicker
                               height={400}
                               theme={
-                                (localStorage.getItem('mode') as Theme) ||
-                                Theme.DARK
+                                ((localStorage.getItem('mode') || 'dark') as Theme)
                               }
                               onEmojiClick={(e) => {
                                 addText(e.emoji);

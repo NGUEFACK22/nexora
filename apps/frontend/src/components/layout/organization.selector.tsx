@@ -1,6 +1,6 @@
 'use client';
 
-import React, { FC, useCallback, useMemo } from 'react';
+import React, { FC, useCallback, useMemo, useState } from 'react';
 import { useFetch } from '@gitroom/helpers/utils/custom.fetch';
 import useSWR from 'swr';
 import { useUser } from '@gitroom/frontend/components/layout/user.context';
@@ -26,6 +26,9 @@ export const OrganizationSelector: FC<{ asOpenSelect?: boolean }> = ({
   const withoutCurrent = useMemo(() => {
     return data?.filter((d: any) => d.id !== user?.orgId);
   }, [current, data]);
+  // the dropdown is hover-only on desktop: a tap toggle makes it reachable
+  // on touch screens where group-hover never fires
+  const [open, setOpen] = useState(false);
   const changeOrg = useCallback(
     (org: { name: string; id: string }) => async () => {
       await fetch('/user/change-org', {
@@ -44,7 +47,10 @@ export const OrganizationSelector: FC<{ asOpenSelect?: boolean }> = ({
   return (
     <>
       <div className="hover:text-newTextColor">
-        <div className="group text-[12px] relative">
+        <div
+        className="group text-[12px] relative"
+        onClick={() => !asOpenSelect && setOpen(!open)}
+      >
           {asOpenSelect && (
             <div className="bg-btnPrimary !flex !relative max-w-[500px] mx-auto py-[12px] px-[12px]">Select Organization</div>
           )}
@@ -72,7 +78,11 @@ export const OrganizationSelector: FC<{ asOpenSelect?: boolean }> = ({
             <div
               className={clsx(
                 'hidden py-[12px] px-[12px] group-hover:flex absolute top-[100%] end-0 w-max max-w-[400px] bg-third border-tableBorder border gap-[12px] cursor-pointer flex-col',
-                asOpenSelect ? '!flex !relative max-w-[500px] mx-auto mb-[10px]' : '',
+                asOpenSelect
+                  ? '!flex !relative max-w-[500px] mx-auto mb-[10px]'
+                  : open
+                  ? '!flex'
+                  : ''
               )}
             >
               {withoutCurrent?.map(

@@ -64,7 +64,7 @@ export const ApprovedAppsComponent: FC = () => {
       <div className="text-customColor18">
         {t(
           'apps_you_have_authorized',
-          'Applications you have authorized to access your Postiz account.'
+          'Applications you have authorized to access your Nexora account.'
         )}
       </div>
 
@@ -78,7 +78,7 @@ export const ApprovedAppsComponent: FC = () => {
             {apps.map((app: any) => (
               <div
                 key={app.id}
-                className="flex items-center justify-between p-[12px] border border-fifth rounded-[4px]"
+                className="flex items-center justify-between flex-wrap gap-[8px] mobile:flex-col mobile:items-start p-[12px] border border-fifth rounded-[4px]"
               >
                 <div className="flex items-center gap-[12px]">
                   {app.oauthApp?.picture?.path ? (

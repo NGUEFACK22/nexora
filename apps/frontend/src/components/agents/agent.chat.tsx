@@ -33,7 +33,15 @@ import {
   Message as CopilotMessage,
   TextMessage,
 } from '@copilotkit/runtime-client-gql';
-import { AddEditModal } from '@gitroom/frontend/components/new-launch/add.edit.modal';
+import dynamic from 'next/dynamic';
+
+const AddEditModal = dynamic(
+  () =>
+    import('@gitroom/frontend/components/new-launch/add.edit.modal').then(
+      (m) => ({ default: m.AddEditModal })
+    ),
+  { ssr: false }
+);
 import dayjs from 'dayjs';
 import { fromUtc } from '@gitroom/frontend/components/layout/set.timezone';
 import { makeId } from '@gitroom/nestjs-libraries/services/make.is';
@@ -54,7 +62,7 @@ export const AgentChat: FC = () => {
       runtimeUrl={backendUrl + '/copilot/agent'}
       useSingleEndpoint={true}
       showDevConsole={false}
-      agent="postiz"
+      agent="Nexora"
       properties={{
         integrations: properties,
       }}
@@ -75,7 +83,7 @@ export const AgentChat: FC = () => {
             className="w-full h-full"
             labels={{
               title: t('your_assistant', 'Your Assistant'),
-              initial: t('agent_welcome_message', `Hello, I am your Postiz agent 🙌🏻.
+              initial: t('agent_welcome_message', `Hello, I am your Nexora agent 🙌🏻.
               
 I can schedule a post or multiple posts to multiple channels and generate pictures and videos.
 
