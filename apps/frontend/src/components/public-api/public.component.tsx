@@ -35,7 +35,7 @@ export const mcpConnectorUrls = {
 // the agent installs the CLI itself and asks you for the API key
 export const chatOnlyMcpClients = {
   'Grok Bot':
-    'Install the Nexora CLI with `npm install -g postiz`, then install the Nexora skill with `npx skills add gitroomhq/postiz-agent`. Ask me for my Nexora API key and set it as the POSTIZ_API_KEY environment variable before using the CLI.',
+    'Install the Nexora CLI with `npm install -g nexora-cli`, then install the Nexora skill with `npx skills add NGUEFACK22/nexora-agent`. Ask me for my Nexora API key and set it as the POSTIZ_API_KEY environment variable before using the CLI.',
 } as const;
 
 export const mcpClients = [
@@ -381,7 +381,7 @@ const McpSection = ({
           )}
           <a
             className="cursor-pointer px-[16px] h-[36px] bg-[#612BD3] hover:bg-[#5520CB] text-white transition-colors rounded-[8px] text-[13px] font-[600] flex items-center gap-[6px]"
-            href="https://docs.postiz.com/mcp/introduction"
+            href="https://github.com/NGUEFACK22/nexora"
             target="_blank"
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
@@ -575,7 +575,7 @@ const McpSection = ({
 export const localCliSteps = [
   {
     label: 'Install the CLI',
-    code: 'npm install -g postiz',
+    code: 'npm install -g nexora-cli',
   },
   {
     label: 'Run: Nexora auth:login',
@@ -583,14 +583,14 @@ export const localCliSteps = [
   },
   {
     label: 'Install the Nexora skill for your AI agent',
-    code: 'npx skills add gitroomhq/postiz-agent',
+    code: 'npx skills add NGUEFACK22/nexora-agent',
   },
 ] as const;
 
 const ciCliSteps = [
   {
     label: 'Install the CLI',
-    code: 'npm install -g postiz',
+    code: 'npm install -g nexora-cli',
   },
   {
     label: 'Set your API key as an environment variable',
@@ -598,7 +598,7 @@ const ciCliSteps = [
   },
   {
     label: 'Install the Nexora skill for your AI agent',
-    code: 'npx skills add gitroomhq/postiz-agent',
+    code: 'npx skills add NGUEFACK22/nexora-agent',
   },
 ] as const;
 
@@ -643,7 +643,7 @@ const CliSection = ({ apiKey }: { apiKey: string }) => {
         <div className="flex flex-wrap gap-[6px] shrink-0 pt-[2px]">
           <a
             className="cursor-pointer px-[16px] h-[36px] bg-[#612BD3] hover:bg-[#5520CB] text-white transition-colors rounded-[8px] text-[13px] font-[600] flex items-center gap-[6px]"
-            href="https://docs.postiz.com/cli/introduction"
+            href="https://github.com/NGUEFACK22/nexora"
             target="_blank"
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
@@ -799,7 +799,7 @@ const PublicApiContent = () => {
           <div className="flex flex-wrap gap-[6px] shrink-0 pt-[2px]">
             <a
               className="cursor-pointer px-[16px] h-[36px] bg-[#612BD3] hover:bg-[#5520CB] text-white transition-colors rounded-[8px] text-[13px] font-[600] flex items-center gap-[6px]"
-              href="https://docs.postiz.com/public-api"
+              href="https://github.com/NGUEFACK22/nexora"
               target="_blank"
             >
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>

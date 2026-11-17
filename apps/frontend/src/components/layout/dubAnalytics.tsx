@@ -9,9 +9,6 @@ export const DubAnalytics = () => {
   if (!dub) return null;
   return (
     <DubAnalyticsIn
-      domainsConfig={{
-        refer: 'postiz.pro',
-      }}
     />
   );
 };
