@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nexora — hors ligne</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0e0e0e;
+        color: #ffffff;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+      }
+      .box {
+        max-width: 420px;
+        padding: 32px;
+      }
+      .mark {
+        width: 72px;
+        height: 72px;
+        margin: 0 auto 24px;
+      }
+      h1 { font-size: 22px; margin: 0 0 12px; }
+      p { color: #999999; font-size: 15px; line-height: 1.6; margin: 0 0 24px; }
+      button {
+        background: #612bd3;
+        color: #ffffff;
+        border: 0;
+        border-radius: 8px;
+        padding: 12px 24px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <svg class="mark" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="60" height="60" rx="14" fill="#612BD3"/>
+        <path d="M17 45V15h6.4l13.2 20.6V15H43v30h-6.4L23.4 24.4V45H17z" fill="#ffffff"/>
+      </svg>
+      <h1>Vous êtes hors ligne</h1>
+      <p>Nexora ne peut pas joindre le serveur pour l'instant. Vérifiez votre connexion puis réessayez — vos posts planifiés partent dès le retour de la connexion.</p>
+      <button onclick="window.location.reload()">Réessayer</button>
+    </div>
+  </body>
+</html>
