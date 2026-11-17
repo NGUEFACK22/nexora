@@ -1,6 +1,7 @@
 import { anthropic } from '@ai-sdk/anthropic';
 import { google } from '@ai-sdk/google';
 import { openai } from '@ai-sdk/openai';
+import type { MastraModelConfig } from '@mastra/core/llm';
 import { ChatAnthropic } from '@langchain/anthropic';
 import { BaseChatModel } from '@langchain/core/language_models/chat_models';
 import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
@@ -49,8 +50,10 @@ export function aiModelName(providerDefault: string): string {
   return aiProvider() === 'openai' ? providerDefault : providerDefaults[aiProvider()];
 }
 
-// the Mastra / Vercel AI SDK model - the three provider packages are installed
-export function aiSdkModel(providerDefault: string) {
+// the Mastra / Vercel AI SDK model - the three provider packages are installed.
+// The explicit return type keeps it portable: the inferred union would reference
+// nested @ai-sdk/provider copies that differ per provider package (TS2742 on CI)
+export function aiSdkModel(providerDefault: string): MastraModelConfig {
   const model = aiModelName(providerDefault);
   switch (aiProvider()) {
     case 'anthropic':
