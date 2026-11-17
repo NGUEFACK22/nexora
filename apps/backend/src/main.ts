@@ -20,7 +20,7 @@ import { HttpExceptionFilter } from '@gitroom/nestjs-libraries/services/exceptio
 import { ConfigurationChecker } from '@gitroom/helpers/configuration/configuration.checker';
 import { startMcp } from '@gitroom/nestjs-libraries/chat/start.mcp';
 
-async function start() {
+export async function createNestApp() {
   const app = await NestFactory.create(AppModule, {
     rawBody: true,
     cors: {
@@ -59,7 +59,9 @@ async function start() {
     },
   });
 
-  await startMcp(app);
+  if (process.env.SERVERLESS !== 'true') {
+    await startMcp(app);
+  }
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -78,6 +80,12 @@ async function start() {
   app.useGlobalFilters(new HttpExceptionFilter());
 
   loadSwagger(app);
+
+  return app;
+}
+
+async function start() {
+  const app = await createNestApp();
 
   const port = process.env.PORT || 3000;
 
@@ -117,4 +125,7 @@ function checkConfiguration() {
   }
 }
 
-start();
+// On Vercel, apps/backend/api/index.ts boots the app per request — no listen here.
+if (!process.env.VERCEL) {
+  start();
+}
