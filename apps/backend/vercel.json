@@ -2,10 +2,10 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "installCommand": "pnpm install --prod=false",
   "functions": {
-    "api/index.ts": {
+    "api/index.js": {
       "maxDuration": 60,
       "includeFiles": "dist/**,node_modules/.prisma/**,node_modules/@prisma/**,node_modules/bcrypt/**"
     }
   },
-  "rewrites": [{ "source": "/(.*)", "destination": "/api/index.ts" }]
+  "rewrites": [{ "source": "/(.*)", "destination": "/api/index.js" }]
 }
