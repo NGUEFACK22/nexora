@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.KickProvider = void 0;
-const make_is_1 = require("@gitroom/nestjs-libraries/services/make.is");
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const kick_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/kick.dto");
+const make_is_1 = require("../../services/make.is");
+const make_secure_id_1 = require("../../services/make.secure.id");
+const social_abstract_1 = require("../social.abstract");
+const kick_dto_1 = require("../../dtos/posts/providers-settings/kick.dto");
 const crypto_1 = require("crypto");
 class KickProvider extends social_abstract_1.SocialAbstract {
     constructor() {

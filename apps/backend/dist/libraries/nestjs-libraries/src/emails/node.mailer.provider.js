@@ -1,8 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NodeMailerProvider = void 0;
-const tslib_1 = require("tslib");
-const nodemailer_1 = tslib_1.__importDefault(require("nodemailer"));
+const nodemailer_1 = __importDefault(require("nodemailer"));
 const transporter = nodemailer_1.default.createTransport({
     host: process.env.EMAIL_HOST,
     port: +process.env.EMAIL_PORT,

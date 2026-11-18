@@ -1,16 +1,24 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var ShortLinkService_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ShortLinkService = void 0;
-const tslib_1 = require("tslib");
-const dub_1 = require("@gitroom/nestjs-libraries/short-linking/providers/dub");
-const empty_1 = require("@gitroom/nestjs-libraries/short-linking/providers/empty");
+const dub_1 = require("./providers/dub");
+const empty_1 = require("./providers/empty");
 const common_1 = require("@nestjs/common");
 const short_io_1 = require("./providers/short.io");
 const kutt_1 = require("./providers/kutt");
 const linkdrip_1 = require("./providers/linkdrip");
 const lodash_1 = require("lodash");
-const striptags_1 = tslib_1.__importDefault(require("striptags"));
+const striptags_1 = __importDefault(require("striptags"));
 const getProvider = () => {
     if (process.env.DUB_TOKEN) {
         return new dub_1.Dub();
@@ -118,7 +126,7 @@ let ShortLinkService = ShortLinkService_1 = class ShortLinkService {
 };
 exports.ShortLinkService = ShortLinkService;
 ShortLinkService.provider = getProvider();
-exports.ShortLinkService = ShortLinkService = ShortLinkService_1 = tslib_1.__decorate([
+exports.ShortLinkService = ShortLinkService = ShortLinkService_1 = __decorate([
     (0, common_1.Injectable)()
 ], ShortLinkService);
 //# sourceMappingURL=short.link.service.js.map

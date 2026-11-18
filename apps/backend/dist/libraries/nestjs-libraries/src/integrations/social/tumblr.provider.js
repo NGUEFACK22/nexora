@@ -1,14 +1,25 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TumblrProvider = void 0;
-const tslib_1 = require("tslib");
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
-const tumblr_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/tumblr.dto");
-const form_data_1 = tslib_1.__importDefault(require("form-data"));
+const social_abstract_1 = require("../social.abstract");
+const make_secure_id_1 = require("../../services/make.secure.id");
+const tumblr_dto_1 = require("../../dtos/posts/providers-settings/tumblr.dto");
+const form_data_1 = __importDefault(require("form-data"));
 const mime_types_1 = require("mime-types");
-const has_extension_1 = require("@gitroom/helpers/utils/has.extension");
-const dashboard_function_decorator_1 = require("@gitroom/nestjs-libraries/integrations/dashboard.function.decorator");
+const has_extension_1 = require("../../../../helpers/src/utils/has.extension");
+const dashboard_function_decorator_1 = require("../dashboard.function.decorator");
 const TUMBLR_API_URL = 'https://api.tumblr.com/v2';
 const TUMBLR_USER_AGENT = 'Nexora/1.0 (+https://Nexora.com)';
 const TUMBLR_TEXT_BLOCK_LIMIT = 4096;
@@ -441,10 +452,10 @@ class TumblrProvider extends social_abstract_1.SocialAbstract {
     }
 }
 exports.TumblrProvider = TumblrProvider;
-tslib_1.__decorate([
+__decorate([
     (0, dashboard_function_decorator_1.DashboardFunction)(),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
 ], TumblrProvider.prototype, "pages", null);
 //# sourceMappingURL=tumblr.provider.js.map

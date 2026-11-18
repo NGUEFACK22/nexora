@@ -76,7 +76,7 @@ export declare class OAuthController {
         email_verified?: boolean;
         sub: string;
     }>;
-    hubspotCallback(query: HubspotInstallQueryDto, response: Response): Promise<any>;
+    hubspotCallback(query: HubspotInstallQueryDto, response: Response): Promise<void>;
 }
 export declare class OAuthAuthorizedController {
     private _oauthService;

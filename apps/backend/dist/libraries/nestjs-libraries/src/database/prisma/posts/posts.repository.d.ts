@@ -581,9 +581,9 @@ export declare class PostsRepository {
             ordersItems: {
                 id: string;
                 integrationId: string;
-                price: number;
                 orderId: string;
                 quantity: number;
+                price: number;
             }[];
             seller: {
                 id: string;

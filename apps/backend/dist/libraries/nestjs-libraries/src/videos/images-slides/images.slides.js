@@ -1,17 +1,28 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ImagesSlides = void 0;
-const tslib_1 = require("tslib");
-const openai_service_1 = require("@gitroom/nestjs-libraries/openai/openai.service");
-const video_interface_1 = require("@gitroom/nestjs-libraries/videos/video.interface");
+const openai_service_1 = require("../../openai/openai.service");
+const video_interface_1 = require("../video.interface");
 const lodash_1 = require("lodash");
-const transloadit_1 = tslib_1.__importDefault(require("transloadit"));
-const upload_factory_1 = require("@gitroom/nestjs-libraries/upload/upload.factory");
+const transloadit_1 = __importDefault(require("transloadit"));
+const upload_factory_1 = require("../../upload/upload.factory");
 const stream_1 = require("stream");
 const music_metadata_1 = require("music-metadata");
 const subtitle_1 = require("subtitle");
-const p_limit_1 = tslib_1.__importDefault(require("p-limit"));
-const fal_service_1 = require("@gitroom/nestjs-libraries/openai/fal.service");
+const p_limit_1 = __importDefault(require("p-limit"));
+const fal_service_1 = require("../../openai/fal.service");
 const class_validator_1 = require("class-validator");
 const class_validator_jsonschema_1 = require("class-validator-jsonschema");
 const limit = (0, p_limit_1.default)(2);
@@ -32,19 +43,19 @@ async function getAudioDuration(buffer) {
 }
 class ImagesSlidesParams {
 }
-tslib_1.__decorate([
+__decorate([
     (0, class_validator_jsonschema_1.JSONSchema)({
         description: 'Elevenlabs voice id, use a special tool to get it, this is a required filed',
     }),
     (0, class_validator_1.IsString)(),
-    tslib_1.__metadata("design:type", String)
+    __metadata("design:type", String)
 ], ImagesSlidesParams.prototype, "voice", void 0);
-tslib_1.__decorate([
+__decorate([
     (0, class_validator_jsonschema_1.JSONSchema)({
         description: 'Simple string of the prompt, not a json',
     }),
     (0, class_validator_1.IsString)(),
-    tslib_1.__metadata("design:type", String)
+    __metadata("design:type", String)
 ], ImagesSlidesParams.prototype, "prompt", void 0);
 let ImagesSlides = class ImagesSlides extends video_interface_1.VideoAbstract {
     constructor(_openaiService, _falService) {
@@ -214,13 +225,13 @@ let ImagesSlides = class ImagesSlides extends video_interface_1.VideoAbstract {
     }
 };
 exports.ImagesSlides = ImagesSlides;
-tslib_1.__decorate([
+__decorate([
     (0, video_interface_1.ExposeVideoFunction)(),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], ImagesSlides.prototype, "loadVoices", null);
-exports.ImagesSlides = ImagesSlides = tslib_1.__decorate([
+exports.ImagesSlides = ImagesSlides = __decorate([
     (0, video_interface_1.Video)({
         identifier: 'image-text-slides',
         title: 'Image Text Slides',
@@ -235,7 +246,7 @@ exports.ImagesSlides = ImagesSlides = tslib_1.__decorate([
             !!process.env.OPENAI_API_KEY &&
             !!process.env.FAL_KEY,
     }),
-    tslib_1.__metadata("design:paramtypes", [openai_service_1.OpenaiService,
+    __metadata("design:paramtypes", [openai_service_1.OpenaiService,
         fal_service_1.FalService])
 ], ImagesSlides);
 //# sourceMappingURL=images.slides.js.map

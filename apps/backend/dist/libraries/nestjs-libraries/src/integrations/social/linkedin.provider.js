@@ -1,20 +1,31 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LinkedinProvider = void 0;
-const tslib_1 = require("tslib");
-const make_is_1 = require("@gitroom/nestjs-libraries/services/make.is");
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
-const sharp_1 = tslib_1.__importDefault(require("sharp"));
+const make_is_1 = require("../../services/make.is");
+const make_secure_id_1 = require("../../services/make.secure.id");
+const sharp_1 = __importDefault(require("sharp"));
 const mime_types_1 = require("mime-types");
-const has_extension_1 = require("@gitroom/helpers/utils/has.extension");
-const timer_1 = require("@gitroom/helpers/utils/timer");
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const post_plug_1 = require("@gitroom/helpers/decorators/post.plug");
-const linkedin_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/linkedin.dto");
-const image_to_pdf_1 = tslib_1.__importDefault(require("image-to-pdf"));
-const rules_description_decorator_1 = require("@gitroom/nestjs-libraries/chat/rules.description.decorator");
-const tool_decorator_1 = require("@gitroom/nestjs-libraries/integrations/tool.decorator");
-const dashboard_function_decorator_1 = require("@gitroom/nestjs-libraries/integrations/dashboard.function.decorator");
+const has_extension_1 = require("../../../../helpers/src/utils/has.extension");
+const timer_1 = require("../../../../helpers/src/utils/timer");
+const social_abstract_1 = require("../social.abstract");
+const post_plug_1 = require("../../../../helpers/src/decorators/post.plug");
+const linkedin_dto_1 = require("../../dtos/posts/providers-settings/linkedin.dto");
+const image_to_pdf_1 = __importDefault(require("image-to-pdf"));
+const rules_description_decorator_1 = require("../../chat/rules.description.decorator");
+const tool_decorator_1 = require("../tool.decorator");
+const dashboard_function_decorator_1 = require("../dashboard.function.decorator");
 let LinkedinProvider = class LinkedinProvider extends social_abstract_1.SocialAbstract {
     constructor() {
         super(...arguments);
@@ -695,13 +706,13 @@ let LinkedinProvider = class LinkedinProvider extends social_abstract_1.SocialAb
     }
 };
 exports.LinkedinProvider = LinkedinProvider;
-tslib_1.__decorate([
+__decorate([
     (0, dashboard_function_decorator_1.DashboardFunction)(),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
 ], LinkedinProvider.prototype, "company", null);
-tslib_1.__decorate([
+__decorate([
     (0, post_plug_1.PostPlug)({
         identifier: 'linkedin-add-comment',
         title: 'Add comments by a different account',
@@ -716,11 +727,11 @@ tslib_1.__decorate([
             },
         ],
     }),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, String, Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, String, Object, Object]),
+    __metadata("design:returntype", Promise)
 ], LinkedinProvider.prototype, "addComment", null);
-tslib_1.__decorate([
+__decorate([
     (0, post_plug_1.PostPlug)({
         identifier: 'linkedin-repost-post-users',
         title: 'Add Re-posters',
@@ -728,22 +739,22 @@ tslib_1.__decorate([
         pickIntegration: ['linkedin', 'linkedin-page'],
         fields: [],
     }),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, String, Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, String, Object, Object]),
+    __metadata("design:returntype", Promise)
 ], LinkedinProvider.prototype, "repostPostUsers", null);
-tslib_1.__decorate([
+__decorate([
     (0, tool_decorator_1.Tool)({
         description: 'Find a company page to tag by its exact vanity name (the part after linkedin.com/company/). Tag it in the post content with <span data-mention-id="{id}" data-mention-label="{label}">@{label}</span>',
         dataSchema: [
             { key: 'query', type: 'string', description: 'Company page vanity name' },
         ],
     }),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
 ], LinkedinProvider.prototype, "mention", null);
-exports.LinkedinProvider = LinkedinProvider = tslib_1.__decorate([
+exports.LinkedinProvider = LinkedinProvider = __decorate([
     (0, rules_description_decorator_1.Rules)('LinkedIn can have maximum one attachment when selecting video, when choosing a carousel on LinkedIn minimum amount of attachment must be two, and only pictures, if uploading a video, LinkedIn can have only one attachment')
 ], LinkedinProvider);
 //# sourceMappingURL=linkedin.provider.js.map

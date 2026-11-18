@@ -1,4 +1,7 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = handleR2Upload;
 exports.simpleUpload = simpleUpload;
@@ -8,12 +11,11 @@ exports.listParts = listParts;
 exports.completeMultipartUpload = completeMultipartUpload;
 exports.abortMultipartUpload = abortMultipartUpload;
 exports.signPart = signPart;
-const tslib_1 = require("tslib");
 const client_s3_1 = require("@aws-sdk/client-s3");
 const s3_request_presigner_1 = require("@aws-sdk/s3-request-presigner");
-const path_1 = tslib_1.__importDefault(require("path"));
-const make_is_1 = require("@gitroom/nestjs-libraries/services/make.is");
-const upload_factory_1 = require("@gitroom/nestjs-libraries/upload/upload.factory");
+const path_1 = __importDefault(require("path"));
+const make_is_1 = require("../services/make.is");
+const upload_factory_1 = require("./upload.factory");
 const { fileTypeFromBuffer } = require('file-type');
 const ALLOWED_EXT_TO_MIME = {
     '.jpg': 'image/jpeg',

@@ -1,10 +1,18 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ThirdPartyRepository = void 0;
-const tslib_1 = require("tslib");
-const prisma_service_1 = require("@gitroom/nestjs-libraries/database/prisma/prisma.service");
+const prisma_service_1 = require("../prisma.service");
 const common_1 = require("@nestjs/common");
-const auth_service_1 = require("@gitroom/helpers/auth/auth.service");
+const auth_service_1 = require("../../../../../helpers/src/auth/auth.service");
 let ThirdPartyRepository = class ThirdPartyRepository {
     constructor(_thirdParty) {
         this._thirdParty = _thirdParty;
@@ -58,8 +66,8 @@ let ThirdPartyRepository = class ThirdPartyRepository {
     }
 };
 exports.ThirdPartyRepository = ThirdPartyRepository;
-exports.ThirdPartyRepository = ThirdPartyRepository = tslib_1.__decorate([
+exports.ThirdPartyRepository = ThirdPartyRepository = __decorate([
     (0, common_1.Injectable)(),
-    tslib_1.__metadata("design:paramtypes", [prisma_service_1.PrismaRepository])
+    __metadata("design:paramtypes", [prisma_service_1.PrismaRepository])
 ], ThirdPartyRepository);
 //# sourceMappingURL=third-party.repository.js.map

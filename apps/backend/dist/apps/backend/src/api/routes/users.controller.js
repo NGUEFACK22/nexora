@@ -1,30 +1,41 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
-const user_from_request_1 = require("@gitroom/nestjs-libraries/user/user.from.request");
+const user_from_request_1 = require("../../../../../libraries/nestjs-libraries/src/user/user.from.request");
 const jsonwebtoken_1 = require("jsonwebtoken");
-const subscription_service_1 = require("@gitroom/nestjs-libraries/database/prisma/subscriptions/subscription.service");
-const org_from_request_1 = require("@gitroom/nestjs-libraries/user/org.from.request");
-const payment_service_1 = require("@gitroom/nestjs-libraries/services/payment/payment.service");
-const auth_service_1 = require("@gitroom/backend/services/auth/auth.service");
-const auth_service_2 = require("@gitroom/helpers/auth/auth.service");
-const organization_service_1 = require("@gitroom/nestjs-libraries/database/prisma/organizations/organization.service");
-const permissions_ability_1 = require("@gitroom/backend/services/auth/permissions/permissions.ability");
-const subdomain_management_1 = require("@gitroom/helpers/subdomain/subdomain.management");
-const pricing_1 = require("@gitroom/nestjs-libraries/database/prisma/subscriptions/pricing");
+const subscription_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/subscriptions/subscription.service");
+const org_from_request_1 = require("../../../../../libraries/nestjs-libraries/src/user/org.from.request");
+const payment_service_1 = require("../../../../../libraries/nestjs-libraries/src/services/payment/payment.service");
+const auth_service_1 = require("../../services/auth/auth.service");
+const auth_service_2 = require("../../../../../libraries/helpers/src/auth/auth.service");
+const organization_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/organizations/organization.service");
+const permissions_ability_1 = require("../../services/auth/permissions/permissions.ability");
+const subdomain_management_1 = require("../../../../../libraries/helpers/src/subdomain/subdomain.management");
+const pricing_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/subscriptions/pricing");
 const swagger_1 = require("@nestjs/swagger");
-const users_service_1 = require("@gitroom/nestjs-libraries/database/prisma/users/users.service");
-const user_details_dto_1 = require("@gitroom/nestjs-libraries/dtos/users/user.details.dto");
-const email_notifications_dto_1 = require("@gitroom/nestjs-libraries/dtos/users/email-notifications.dto");
-const timezone_dto_1 = require("@gitroom/nestjs-libraries/dtos/users/timezone.dto");
-const exception_filter_1 = require("@gitroom/nestjs-libraries/services/exception.filter");
+const users_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/users/users.service");
+const user_details_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/users/user.details.dto");
+const email_notifications_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/users/email-notifications.dto");
+const timezone_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/users/timezone.dto");
+const exception_filter_1 = require("../../../../../libraries/nestjs-libraries/src/services/exception.filter");
 const nestjs_real_ip_1 = require("nestjs-real-ip");
-const user_agent_1 = require("@gitroom/nestjs-libraries/user/user.agent");
-const track_service_1 = require("@gitroom/nestjs-libraries/track/track.service");
-const track_cookies_1 = require("@gitroom/nestjs-libraries/track/track.cookies");
-const permission_exception_class_1 = require("@gitroom/backend/services/auth/permissions/permission.exception.class");
+const user_agent_1 = require("../../../../../libraries/nestjs-libraries/src/user/user.agent");
+const track_service_1 = require("../../../../../libraries/nestjs-libraries/src/track/track.service");
+const track_cookies_1 = require("../../../../../libraries/nestjs-libraries/src/track/track.cookies");
+const permission_exception_class_1 = require("../../services/auth/permissions/permission.exception.class");
 let UsersController = class UsersController {
     constructor(_subscriptionService, _paymentService, _authService, _orgService, _userService, _trackService) {
         this._subscriptionService = _subscriptionService;
@@ -268,173 +279,173 @@ let UsersController = class UsersController {
     }
 };
 exports.UsersController = UsersController;
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/chatbase-token'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(1, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(1, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "getChatbaseToken", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/self'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(1, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(2, (0, common_1.Req)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(1, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(2, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, Object]),
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "getSelf", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/personal'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "getPersonalInformation", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/impersonate'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Query)('name')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(1, (0, common_1.Query)('name')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "getImpersonate", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/impersonate'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)('id')),
-    tslib_1.__param(2, (0, common_1.Res)({ passthrough: true })),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(1, (0, common_1.Body)('id')),
+    __param(2, (0, common_1.Res)({ passthrough: true })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, Object]),
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "setImpersonate", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/switch'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)('id')),
-    tslib_1.__param(2, (0, common_1.Req)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(1, (0, common_1.Body)('id')),
+    __param(2, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, Object]),
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "switchUser", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/personal'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, user_details_dto_1.UserDetailDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, user_details_dto_1.UserDetailDto]),
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "changePersonal", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/email-notifications'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "getEmailNotifications", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/email-notifications'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, email_notifications_dto_1.EmailNotificationsDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, email_notifications_dto_1.EmailNotificationsDto]),
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "updateEmailNotifications", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/timezone'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, timezone_dto_1.TimezoneDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, timezone_dto_1.TimezoneDto]),
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "updateTimezone", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/api-key/rotate'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "rotateApiKey", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/subscription'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "getSubscription", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/subscription/tiers'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", []),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "tiers", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/join-org'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)('org')),
-    tslib_1.__param(2, (0, common_1.Res)({ passthrough: true })),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(1, (0, common_1.Body)('org')),
+    __param(2, (0, common_1.Res)({ passthrough: true })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, Object]),
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "joinOrg", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/organizations'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "getOrgs", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/change-org'),
-    tslib_1.__param(0, (0, common_1.Body)('id')),
-    tslib_1.__param(1, (0, common_1.Res)({ passthrough: true })),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, Object]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, common_1.Body)('id')),
+    __param(1, (0, common_1.Res)({ passthrough: true })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", void 0)
 ], UsersController.prototype, "changeOrg", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/delete-account-info'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
 ], UsersController.prototype, "getDeleteAccountInfo", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/delete-account'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Req)()),
-    tslib_1.__param(2, (0, common_1.Res)({ passthrough: true })),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(1, (0, common_1.Req)()),
+    __param(2, (0, common_1.Res)({ passthrough: true })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, Object]),
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "deleteAccount", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/logout'),
-    tslib_1.__param(0, (0, common_1.Res)({ passthrough: true })),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, common_1.Res)({ passthrough: true })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
 ], UsersController.prototype, "logout", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/t'),
-    tslib_1.__param(0, (0, common_1.Res)({ passthrough: true })),
-    tslib_1.__param(1, (0, common_1.Req)()),
-    tslib_1.__param(2, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(3, (0, nestjs_real_ip_1.RealIP)()),
-    tslib_1.__param(4, (0, user_agent_1.UserAgent)()),
-    tslib_1.__param(5, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, Object, String, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Res)({ passthrough: true })),
+    __param(1, (0, common_1.Req)()),
+    __param(2, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(3, (0, nestjs_real_ip_1.RealIP)()),
+    __param(4, (0, user_agent_1.UserAgent)()),
+    __param(5, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, Object, String, String, Object]),
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "trackEvent", null);
-exports.UsersController = UsersController = tslib_1.__decorate([
+exports.UsersController = UsersController = __decorate([
     (0, swagger_1.ApiTags)('User'),
     (0, common_1.Controller)('/user'),
-    tslib_1.__metadata("design:paramtypes", [subscription_service_1.SubscriptionService,
+    __metadata("design:paramtypes", [subscription_service_1.SubscriptionService,
         payment_service_1.PaymentService,
         auth_service_1.AuthService,
         organization_service_1.OrganizationService,

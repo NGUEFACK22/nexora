@@ -1,21 +1,32 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BlueskyProvider = void 0;
-const tslib_1 = require("tslib");
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
-const temporal_heartbeat_1 = require("@gitroom/nestjs-libraries/temporal/temporal.heartbeat");
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
+const make_secure_id_1 = require("../../services/make.secure.id");
+const temporal_heartbeat_1 = require("../../temporal/temporal.heartbeat");
+const social_abstract_1 = require("../social.abstract");
 const api_1 = require("@atproto/api");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
-const auth_service_1 = require("@gitroom/helpers/auth/auth.service");
-const webhook_url_validator_1 = require("@gitroom/nestjs-libraries/dtos/webhooks/webhook.url.validator");
-const ssrf_safe_dispatcher_1 = require("@gitroom/nestjs-libraries/dtos/webhooks/ssrf.safe.dispatcher");
-const sharp_1 = tslib_1.__importDefault(require("sharp"));
-const plug_decorator_1 = require("@gitroom/helpers/decorators/plug.decorator");
-const timer_1 = require("@gitroom/helpers/utils/timer");
-const strip_html_validation_1 = require("@gitroom/helpers/utils/strip.html.validation");
-const rules_description_decorator_1 = require("@gitroom/nestjs-libraries/chat/rules.description.decorator");
-const has_extension_1 = require("@gitroom/helpers/utils/has.extension");
+const dayjs_1 = __importDefault(require("dayjs"));
+const auth_service_1 = require("../../../../helpers/src/auth/auth.service");
+const webhook_url_validator_1 = require("../../dtos/webhooks/webhook.url.validator");
+const ssrf_safe_dispatcher_1 = require("../../dtos/webhooks/ssrf.safe.dispatcher");
+const sharp_1 = __importDefault(require("sharp"));
+const plug_decorator_1 = require("../../../../helpers/src/decorators/plug.decorator");
+const timer_1 = require("../../../../helpers/src/utils/timer");
+const strip_html_validation_1 = require("../../../../helpers/src/utils/strip.html.validation");
+const rules_description_decorator_1 = require("../../chat/rules.description.decorator");
+const has_extension_1 = require("../../../../helpers/src/utils/has.extension");
 async function reduceImageBySize(url, maxSizeKB = 976) {
     try {
         const response = await (0, ssrf_safe_dispatcher_1.getSsrfSafeAxios)().get(url, {
@@ -592,7 +603,7 @@ let BlueskyProvider = class BlueskyProvider extends social_abstract_1.SocialAbst
     }
 };
 exports.BlueskyProvider = BlueskyProvider;
-tslib_1.__decorate([
+__decorate([
     (0, plug_decorator_1.Plug)({
         identifier: 'bluesky-autoRepostPost',
         title: 'Auto Repost Posts',
@@ -609,11 +620,11 @@ tslib_1.__decorate([
             },
         ],
     }),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, Object]),
+    __metadata("design:returntype", Promise)
 ], BlueskyProvider.prototype, "autoRepostPost", null);
-tslib_1.__decorate([
+__decorate([
     (0, plug_decorator_1.Plug)({
         identifier: 'bluesky-autoPlugPost',
         title: 'Auto plug post',
@@ -637,11 +648,11 @@ tslib_1.__decorate([
             },
         ],
     }),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, Object]),
+    __metadata("design:returntype", Promise)
 ], BlueskyProvider.prototype, "autoPlugPost", null);
-exports.BlueskyProvider = BlueskyProvider = tslib_1.__decorate([
+exports.BlueskyProvider = BlueskyProvider = __decorate([
     (0, rules_description_decorator_1.Rules)('Bluesky can have maximum 1 video or 4 pictures in one post, it can also be without attachments')
 ], BlueskyProvider);
 //# sourceMappingURL=bluesky.provider.js.map

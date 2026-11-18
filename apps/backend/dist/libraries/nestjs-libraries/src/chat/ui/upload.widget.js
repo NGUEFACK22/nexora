@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.uploadWidgetHtml = exports.UPLOAD_WIDGET_URI = void 0;
-const custom_upload_validation_1 = require("@gitroom/nestjs-libraries/upload/custom.upload.validation");
+const custom_upload_validation_1 = require("../../upload/custom.upload.validation");
 const megabytes = (mime) => Math.floor((0, custom_upload_validation_1.getMaxSize)(mime) / 1024 / 1024);
 exports.UPLOAD_WIDGET_URI = 'ui://postiz/upload';
 const uploadWidgetHtml = (backendUrl) => `<!DOCTYPE html>

@@ -1,26 +1,37 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var XProvider_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.XProvider = void 0;
-const tslib_1 = require("tslib");
 const twitter_api_v2_1 = require("twitter-api-v2");
 const crypto_1 = require("crypto");
 const parse5_1 = require("parse5");
 const mime_types_1 = require("mime-types");
-const sharp_1 = tslib_1.__importDefault(require("sharp"));
-const temporal_heartbeat_1 = require("@gitroom/nestjs-libraries/temporal/temporal.heartbeat");
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const plug_decorator_1 = require("@gitroom/helpers/decorators/plug.decorator");
-const timer_1 = require("@gitroom/helpers/utils/timer");
-const post_plug_1 = require("@gitroom/helpers/decorators/post.plug");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
+const sharp_1 = __importDefault(require("sharp"));
+const temporal_heartbeat_1 = require("../../temporal/temporal.heartbeat");
+const social_abstract_1 = require("../social.abstract");
+const plug_decorator_1 = require("../../../../helpers/src/decorators/plug.decorator");
+const timer_1 = require("../../../../helpers/src/utils/timer");
+const post_plug_1 = require("../../../../helpers/src/decorators/post.plug");
+const dayjs_1 = __importDefault(require("dayjs"));
 const lodash_1 = require("lodash");
-const strip_html_validation_1 = require("@gitroom/helpers/utils/strip.html.validation");
-const strip_links_1 = require("@gitroom/helpers/utils/strip.links");
-const x_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/x.dto");
-const rules_description_decorator_1 = require("@gitroom/nestjs-libraries/chat/rules.description.decorator");
-const has_extension_1 = require("@gitroom/helpers/utils/has.extension");
-const valid_url_path_1 = require("@gitroom/helpers/utils/valid.url.path");
+const strip_html_validation_1 = require("../../../../helpers/src/utils/strip.html.validation");
+const strip_links_1 = require("../../../../helpers/src/utils/strip.links");
+const x_dto_1 = require("../../dtos/posts/providers-settings/x.dto");
+const rules_description_decorator_1 = require("../../chat/rules.description.decorator");
+const has_extension_1 = require("../../../../helpers/src/utils/has.extension");
+const valid_url_path_1 = require("../../../../helpers/src/utils/valid.url.path");
 let XProvider = XProvider_1 = class XProvider extends social_abstract_1.SocialAbstract {
     constructor() {
         super(...arguments);
@@ -1030,7 +1041,7 @@ let XProvider = XProvider_1 = class XProvider extends social_abstract_1.SocialAb
 };
 exports.XProvider = XProvider;
 XProvider.X_UPLOAD_CHUNK_SIZE = 1024 * 1024;
-tslib_1.__decorate([
+__decorate([
     (0, plug_decorator_1.Plug)({
         identifier: 'x-autoRepostPost',
         title: 'Auto Repost Posts',
@@ -1048,11 +1059,11 @@ tslib_1.__decorate([
             },
         ],
     }),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, Object]),
+    __metadata("design:returntype", Promise)
 ], XProvider.prototype, "autoRepostPost", null);
-tslib_1.__decorate([
+__decorate([
     (0, post_plug_1.PostPlug)({
         identifier: 'x-repost-post-users',
         title: 'Add Re-posters',
@@ -1060,11 +1071,11 @@ tslib_1.__decorate([
         pickIntegration: ['x'],
         fields: [],
     }),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, String, Object]),
+    __metadata("design:returntype", Promise)
 ], XProvider.prototype, "repostPostUsers", null);
-tslib_1.__decorate([
+__decorate([
     (0, plug_decorator_1.Plug)({
         identifier: 'x-autoPlugPost',
         title: 'Auto plug post',
@@ -1089,11 +1100,11 @@ tslib_1.__decorate([
             },
         ],
     }),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, Object]),
+    __metadata("design:returntype", Promise)
 ], XProvider.prototype, "autoPlugPost", null);
-exports.XProvider = XProvider = XProvider_1 = tslib_1.__decorate([
+exports.XProvider = XProvider = XProvider_1 = __decorate([
     (0, rules_description_decorator_1.Rules)(`X can have maximum 4 pictures, or maximum one video, it can also be without attachments, it can also be published as a long-form article (draft or published) when post_type is set to article, in an article pictures go inside the content as <img src="..."> where they should appear (the src must be a picture from the media library, upload it with uploadFromUrlTool first) ${process.env.STRIP_LINKS_FROM_X_POSTS
         ? 'do not add links, they will be stripped from the post'
         : ''}`)

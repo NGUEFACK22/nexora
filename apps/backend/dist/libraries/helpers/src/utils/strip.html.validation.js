@@ -1,8 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.convertToAscii = exports.convertMention = exports.convertImages = exports.stripHtmlValidation = void 0;
-const tslib_1 = require("tslib");
-const striptags_1 = tslib_1.__importDefault(require("striptags"));
+const striptags_1 = __importDefault(require("striptags"));
 const parse5_1 = require("parse5");
 const bold = {
     a: '𝗮',

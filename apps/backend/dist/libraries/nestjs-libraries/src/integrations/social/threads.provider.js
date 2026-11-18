@@ -1,17 +1,28 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ThreadsProvider = void 0;
-const tslib_1 = require("tslib");
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
-const timer_1 = require("@gitroom/helpers/utils/timer");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
+const make_secure_id_1 = require("../../services/make.secure.id");
+const timer_1 = require("../../../../helpers/src/utils/timer");
+const dayjs_1 = __importDefault(require("dayjs"));
+const social_abstract_1 = require("../social.abstract");
 const lodash_1 = require("lodash");
-const plug_decorator_1 = require("@gitroom/helpers/decorators/plug.decorator");
-const strip_html_validation_1 = require("@gitroom/helpers/utils/strip.html.validation");
-const has_extension_1 = require("@gitroom/helpers/utils/has.extension");
-const threads_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/threads.dto");
-const rules_description_decorator_1 = require("@gitroom/nestjs-libraries/chat/rules.description.decorator");
+const plug_decorator_1 = require("../../../../helpers/src/decorators/plug.decorator");
+const strip_html_validation_1 = require("../../../../helpers/src/utils/strip.html.validation");
+const has_extension_1 = require("../../../../helpers/src/utils/has.extension");
+const threads_dto_1 = require("../../dtos/posts/providers-settings/threads.dto");
+const rules_description_decorator_1 = require("../../chat/rules.description.decorator");
 let ThreadsProvider = class ThreadsProvider extends social_abstract_1.SocialAbstract {
     constructor() {
         super(...arguments);
@@ -469,7 +480,7 @@ let ThreadsProvider = class ThreadsProvider extends social_abstract_1.SocialAbst
     }
 };
 exports.ThreadsProvider = ThreadsProvider;
-tslib_1.__decorate([
+__decorate([
     (0, plug_decorator_1.Plug)({
         identifier: 'threads-autoPlugPost',
         title: 'Auto plug post',
@@ -493,11 +504,11 @@ tslib_1.__decorate([
             },
         ],
     }),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, Object]),
+    __metadata("design:returntype", Promise)
 ], ThreadsProvider.prototype, "autoPlugPost", null);
-exports.ThreadsProvider = ThreadsProvider = tslib_1.__decorate([
+exports.ThreadsProvider = ThreadsProvider = __decorate([
     (0, rules_description_decorator_1.Rules)('If the content of the post (text, pictures or video) was made with AI, ask the user if they want to mark it as AI, and set made_with_ai to true only when they say yes.')
 ], ThreadsProvider);
 //# sourceMappingURL=threads.provider.js.map

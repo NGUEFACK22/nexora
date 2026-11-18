@@ -1,18 +1,29 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SocialAbstract = exports.NotEnoughScopes = exports.BadBody = exports.PublishedWithError = exports.Disconnect = exports.RefreshToken = exports.stripQuery = void 0;
 exports.truncateForTemporal = truncateForTemporal;
 exports.rangeReadFailure = rangeReadFailure;
-const tslib_1 = require("tslib");
-const timer_1 = require("@gitroom/helpers/utils/timer");
+const timer_1 = require("../../../helpers/src/utils/timer");
 const activity_1 = require("@temporalio/activity");
-const temporal_heartbeat_1 = require("@gitroom/nestjs-libraries/temporal/temporal.heartbeat");
-const ssrf_safe_dispatcher_1 = require("@gitroom/nestjs-libraries/dtos/webhooks/ssrf.safe.dispatcher");
-const sharp_1 = tslib_1.__importDefault(require("sharp"));
+const temporal_heartbeat_1 = require("../temporal/temporal.heartbeat");
+const ssrf_safe_dispatcher_1 = require("../dtos/webhooks/ssrf.safe.dispatcher");
+const sharp_1 = __importDefault(require("sharp"));
 const fs_1 = require("fs");
 const path_1 = require("path");
 const stream_1 = require("stream");
-const dashboard_function_decorator_1 = require("@gitroom/nestjs-libraries/integrations/dashboard.function.decorator");
+const dashboard_function_decorator_1 = require("./dashboard.function.decorator");
 const MEDIA_READ_TIMEOUT = 120_000;
 const isReadTimeout = (err) => err?.name === 'TimeoutError' || err?.cause?.name === 'TimeoutError';
 const stripQuery = (url) => {
@@ -361,10 +372,10 @@ class SocialAbstract {
     }
 }
 exports.SocialAbstract = SocialAbstract;
-tslib_1.__decorate([
+__decorate([
     (0, dashboard_function_decorator_1.DashboardFunction)(),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, Object, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object, String, Object]),
+    __metadata("design:returntype", Promise)
 ], SocialAbstract.prototype, "mention", null);
 //# sourceMappingURL=social.abstract.js.map

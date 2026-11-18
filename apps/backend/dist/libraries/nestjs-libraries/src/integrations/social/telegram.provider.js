@@ -1,13 +1,15 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TelegramProvider = void 0;
-const tslib_1 = require("tslib");
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const mime_1 = tslib_1.__importDefault(require("mime"));
-const node_telegram_bot_api_1 = tslib_1.__importDefault(require("node-telegram-bot-api"));
-const striptags_1 = tslib_1.__importDefault(require("striptags"));
+const make_secure_id_1 = require("../../services/make.secure.id");
+const dayjs_1 = __importDefault(require("dayjs"));
+const social_abstract_1 = require("../social.abstract");
+const mime_1 = __importDefault(require("mime"));
+const node_telegram_bot_api_1 = __importDefault(require("node-telegram-bot-api"));
+const striptags_1 = __importDefault(require("striptags"));
 const telegramBot = new node_telegram_bot_api_1.default(process.env.TELEGRAM_TOKEN);
 const frontendURL = process.env.FRONTEND_URL || 'http://localhost:5000';
 const mediaStorage = process.env.STORAGE_PROVIDER || 'local';

@@ -1,12 +1,20 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EncryptionService = exports.integrationEncryptedFields = exports.ENCRYPTED_PREFIX = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
 const crypto_1 = require("crypto");
-const empty_provider_1 = require("@gitroom/nestjs-libraries/encryption/empty.provider");
-const local_provider_1 = require("@gitroom/nestjs-libraries/encryption/local.provider");
-const aws_kms_provider_1 = require("@gitroom/nestjs-libraries/encryption/aws.kms.provider");
+const empty_provider_1 = require("../encryption/empty.provider");
+const local_provider_1 = require("../encryption/local.provider");
+const aws_kms_provider_1 = require("../encryption/aws.kms.provider");
 exports.ENCRYPTED_PREFIX = 'enc:v1:';
 exports.integrationEncryptedFields = ['token', 'refreshToken'];
 const algorithm = 'aes-256-gcm';
@@ -122,8 +130,8 @@ let EncryptionService = class EncryptionService {
     }
 };
 exports.EncryptionService = EncryptionService;
-exports.EncryptionService = EncryptionService = tslib_1.__decorate([
+exports.EncryptionService = EncryptionService = __decorate([
     (0, common_1.Injectable)(),
-    tslib_1.__metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [])
 ], EncryptionService);
 //# sourceMappingURL=encryption.service.js.map

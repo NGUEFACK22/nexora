@@ -1,19 +1,33 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MediaController = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
-const org_from_request_1 = require("@gitroom/nestjs-libraries/user/org.from.request");
-const media_service_1 = require("@gitroom/nestjs-libraries/database/prisma/media/media.service");
+const org_from_request_1 = require("../../../../../libraries/nestjs-libraries/src/user/org.from.request");
+const media_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/media/media.service");
 const swagger_1 = require("@nestjs/swagger");
-const r2_uploader_1 = tslib_1.__importDefault(require("@gitroom/nestjs-libraries/upload/r2.uploader"));
+const r2_uploader_1 = __importDefault(require("../../../../../libraries/nestjs-libraries/src/upload/r2.uploader"));
 const platform_express_1 = require("@nestjs/platform-express");
-const multer_stream_engine_1 = require("@gitroom/nestjs-libraries/upload/multer.stream.engine");
-const subscription_service_1 = require("@gitroom/nestjs-libraries/database/prisma/subscriptions/subscription.service");
-const upload_factory_1 = require("@gitroom/nestjs-libraries/upload/upload.factory");
-const save_media_information_dto_1 = require("@gitroom/nestjs-libraries/dtos/media/save.media.information.dto");
-const video_dto_1 = require("@gitroom/nestjs-libraries/dtos/videos/video.dto");
-const video_function_dto_1 = require("@gitroom/nestjs-libraries/dtos/videos/video.function.dto");
+const multer_stream_engine_1 = require("../../../../../libraries/nestjs-libraries/src/upload/multer.stream.engine");
+const subscription_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/subscriptions/subscription.service");
+const upload_factory_1 = require("../../../../../libraries/nestjs-libraries/src/upload/upload.factory");
+const save_media_information_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/media/save.media.information.dto");
+const video_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/videos/video.dto");
+const video_function_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/videos/video.function.dto");
 let MediaController = class MediaController {
     constructor(_mediaService, _subscriptionService) {
         this._mediaService = _mediaService;
@@ -103,129 +117,129 @@ let MediaController = class MediaController {
     }
 };
 exports.MediaController = MediaController;
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Delete)('/:id'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", void 0)
 ], MediaController.prototype, "deleteMedia", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/generate-video'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, video_dto_1.VideoDto]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, video_dto_1.VideoDto]),
+    __metadata("design:returntype", void 0)
 ], MediaController.prototype, "generateVideo", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/generate-image'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Req)()),
-    tslib_1.__param(2, (0, common_1.Body)('prompt')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Req)()),
+    __param(2, (0, common_1.Body)('prompt')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, String, Object]),
+    __metadata("design:returntype", Promise)
 ], MediaController.prototype, "generateImage", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/generate-image-with-prompt'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Req)()),
-    tslib_1.__param(2, (0, common_1.Body)('prompt')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Req)()),
+    __param(2, (0, common_1.Body)('prompt')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, String]),
+    __metadata("design:returntype", Promise)
 ], MediaController.prototype, "generateImageFromText", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/upload-server'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', (0, multer_stream_engine_1.streamUploadOptions)())),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.UploadedFile)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.UploadedFile)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
 ], MediaController.prototype, "uploadServer", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/save-media'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Req)()),
-    tslib_1.__param(2, (0, common_1.Body)('name')),
-    tslib_1.__param(3, (0, common_1.Body)('originalName')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, String, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Req)()),
+    __param(2, (0, common_1.Body)('name')),
+    __param(3, (0, common_1.Body)('originalName')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, String, String]),
+    __metadata("design:returntype", Promise)
 ], MediaController.prototype, "saveMedia", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/information'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, save_media_information_dto_1.SaveMediaInformationDto]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, save_media_information_dto_1.SaveMediaInformationDto]),
+    __metadata("design:returntype", void 0)
 ], MediaController.prototype, "saveMediaInformation", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/upload-simple'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', (0, multer_stream_engine_1.streamUploadOptions)())),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.UploadedFile)('file')),
-    tslib_1.__param(2, (0, common_1.Body)('preventSave')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.UploadedFile)('file')),
+    __param(2, (0, common_1.Body)('preventSave')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, String]),
+    __metadata("design:returntype", Promise)
 ], MediaController.prototype, "uploadSimple", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/:endpoint'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Req)()),
-    tslib_1.__param(2, (0, common_1.Res)()),
-    tslib_1.__param(3, (0, common_1.Param)('endpoint')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Req)()),
+    __param(2, (0, common_1.Res)()),
+    __param(3, (0, common_1.Param)('endpoint')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, Object, String]),
+    __metadata("design:returntype", Promise)
 ], MediaController.prototype, "uploadFile", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/:id/status'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", void 0)
 ], MediaController.prototype, "getMediaStatus", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Query)('page')),
-    tslib_1.__param(2, (0, common_1.Query)('search')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Number, String]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Query)('page')),
+    __param(2, (0, common_1.Query)('search')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Number, String]),
+    __metadata("design:returntype", void 0)
 ], MediaController.prototype, "getMedia", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/video-options'),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", []),
-    tslib_1.__metadata("design:returntype", void 0)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
 ], MediaController.prototype, "getVideos", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/video/function'),
-    tslib_1.__param(0, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [video_function_dto_1.VideoFunctionDto]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [video_function_dto_1.VideoFunctionDto]),
+    __metadata("design:returntype", void 0)
 ], MediaController.prototype, "videoFunction", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/generate-video/:type/allowed'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('type')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('type')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", void 0)
 ], MediaController.prototype, "generateVideoAllowed", null);
-exports.MediaController = MediaController = tslib_1.__decorate([
+exports.MediaController = MediaController = __decorate([
     (0, swagger_1.ApiTags)('Media'),
     (0, common_1.Controller)('/media'),
-    tslib_1.__metadata("design:paramtypes", [media_service_1.MediaService,
+    __metadata("design:paramtypes", [media_service_1.MediaService,
         subscription_service_1.SubscriptionService])
 ], MediaController);
 //# sourceMappingURL=media.controller.js.map

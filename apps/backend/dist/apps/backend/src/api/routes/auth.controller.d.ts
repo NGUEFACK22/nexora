@@ -16,7 +16,7 @@ export declare class AuthController {
         register: boolean;
     }>;
     attribution(): {
-        params: any;
+        params: string[];
     };
     register(req: Request, body: CreateOrgUserDto, response: Response, ip: string, userAgent: string): Promise<void>;
     login(req: Request, body: LoginUserDto, response: Response, ip: string, userAgent: string): Promise<void>;
@@ -26,9 +26,9 @@ export declare class AuthController {
     forgotReturn(body: ForgotReturnPasswordDto): Promise<{
         reset: boolean;
     }>;
-    mobileCallback(code: string, state: string, response: Response): any;
+    mobileCallback(code: string, state: string, response: Response): void;
     oauthLink(provider: string, query: any, response: Response): Promise<string>;
-    activate(code: string, datafast_visitor_id: string, response: Response): Promise<any>;
+    activate(code: string, datafast_visitor_id: string, response: Response): Promise<Response<any, Record<string, any>>>;
     resendActivation(body: ResendActivationDto): Promise<{
         success: boolean;
         message?: undefined;
@@ -49,6 +49,6 @@ export declare class AuthController {
     } | {
         error: any;
     }>;
-    oauthRedirect(provider: string, code: string, state: string, response: Response): any;
-    oauthExists(req: Request, code: string, redirect_uri: string, state: string, provider: string, response: Response): Promise<any>;
+    oauthRedirect(provider: string, code: string, state: string, response: Response): void;
+    oauthExists(req: Request, code: string, redirect_uri: string, state: string, provider: string, response: Response): Promise<Response<any, Record<string, any>>>;
 }

@@ -1,12 +1,20 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WalletProvider = void 0;
-const tslib_1 = require("tslib");
-const providers_interface_1 = require("@gitroom/backend/services/auth/providers.interface");
+const providers_interface_1 = require("../providers.interface");
 const crypto_1 = require("crypto");
-const redis_service_1 = require("@gitroom/nestjs-libraries/redis/redis.service");
-const bs58_1 = tslib_1.__importDefault(require("bs58"));
-const tweetnacl_1 = tslib_1.__importDefault(require("tweetnacl"));
+const redis_service_1 = require("../../../../../../libraries/nestjs-libraries/src/redis/redis.service");
+const bs58_1 = __importDefault(require("bs58"));
+const tweetnacl_1 = __importDefault(require("tweetnacl"));
 function hexToUint8Array(hex) {
     if (hex.startsWith('0x')) {
         hex = hex.slice(2);
@@ -64,7 +72,7 @@ let WalletProvider = class WalletProvider extends providers_interface_1.AuthProv
     }
 };
 exports.WalletProvider = WalletProvider;
-exports.WalletProvider = WalletProvider = tslib_1.__decorate([
+exports.WalletProvider = WalletProvider = __decorate([
     (0, providers_interface_1.AuthProvider)({ provider: 'WALLET' })
 ], WalletProvider);
 //# sourceMappingURL=wallet.provider.js.map

@@ -1,14 +1,25 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SubscriptionService = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
-const pricing_1 = require("@gitroom/nestjs-libraries/database/prisma/subscriptions/pricing");
-const subscription_repository_1 = require("@gitroom/nestjs-libraries/database/prisma/subscriptions/subscription.repository");
-const integration_service_1 = require("@gitroom/nestjs-libraries/database/prisma/integrations/integration.service");
-const organization_service_1 = require("@gitroom/nestjs-libraries/database/prisma/organizations/organization.service");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
-const make_is_1 = require("@gitroom/nestjs-libraries/services/make.is");
+const pricing_1 = require("./pricing");
+const subscription_repository_1 = require("./subscription.repository");
+const integration_service_1 = require("../integrations/integration.service");
+const organization_service_1 = require("../organizations/organization.service");
+const dayjs_1 = __importDefault(require("dayjs"));
+const make_is_1 = require("../../../services/make.is");
 let SubscriptionService = class SubscriptionService {
     constructor(_subscriptionRepository, _integrationService, _organizationService) {
         this._subscriptionRepository = _subscriptionRepository;
@@ -209,9 +220,9 @@ let SubscriptionService = class SubscriptionService {
     }
 };
 exports.SubscriptionService = SubscriptionService;
-exports.SubscriptionService = SubscriptionService = tslib_1.__decorate([
+exports.SubscriptionService = SubscriptionService = __decorate([
     (0, common_1.Injectable)(),
-    tslib_1.__metadata("design:paramtypes", [subscription_repository_1.SubscriptionRepository,
+    __metadata("design:paramtypes", [subscription_repository_1.SubscriptionRepository,
         integration_service_1.IntegrationService,
         organization_service_1.OrganizationService])
 ], SubscriptionService);

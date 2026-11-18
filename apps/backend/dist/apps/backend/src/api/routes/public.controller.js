@@ -1,24 +1,35 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PublicController = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
-const posts_service_1 = require("@gitroom/nestjs-libraries/database/prisma/posts/posts.service");
-const track_service_1 = require("@gitroom/nestjs-libraries/track/track.service");
+const posts_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/posts/posts.service");
+const track_service_1 = require("../../../../../libraries/nestjs-libraries/src/track/track.service");
 const nestjs_real_ip_1 = require("nestjs-real-ip");
-const user_agent_1 = require("@gitroom/nestjs-libraries/user/user.agent");
-const track_cookies_1 = require("@gitroom/nestjs-libraries/track/track.cookies");
-const agent_graph_insert_service_1 = require("@gitroom/nestjs-libraries/agent/agent.graph.insert.service");
-const subscription_service_1 = require("@gitroom/nestjs-libraries/database/prisma/subscriptions/subscription.service");
-const auth_service_1 = require("@gitroom/helpers/auth/auth.service");
-const pricing_1 = require("@gitroom/nestjs-libraries/database/prisma/subscriptions/pricing");
+const user_agent_1 = require("../../../../../libraries/nestjs-libraries/src/user/user.agent");
+const track_cookies_1 = require("../../../../../libraries/nestjs-libraries/src/track/track.cookies");
+const agent_graph_insert_service_1 = require("../../../../../libraries/nestjs-libraries/src/agent/agent.graph.insert.service");
+const subscription_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/subscriptions/subscription.service");
+const auth_service_1 = require("../../../../../libraries/helpers/src/auth/auth.service");
+const pricing_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/subscriptions/pricing");
 const stream_1 = require("stream");
 const util_1 = require("util");
-const webhooks_dto_1 = require("@gitroom/nestjs-libraries/dtos/webhooks/webhooks.dto");
-const webhook_url_validator_1 = require("@gitroom/nestjs-libraries/dtos/webhooks/webhook.url.validator");
-const ssrf_safe_dispatcher_1 = require("@gitroom/nestjs-libraries/dtos/webhooks/ssrf.safe.dispatcher");
-const add_comment_dto_1 = require("@gitroom/nestjs-libraries/dtos/comments/add.comment.dto");
+const webhooks_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/webhooks/webhooks.dto");
+const webhook_url_validator_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/webhooks/webhook.url.validator");
+const ssrf_safe_dispatcher_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/webhooks/ssrf.safe.dispatcher");
+const add_comment_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/comments/add.comment.dto");
 const pump = (0, util_1.promisify)(stream_1.pipeline);
 let PublicController = class PublicController {
     constructor(_trackService, _agentGraphInsertService, _postsService, _subscriptionService) {
@@ -152,67 +163,67 @@ let PublicController = class PublicController {
     }
 };
 exports.PublicController = PublicController;
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/agent'),
-    tslib_1.__param(0, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], PublicController.prototype, "createAgent", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)(`/posts/:id`),
-    tslib_1.__param(0, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
 ], PublicController.prototype, "getPreview", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)(`/posts/:id/comments`),
-    tslib_1.__param(0, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
 ], PublicController.prototype, "getComments", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)(`/posts/:id/comments`),
-    tslib_1.__param(0, (0, common_1.Param)('id')),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__param(2, (0, nestjs_real_ip_1.RealIP)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, add_comment_dto_1.CreatePublicCommentDto, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __param(2, (0, nestjs_real_ip_1.RealIP)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, add_comment_dto_1.CreatePublicCommentDto, String]),
+    __metadata("design:returntype", Promise)
 ], PublicController.prototype, "createComment", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/t'),
-    tslib_1.__param(0, (0, common_1.Res)()),
-    tslib_1.__param(1, (0, common_1.Req)()),
-    tslib_1.__param(2, (0, nestjs_real_ip_1.RealIP)()),
-    tslib_1.__param(3, (0, user_agent_1.UserAgent)()),
-    tslib_1.__param(4, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, String, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Res)()),
+    __param(1, (0, common_1.Req)()),
+    __param(2, (0, nestjs_real_ip_1.RealIP)()),
+    __param(3, (0, user_agent_1.UserAgent)()),
+    __param(4, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, String, String, Object]),
+    __metadata("design:returntype", Promise)
 ], PublicController.prototype, "trackEvent", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/modify-subscription'),
-    tslib_1.__param(0, (0, common_1.Body)('params')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Body)('params')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
 ], PublicController.prototype, "modifySubscription", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/stream'),
-    tslib_1.__param(0, (0, common_1.Query)()),
-    tslib_1.__param(1, (0, common_1.Res)()),
-    tslib_1.__param(2, (0, common_1.Req)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [webhooks_dto_1.OnlyURL, Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Query)()),
+    __param(1, (0, common_1.Res)()),
+    __param(2, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [webhooks_dto_1.OnlyURL, Object, Object]),
+    __metadata("design:returntype", Promise)
 ], PublicController.prototype, "streamFile", null);
-exports.PublicController = PublicController = tslib_1.__decorate([
+exports.PublicController = PublicController = __decorate([
     (0, swagger_1.ApiTags)('Public'),
     (0, common_1.Controller)('/public'),
-    tslib_1.__metadata("design:paramtypes", [track_service_1.TrackService,
+    __metadata("design:paramtypes", [track_service_1.TrackService,
         agent_graph_insert_service_1.AgentGraphInsertService,
         posts_service_1.PostsService,
         subscription_service_1.SubscriptionService])

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NewsletterService = void 0;
-const providers_1 = require("@gitroom/nestjs-libraries/newsletter/providers");
+const providers_1 = require("./providers");
 class NewsletterService {
     static getProvider() {
         if (process.env.BEEHIIVE_API_KEY) {

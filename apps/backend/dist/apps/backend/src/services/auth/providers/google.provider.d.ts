@@ -3,10 +3,10 @@ export declare class GoogleProvider extends AuthProviderAbstract {
     generateLink(query?: {
         redirect_uri?: string;
         state?: string;
-    }): any;
-    getToken(code: string, redirectUri?: string): Promise<any>;
+    }): string;
+    getToken(code: string, redirectUri?: string): Promise<string>;
     getUser(providerToken: string): Promise<{
-        id: any;
-        email: any;
+        id: string;
+        email: string;
     }>;
 }

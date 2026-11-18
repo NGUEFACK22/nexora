@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.applyTrackCookies = void 0;
 const crypto_1 = require("crypto");
-const make_is_1 = require("@gitroom/nestjs-libraries/services/make.is");
-const subdomain_management_1 = require("@gitroom/helpers/subdomain/subdomain.management");
+const make_is_1 = require("../services/make.is");
+const subdomain_management_1 = require("../../../helpers/src/subdomain/subdomain.management");
 const DAY = 1000 * 60 * 60 * 24;
 const cookieOptions = (expiresInDays, httpOnly) => ({
     domain: (0, subdomain_management_1.getCookieUrlFromDomain)(process.env.FRONTEND_URL),

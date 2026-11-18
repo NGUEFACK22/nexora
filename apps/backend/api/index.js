@@ -8,11 +8,6 @@
 // invisible in the function logs.
 process.env.SERVERLESS = 'true';
 
-// The compiled dist is emitted with importHelpers, so almost every file requires
-// tslib. Vercel traces the function bundle from this entry file: a static require
-// here is what guarantees tslib is part of the deployment.
-require('tslib');
-
 let appPromise;
 
 function getApp() {

@@ -1,14 +1,16 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VkProvider = void 0;
-const tslib_1 = require("tslib");
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
+const make_secure_id_1 = require("../../services/make.secure.id");
+const dayjs_1 = __importDefault(require("dayjs"));
+const social_abstract_1 = require("../social.abstract");
 const crypto_1 = require("crypto");
-const form_data_1 = tslib_1.__importDefault(require("form-data"));
-const mime_types_1 = tslib_1.__importDefault(require("mime-types"));
-const has_extension_1 = require("@gitroom/helpers/utils/has.extension");
+const form_data_1 = __importDefault(require("form-data"));
+const mime_types_1 = __importDefault(require("mime-types"));
+const has_extension_1 = require("../../../../helpers/src/utils/has.extension");
 class VkProvider extends social_abstract_1.SocialAbstract {
     constructor() {
         super(...arguments);

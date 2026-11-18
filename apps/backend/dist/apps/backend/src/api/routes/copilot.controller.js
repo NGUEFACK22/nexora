@@ -1,18 +1,29 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CopilotController = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
 const runtime_1 = require("@copilotkit/runtime");
 const runtime_2 = require("@copilotkit/runtime");
-const org_from_request_1 = require("@gitroom/nestjs-libraries/user/org.from.request");
-const subscription_service_1 = require("@gitroom/nestjs-libraries/database/prisma/subscriptions/subscription.service");
+const org_from_request_1 = require("../../../../../libraries/nestjs-libraries/src/user/org.from.request");
+const subscription_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/subscriptions/subscription.service");
 const mastra_1 = require("@ag-ui/mastra");
-const mastra_service_1 = require("@gitroom/nestjs-libraries/chat/mastra.service");
-const ai_model_1 = require("@gitroom/nestjs-libraries/chat/ai.model");
+const mastra_service_1 = require("../../../../../libraries/nestjs-libraries/src/chat/mastra.service");
+const ai_model_1 = require("../../../../../libraries/nestjs-libraries/src/chat/ai.model");
 const di_1 = require("@mastra/core/di");
-const permissions_ability_1 = require("@gitroom/backend/services/auth/permissions/permissions.ability");
-const permission_exception_class_1 = require("@gitroom/backend/services/auth/permissions/permission.exception.class");
+const permissions_ability_1 = require("../../services/auth/permissions/permissions.ability");
+const permission_exception_class_1 = require("../../services/auth/permissions/permission.exception.class");
 const copilotCors = () => ({
     origin: [
         process.env.FRONTEND_URL,
@@ -114,52 +125,52 @@ let CopilotController = class CopilotController {
     }
 };
 exports.CopilotController = CopilotController;
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/chat'),
-    tslib_1.__param(0, (0, common_1.Req)()),
-    tslib_1.__param(1, (0, common_1.Res)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", void 0)
 ], CopilotController.prototype, "chatAgent", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/agent'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.AI]),
-    tslib_1.__param(0, (0, common_1.Req)()),
-    tslib_1.__param(1, (0, common_1.Res)()),
-    tslib_1.__param(2, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Res)()),
+    __param(2, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, Object]),
+    __metadata("design:returntype", Promise)
 ], CopilotController.prototype, "agent", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/credits'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Query)('type')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Query)('type')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", void 0)
 ], CopilotController.prototype, "calculateCredits", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/:thread/list'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.AI]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('thread')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('thread')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
 ], CopilotController.prototype, "getMessagesList", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/list'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.AI]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], CopilotController.prototype, "getList", null);
-exports.CopilotController = CopilotController = tslib_1.__decorate([
+exports.CopilotController = CopilotController = __decorate([
     (0, common_1.Controller)('/copilot'),
-    tslib_1.__metadata("design:paramtypes", [subscription_service_1.SubscriptionService,
+    __metadata("design:paramtypes", [subscription_service_1.SubscriptionService,
         mastra_service_1.MastraService])
 ], CopilotController);
 //# sourceMappingURL=copilot.controller.js.map

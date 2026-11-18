@@ -46,5 +46,5 @@ export declare class PermissionsService {
             autoPost: boolean;
         };
     }>;
-    check(orgId: string, created_at: Date, permission: 'USER' | 'ADMIN' | 'SUPERADMIN', requestedPermission: Array<[AuthorizationActions, Sections]>, refreshChannelId?: string): Promise<Ability<[AuthorizationActions, Sections], any>>;
+    check(orgId: string, created_at: Date, permission: 'USER' | 'ADMIN' | 'SUPERADMIN', requestedPermission: Array<[AuthorizationActions, Sections]>, refreshChannelId?: string): Promise<Ability<[AuthorizationActions, Sections], import("@casl/ability").MongoQuery>>;
 }

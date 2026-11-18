@@ -1,15 +1,49 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GmbProvider = void 0;
-const tslib_1 = require("tslib");
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
+const make_secure_id_1 = require("../../services/make.secure.id");
 const googleapis_1 = require("googleapis");
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const process = tslib_1.__importStar(require("node:process"));
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
-const rules_description_decorator_1 = require("@gitroom/nestjs-libraries/chat/rules.description.decorator");
-const dashboard_function_decorator_1 = require("@gitroom/nestjs-libraries/integrations/dashboard.function.decorator");
-const gmb_settings_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/gmb.settings.dto");
+const social_abstract_1 = require("../social.abstract");
+const process = __importStar(require("node:process"));
+const dayjs_1 = __importDefault(require("dayjs"));
+const rules_description_decorator_1 = require("../../chat/rules.description.decorator");
+const dashboard_function_decorator_1 = require("../dashboard.function.decorator");
+const gmb_settings_dto_1 = require("../../dtos/posts/providers-settings/gmb.settings.dto");
 const clientAndGmb = () => {
     const client = new googleapis_1.google.auth.OAuth2({
         clientId: process.env.GOOGLE_GMB_CLIENT_ID || process.env.YOUTUBE_CLIENT_ID,
@@ -450,13 +484,13 @@ let GmbProvider = class GmbProvider extends social_abstract_1.SocialAbstract {
     }
 };
 exports.GmbProvider = GmbProvider;
-tslib_1.__decorate([
+__decorate([
     (0, dashboard_function_decorator_1.DashboardFunction)(),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
 ], GmbProvider.prototype, "pages", null);
-exports.GmbProvider = GmbProvider = tslib_1.__decorate([
+exports.GmbProvider = GmbProvider = __decorate([
     (0, rules_description_decorator_1.Rules)('Google My Business posts can have text content and optionally one image. Posts can be updates, events, or offers.')
 ], GmbProvider);
 //# sourceMappingURL=gmb.provider.js.map

@@ -1,20 +1,31 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OAuthAuthorizedController = exports.OAuthController = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
 const throttler_1 = require("@nestjs/throttler");
-const oauth_service_1 = require("@gitroom/nestjs-libraries/database/prisma/oauth/oauth.service");
-const user_from_request_1 = require("@gitroom/nestjs-libraries/user/user.from.request");
-const org_from_request_1 = require("@gitroom/nestjs-libraries/user/org.from.request");
-const authorize_oauth_dto_1 = require("@gitroom/nestjs-libraries/dtos/oauth/authorize-oauth.dto");
-const token_exchange_dto_1 = require("@gitroom/nestjs-libraries/dtos/oauth/token-exchange.dto");
-const register_client_dto_1 = require("@gitroom/nestjs-libraries/dtos/oauth/register-client.dto");
-const hubspot_install_dto_1 = require("@gitroom/nestjs-libraries/dtos/oauth/hubspot-install.dto");
-const oauth_types_1 = require("@gitroom/nestjs-libraries/chat/oauth-types");
-const mcp_relay_service_1 = require("@gitroom/nestjs-libraries/chat/mcp.relay.service");
-const throttler_provider_1 = require("@gitroom/nestjs-libraries/throttler/throttler.provider");
+const oauth_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/oauth/oauth.service");
+const user_from_request_1 = require("../../../../../libraries/nestjs-libraries/src/user/user.from.request");
+const org_from_request_1 = require("../../../../../libraries/nestjs-libraries/src/user/org.from.request");
+const authorize_oauth_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/oauth/authorize-oauth.dto");
+const token_exchange_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/oauth/token-exchange.dto");
+const register_client_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/oauth/register-client.dto");
+const hubspot_install_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/oauth/hubspot-install.dto");
+const oauth_types_1 = require("../../../../../libraries/nestjs-libraries/src/chat/oauth-types");
+const mcp_relay_service_1 = require("../../../../../libraries/nestjs-libraries/src/chat/mcp.relay.service");
+const throttler_provider_1 = require("../../../../../libraries/nestjs-libraries/src/throttler/throttler.provider");
 let OAuthController = class OAuthController {
     constructor(_oauthService, _mcpRelayService) {
         this._oauthService = _oauthService;
@@ -94,67 +105,67 @@ let OAuthController = class OAuthController {
     }
 };
 exports.OAuthController = OAuthController;
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/register'),
     (0, common_1.HttpCode)(201),
-    tslib_1.__param(0, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [register_client_dto_1.RegisterClientDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [register_client_dto_1.RegisterClientDto]),
+    __metadata("design:returntype", Promise)
 ], OAuthController.prototype, "register", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/authorize'),
-    tslib_1.__param(0, (0, common_1.Query)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [authorize_oauth_dto_1.AuthorizeOAuthQueryDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [authorize_oauth_dto_1.AuthorizeOAuthQueryDto]),
+    __metadata("design:returntype", Promise)
 ], OAuthController.prototype, "authorize", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.UseGuards)(throttler_provider_1.ThrottlerRealIpGuard),
     (0, throttler_1.Throttle)({ default: { limit: 30, ttl: 3600000 } }),
     (0, common_1.Post)('/authorize/self-hosted'),
-    tslib_1.__param(0, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [authorize_oauth_dto_1.AuthorizeSelfHostedDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [authorize_oauth_dto_1.AuthorizeSelfHostedDto]),
+    __metadata("design:returntype", Promise)
 ], OAuthController.prototype, "authorizeSelfHosted", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/token'),
     (0, common_1.HttpCode)(200),
-    tslib_1.__param(0, (0, common_1.Body)()),
-    tslib_1.__param(1, (0, common_1.Headers)('authorization')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [token_exchange_dto_1.TokenExchangeDto, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Headers)('authorization')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [token_exchange_dto_1.TokenExchangeDto, String]),
+    __metadata("design:returntype", Promise)
 ], OAuthController.prototype, "token", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/userinfo'),
-    tslib_1.__param(0, (0, common_1.Headers)('authorization')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Headers)('authorization')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
 ], OAuthController.prototype, "userinfo", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/userinfo'),
-    tslib_1.__param(0, (0, common_1.Headers)('authorization')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Headers)('authorization')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
 ], OAuthController.prototype, "userinfoPost", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.UseGuards)(throttler_provider_1.ThrottlerRealIpGuard),
     (0, throttler_1.Throttle)({ default: { limit: 30, ttl: 3600000 } }),
     (0, common_1.Get)('/hubspot/callback'),
-    tslib_1.__param(0, (0, common_1.Query)()),
-    tslib_1.__param(1, (0, common_1.Res)({ passthrough: false })),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [hubspot_install_dto_1.HubspotInstallQueryDto, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Query)()),
+    __param(1, (0, common_1.Res)({ passthrough: false })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [hubspot_install_dto_1.HubspotInstallQueryDto, Object]),
+    __metadata("design:returntype", Promise)
 ], OAuthController.prototype, "hubspotCallback", null);
-exports.OAuthController = OAuthController = tslib_1.__decorate([
+exports.OAuthController = OAuthController = __decorate([
     (0, swagger_1.ApiTags)('OAuth'),
     (0, common_1.Controller)('/oauth'),
-    tslib_1.__metadata("design:paramtypes", [oauth_service_1.OAuthService,
+    __metadata("design:paramtypes", [oauth_service_1.OAuthService,
         mcp_relay_service_1.McpRelayService])
 ], OAuthController);
 let OAuthAuthorizedController = class OAuthAuthorizedController {
@@ -190,18 +201,18 @@ let OAuthAuthorizedController = class OAuthAuthorizedController {
     }
 };
 exports.OAuthAuthorizedController = OAuthAuthorizedController;
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/authorize'),
-    tslib_1.__param(0, (0, common_1.Body)()),
-    tslib_1.__param(1, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(2, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [authorize_oauth_dto_1.ApproveOAuthDto, Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(2, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [authorize_oauth_dto_1.ApproveOAuthDto, Object, Object]),
+    __metadata("design:returntype", Promise)
 ], OAuthAuthorizedController.prototype, "approveOrDeny", null);
-exports.OAuthAuthorizedController = OAuthAuthorizedController = tslib_1.__decorate([
+exports.OAuthAuthorizedController = OAuthAuthorizedController = __decorate([
     (0, swagger_1.ApiTags)('OAuth'),
     (0, common_1.Controller)('/oauth'),
-    tslib_1.__metadata("design:paramtypes", [oauth_service_1.OAuthService])
+    __metadata("design:paramtypes", [oauth_service_1.OAuthService])
 ], OAuthAuthorizedController);
 //# sourceMappingURL=oauth.controller.js.map

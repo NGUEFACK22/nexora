@@ -141,7 +141,7 @@ export declare class UsersController {
         };
     }>;
     tiers(): Promise<any>;
-    joinOrg(user: User, org: string, response: Response): Promise<any>;
+    joinOrg(user: User, org: string, response: Response): Promise<Response<any, Record<string, any>>>;
     getOrgs(user: User): Promise<{
         id: string;
         name: string;

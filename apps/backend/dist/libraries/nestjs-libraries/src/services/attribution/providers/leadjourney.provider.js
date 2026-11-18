@@ -1,9 +1,14 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LeadJourneyProvider = void 0;
-const tslib_1 = require("tslib");
-const attribution_provider_interface_1 = require("@gitroom/nestjs-libraries/services/attribution/attribution.provider.interface");
-const timer_1 = require("@gitroom/helpers/utils/timer");
+const attribution_provider_interface_1 = require("../attribution.provider.interface");
+const timer_1 = require("../../../../../helpers/src/utils/timer");
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 let LeadJourneyProvider = class LeadJourneyProvider extends attribution_provider_interface_1.AttributionProviderAbstract {
     constructor() {
@@ -57,7 +62,7 @@ let LeadJourneyProvider = class LeadJourneyProvider extends attribution_provider
     }
 };
 exports.LeadJourneyProvider = LeadJourneyProvider;
-exports.LeadJourneyProvider = LeadJourneyProvider = tslib_1.__decorate([
+exports.LeadJourneyProvider = LeadJourneyProvider = __decorate([
     (0, attribution_provider_interface_1.AttributionProvider)({ provider: 'leadjourney' })
 ], LeadJourneyProvider);
 //# sourceMappingURL=leadjourney.provider.js.map

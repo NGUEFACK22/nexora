@@ -1,29 +1,40 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.IntegrationsController = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
-const redis_service_1 = require("@gitroom/nestjs-libraries/redis/redis.service");
-const integration_manager_1 = require("@gitroom/nestjs-libraries/integrations/integration.manager");
-const integration_service_1 = require("@gitroom/nestjs-libraries/database/prisma/integrations/integration.service");
-const org_from_request_1 = require("@gitroom/nestjs-libraries/user/org.from.request");
-const integration_function_dto_1 = require("@gitroom/nestjs-libraries/dtos/integrations/integration.function.dto");
-const permissions_ability_1 = require("@gitroom/backend/services/auth/permissions/permissions.ability");
-const pricing_1 = require("@gitroom/nestjs-libraries/database/prisma/subscriptions/pricing");
+const redis_service_1 = require("../../../../../libraries/nestjs-libraries/src/redis/redis.service");
+const integration_manager_1 = require("../../../../../libraries/nestjs-libraries/src/integrations/integration.manager");
+const integration_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/integrations/integration.service");
+const org_from_request_1 = require("../../../../../libraries/nestjs-libraries/src/user/org.from.request");
+const integration_function_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/integrations/integration.function.dto");
+const permissions_ability_1 = require("../../services/auth/permissions/permissions.ability");
+const pricing_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/subscriptions/pricing");
 const swagger_1 = require("@nestjs/swagger");
-const user_from_request_1 = require("@gitroom/nestjs-libraries/user/user.from.request");
-const posts_service_1 = require("@gitroom/nestjs-libraries/database/prisma/posts/posts.service");
-const integration_time_dto_1 = require("@gitroom/nestjs-libraries/dtos/integrations/integration.time.dto");
-const integration_name_dto_1 = require("@gitroom/nestjs-libraries/dtos/integrations/integration.name.dto");
-const customer_name_dto_1 = require("@gitroom/nestjs-libraries/dtos/integrations/customer.name.dto");
-const plug_dto_1 = require("@gitroom/nestjs-libraries/dtos/plugs/plug.dto");
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const timer_1 = require("@gitroom/helpers/utils/timer");
-const telegram_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/telegram.provider");
-const moltbook_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/moltbook.provider");
-const permission_exception_class_1 = require("@gitroom/backend/services/auth/permissions/permission.exception.class");
+const user_from_request_1 = require("../../../../../libraries/nestjs-libraries/src/user/user.from.request");
+const posts_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/posts/posts.service");
+const integration_time_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/integrations/integration.time.dto");
+const integration_name_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/integrations/integration.name.dto");
+const customer_name_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/integrations/customer.name.dto");
+const plug_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/plugs/plug.dto");
+const social_abstract_1 = require("../../../../../libraries/nestjs-libraries/src/integrations/social.abstract");
+const timer_1 = require("../../../../../libraries/helpers/src/utils/timer");
+const telegram_provider_1 = require("../../../../../libraries/nestjs-libraries/src/integrations/social/telegram.provider");
+const moltbook_provider_1 = require("../../../../../libraries/nestjs-libraries/src/integrations/social/moltbook.provider");
+const permission_exception_class_1 = require("../../services/auth/permissions/permission.exception.class");
 const lodash_1 = require("lodash");
-const refresh_integration_service_1 = require("@gitroom/nestjs-libraries/integrations/refresh.integration.service");
+const refresh_integration_service_1 = require("../../../../../libraries/nestjs-libraries/src/integrations/refresh.integration.service");
 let IntegrationsController = class IntegrationsController {
     constructor(_integrationManager, _integrationService, _postService, _refreshIntegrationService) {
         this._integrationManager = _integrationManager;
@@ -283,220 +294,220 @@ let IntegrationsController = class IntegrationsController {
     }
 };
 exports.IntegrationsController = IntegrationsController;
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/provider/:id/connect'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.CHANNEL]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, Object]),
+    __metadata("design:returntype", Promise)
 ], IntegrationsController.prototype, "saveProviderPage", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/:identifier/internal-plugs'),
-    tslib_1.__param(0, (0, common_1.Param)('identifier')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, common_1.Param)('identifier')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
 ], IntegrationsController.prototype, "getInternalPlugs", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/customers'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
 ], IntegrationsController.prototype, "getCustomers", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Put)('/customers/:id'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, customer_name_dto_1.CustomerNameDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, customer_name_dto_1.CustomerNameDto]),
+    __metadata("design:returntype", Promise)
 ], IntegrationsController.prototype, "updateCustomerName", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Put)('/:id/group'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, Object]),
+    __metadata("design:returntype", Promise)
 ], IntegrationsController.prototype, "updateIntegrationGroup", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Put)('/:id/customer-name'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, Object]),
+    __metadata("design:returntype", Promise)
 ], IntegrationsController.prototype, "updateOnCustomerName", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Put)('/:id/custom-name'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, integration_name_dto_1.IntegrationNameDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, integration_name_dto_1.IntegrationNameDto]),
+    __metadata("design:returntype", Promise)
 ], IntegrationsController.prototype, "updateCustomName", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/list'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], IntegrationsController.prototype, "getIntegrationList", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/:id/settings'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__param(2, (0, common_1.Body)('additionalSettings')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __param(2, (0, common_1.Body)('additionalSettings')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, String]),
+    __metadata("design:returntype", Promise)
 ], IntegrationsController.prototype, "updateProviderSettings", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/:id/nickname'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, Object]),
+    __metadata("design:returntype", Promise)
 ], IntegrationsController.prototype, "setNickname", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/:id'),
-    tslib_1.__param(0, (0, common_1.Param)('id')),
-    tslib_1.__param(1, (0, common_1.Query)('order')),
-    tslib_1.__param(2, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(3, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, String, Object, Object]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Query)('order')),
+    __param(2, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(3, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, Object, Object]),
+    __metadata("design:returntype", void 0)
 ], IntegrationsController.prototype, "getSingleIntegration", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/social/:integration'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.CHANNEL]),
-    tslib_1.__param(0, (0, common_1.Param)('integration')),
-    tslib_1.__param(1, (0, common_1.Query)('refresh')),
-    tslib_1.__param(2, (0, common_1.Query)('externalUrl')),
-    tslib_1.__param(3, (0, common_1.Query)('redirectUrl')),
-    tslib_1.__param(4, (0, common_1.Query)('onboarding')),
-    tslib_1.__param(5, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, String, String, String, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Param)('integration')),
+    __param(1, (0, common_1.Query)('refresh')),
+    __param(2, (0, common_1.Query)('externalUrl')),
+    __param(3, (0, common_1.Query)('redirectUrl')),
+    __param(4, (0, common_1.Query)('onboarding')),
+    __param(5, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, String, String, String, Object]),
+    __metadata("design:returntype", Promise)
 ], IntegrationsController.prototype, "getIntegrationUrl", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/:id/time'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, integration_time_dto_1.IntegrationTimeDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, integration_time_dto_1.IntegrationTimeDto]),
+    __metadata("design:returntype", Promise)
 ], IntegrationsController.prototype, "setTime", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/mentions'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, integration_function_dto_1.IntegrationFunctionDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, integration_function_dto_1.IntegrationFunctionDto]),
+    __metadata("design:returntype", Promise)
 ], IntegrationsController.prototype, "mentions", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/function'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, integration_function_dto_1.IntegrationFunctionDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, integration_function_dto_1.IntegrationFunctionDto]),
+    __metadata("design:returntype", Promise)
 ], IntegrationsController.prototype, "functionIntegration", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/disable'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", void 0)
 ], IntegrationsController.prototype, "disableChannel", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/enable'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", void 0)
 ], IntegrationsController.prototype, "enableChannel", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Delete)('/'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
 ], IntegrationsController.prototype, "deleteChannel", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/plug/list'),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", []),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
 ], IntegrationsController.prototype, "getPlugList", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/:id/plugs'),
-    tslib_1.__param(0, (0, common_1.Param)('id')),
-    tslib_1.__param(1, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
 ], IntegrationsController.prototype, "getPlugsByIntegrationId", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/:id/plugs'),
-    tslib_1.__param(0, (0, common_1.Param)('id')),
-    tslib_1.__param(1, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, Object, plug_dto_1.PlugDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object, plug_dto_1.PlugDto]),
+    __metadata("design:returntype", Promise)
 ], IntegrationsController.prototype, "postPlugsByIntegrationId", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Put)('/plugs/:id/activate'),
-    tslib_1.__param(0, (0, common_1.Param)('id')),
-    tslib_1.__param(1, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(2, (0, common_1.Body)('status')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, Object, Boolean]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(2, (0, common_1.Body)('status')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object, Boolean]),
+    __metadata("design:returntype", Promise)
 ], IntegrationsController.prototype, "changePlugActivation", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/telegram/updates'),
-    tslib_1.__param(0, (0, common_1.Query)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], IntegrationsController.prototype, "getUpdates", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/moltbook/register'),
-    tslib_1.__param(0, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], IntegrationsController.prototype, "moltbookRegister", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/moltbook/status'),
-    tslib_1.__param(0, (0, common_1.Query)('apiKey')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Query)('apiKey')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
 ], IntegrationsController.prototype, "moltbookStatus", null);
-exports.IntegrationsController = IntegrationsController = tslib_1.__decorate([
+exports.IntegrationsController = IntegrationsController = __decorate([
     (0, swagger_1.ApiTags)('Integrations'),
     (0, common_1.Controller)('/integrations'),
-    tslib_1.__metadata("design:paramtypes", [integration_manager_1.IntegrationManager,
+    __metadata("design:paramtypes", [integration_manager_1.IntegrationManager,
         integration_service_1.IntegrationService,
         posts_service_1.PostsService,
         refresh_integration_service_1.RefreshIntegrationService])

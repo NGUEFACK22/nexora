@@ -1,15 +1,17 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ssrfSafeDispatcher = void 0;
 exports.getSsrfSafeDispatcher = getSsrfSafeDispatcher;
 exports.getSsrfSafeAxios = getSsrfSafeAxios;
-const tslib_1 = require("tslib");
 const undici_1 = require("undici");
-const axios_1 = tslib_1.__importDefault(require("axios"));
-const node_dns_1 = tslib_1.__importDefault(require("node:dns"));
-const node_net_1 = tslib_1.__importDefault(require("node:net"));
-const node_http_1 = tslib_1.__importDefault(require("node:http"));
-const node_https_1 = tslib_1.__importDefault(require("node:https"));
+const axios_1 = __importDefault(require("axios"));
+const node_dns_1 = __importDefault(require("node:dns"));
+const node_net_1 = __importDefault(require("node:net"));
+const node_http_1 = __importDefault(require("node:http"));
+const node_https_1 = __importDefault(require("node:https"));
 const webhook_url_validator_1 = require("./webhook.url.validator");
 function ssrfSafeLookup(hostname, options, callback) {
     if (node_net_1.default.isIP(hostname)) {

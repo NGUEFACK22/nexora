@@ -1,24 +1,35 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NoAuthIntegrationsController = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
 const throttler_1 = require("@nestjs/throttler");
-const redis_service_1 = require("@gitroom/nestjs-libraries/redis/redis.service");
-const connect_integration_dto_1 = require("@gitroom/nestjs-libraries/dtos/integrations/connect.integration.dto");
-const integration_manager_1 = require("@gitroom/nestjs-libraries/integrations/integration.manager");
-const integration_service_1 = require("@gitroom/nestjs-libraries/database/prisma/integrations/integration.service");
-const permissions_ability_1 = require("@gitroom/backend/services/auth/permissions/permissions.ability");
+const redis_service_1 = require("../../../../../libraries/nestjs-libraries/src/redis/redis.service");
+const connect_integration_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/integrations/connect.integration.dto");
+const integration_manager_1 = require("../../../../../libraries/nestjs-libraries/src/integrations/integration.manager");
+const integration_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/integrations/integration.service");
+const permissions_ability_1 = require("../../services/auth/permissions/permissions.ability");
 const swagger_1 = require("@nestjs/swagger");
-const integration_missing_scopes_1 = require("@gitroom/nestjs-libraries/integrations/integration.missing.scopes");
-const auth_service_1 = require("@gitroom/helpers/auth/auth.service");
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const permission_exception_class_1 = require("@gitroom/backend/services/auth/permissions/permission.exception.class");
-const refresh_integration_service_1 = require("@gitroom/nestjs-libraries/integrations/refresh.integration.service");
-const organization_service_1 = require("@gitroom/nestjs-libraries/database/prisma/organizations/organization.service");
-const ssrf_safe_dispatcher_1 = require("@gitroom/nestjs-libraries/dtos/webhooks/ssrf.safe.dispatcher");
-const throttler_provider_1 = require("@gitroom/nestjs-libraries/throttler/throttler.provider");
-const permissions_service_1 = require("@gitroom/backend/services/auth/permissions/permissions.service");
+const integration_missing_scopes_1 = require("../../../../../libraries/nestjs-libraries/src/integrations/integration.missing.scopes");
+const auth_service_1 = require("../../../../../libraries/helpers/src/auth/auth.service");
+const social_abstract_1 = require("../../../../../libraries/nestjs-libraries/src/integrations/social.abstract");
+const permission_exception_class_1 = require("../../services/auth/permissions/permission.exception.class");
+const refresh_integration_service_1 = require("../../../../../libraries/nestjs-libraries/src/integrations/refresh.integration.service");
+const organization_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/organizations/organization.service");
+const ssrf_safe_dispatcher_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/webhooks/ssrf.safe.dispatcher");
+const throttler_provider_1 = require("../../../../../libraries/nestjs-libraries/src/throttler/throttler.provider");
+const permissions_service_1 = require("../../services/auth/permissions/permissions.service");
 let NoAuthIntegrationsController = class NoAuthIntegrationsController {
     constructor(_integrationManager, _integrationService, _refreshIntegrationService, _organizationService, _permissionsService) {
         this._integrationManager = _integrationManager;
@@ -295,57 +306,57 @@ let NoAuthIntegrationsController = class NoAuthIntegrationsController {
     }
 };
 exports.NoAuthIntegrationsController = NoAuthIntegrationsController;
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/'),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", []),
-    tslib_1.__metadata("design:returntype", void 0)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
 ], NoAuthIntegrationsController.prototype, "getIntegrations", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/social-connect/:integration'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.CHANNEL]),
     (0, common_1.UseFilters)(new integration_missing_scopes_1.NotEnoughScopesFilter()),
-    tslib_1.__param(0, (0, common_1.Param)('integration')),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, connect_integration_dto_1.ConnectIntegrationDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Param)('integration')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, connect_integration_dto_1.ConnectIntegrationDto]),
+    __metadata("design:returntype", Promise)
 ], NoAuthIntegrationsController.prototype, "connectSocialMedia", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/public/provider/:id/connect'),
-    tslib_1.__param(0, (0, common_1.Param)('id')),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
 ], NoAuthIntegrationsController.prototype, "saveProviderPage", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/public/connect/:token'),
-    tslib_1.__param(0, (0, common_1.Param)('token')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, common_1.Param)('token')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
 ], NoAuthIntegrationsController.prototype, "getConnectLink", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.UseGuards)(throttler_provider_1.ThrottlerRealIpGuard),
     (0, throttler_1.Throttle)({ default: { limit: 30, ttl: 3600000 } }),
     (0, common_1.Post)('/public/connect/:token'),
-    tslib_1.__param(0, (0, common_1.Param)('token')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Param)('token')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
 ], NoAuthIntegrationsController.prototype, "startConnectLink", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/extension-refresh'),
-    tslib_1.__param(0, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], NoAuthIntegrationsController.prototype, "extensionRefreshCookies", null);
-exports.NoAuthIntegrationsController = NoAuthIntegrationsController = tslib_1.__decorate([
+exports.NoAuthIntegrationsController = NoAuthIntegrationsController = __decorate([
     (0, swagger_1.ApiTags)('Integrations'),
     (0, common_1.Controller)('/integrations'),
-    tslib_1.__metadata("design:paramtypes", [integration_manager_1.IntegrationManager,
+    __metadata("design:paramtypes", [integration_manager_1.IntegrationManager,
         integration_service_1.IntegrationService,
         refresh_integration_service_1.RefreshIntegrationService,
         organization_service_1.OrganizationService,

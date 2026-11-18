@@ -1,18 +1,26 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var TiktokProvider_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TiktokProvider = void 0;
-const tslib_1 = require("tslib");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const tiktok_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/tiktok.dto");
-const timer_1 = require("@gitroom/helpers/utils/timer");
-const temporal_heartbeat_1 = require("@gitroom/nestjs-libraries/temporal/temporal.heartbeat");
-const has_extension_1 = require("@gitroom/helpers/utils/has.extension");
+const dayjs_1 = __importDefault(require("dayjs"));
+const make_secure_id_1 = require("../../services/make.secure.id");
+const social_abstract_1 = require("../social.abstract");
+const tiktok_dto_1 = require("../../dtos/posts/providers-settings/tiktok.dto");
+const timer_1 = require("../../../../helpers/src/utils/timer");
+const temporal_heartbeat_1 = require("../../temporal/temporal.heartbeat");
+const has_extension_1 = require("../../../../helpers/src/utils/has.extension");
 const fs_1 = require("fs");
-const ssrf_safe_dispatcher_1 = require("@gitroom/nestjs-libraries/dtos/webhooks/ssrf.safe.dispatcher");
-const rules_description_decorator_1 = require("@gitroom/nestjs-libraries/chat/rules.description.decorator");
+const ssrf_safe_dispatcher_1 = require("../../dtos/webhooks/ssrf.safe.dispatcher");
+const rules_description_decorator_1 = require("../../chat/rules.description.decorator");
 let TiktokProvider = TiktokProvider_1 = class TiktokProvider extends social_abstract_1.SocialAbstract {
     constructor() {
         super(...arguments);
@@ -814,7 +822,7 @@ let TiktokProvider = TiktokProvider_1 = class TiktokProvider extends social_abst
 exports.TiktokProvider = TiktokProvider;
 TiktokProvider.TIKTOK_MAX_SINGLE_CHUNK = 64 * 1024 * 1024;
 TiktokProvider.TIKTOK_CHUNK_SIZE = 10 * 1024 * 1024;
-exports.TiktokProvider = TiktokProvider = TiktokProvider_1 = tslib_1.__decorate([
+exports.TiktokProvider = TiktokProvider = TiktokProvider_1 = __decorate([
     (0, rules_description_decorator_1.Rules)([
         'TikTok can have one video or one picture or multiple pictures, it cannot be without an attachment.',
         'content_posting_method=DIRECT_POST publishes the post to the account. content_posting_method=UPLOAD does NOT publish: it only sends the media to the user inbox of the TikTok app, where the user must manually complete and publish it within 24 hours or it is discarded. Use DIRECT_POST unless the user explicitly asks to review or edit the post inside the TikTok app first.',

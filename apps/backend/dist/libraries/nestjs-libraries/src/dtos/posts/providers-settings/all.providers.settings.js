@@ -1,35 +1,43 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmptySettings = exports.allProviders = void 0;
-const tslib_1 = require("tslib");
-const reddit_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/reddit.dto");
-const pinterest_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/pinterest.dto");
-const youtube_settings_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/youtube.settings.dto");
-const tiktok_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/tiktok.dto");
-const x_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/x.dto");
-const lemmy_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/lemmy.dto");
-const dribbble_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/dribbble.dto");
-const discord_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/discord.dto");
-const slack_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/slack.dto");
-const kick_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/kick.dto");
-const twitch_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/twitch.dto");
-const instagram_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/instagram.dto");
-const linkedin_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/linkedin.dto");
+const reddit_dto_1 = require("./reddit.dto");
+const pinterest_dto_1 = require("./pinterest.dto");
+const youtube_settings_dto_1 = require("./youtube.settings.dto");
+const tiktok_dto_1 = require("./tiktok.dto");
+const x_dto_1 = require("./x.dto");
+const lemmy_dto_1 = require("./lemmy.dto");
+const dribbble_dto_1 = require("./dribbble.dto");
+const discord_dto_1 = require("./discord.dto");
+const slack_dto_1 = require("./slack.dto");
+const kick_dto_1 = require("./kick.dto");
+const twitch_dto_1 = require("./twitch.dto");
+const instagram_dto_1 = require("./instagram.dto");
+const linkedin_dto_1 = require("./linkedin.dto");
 const class_validator_1 = require("class-validator");
-const medium_settings_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/medium.settings.dto");
-const dev_to_settings_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/dev.to.settings.dto");
-const hashnode_settings_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/hashnode.settings.dto");
-const wordpress_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/wordpress.dto");
-const listmonk_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/listmonk.dto");
-const gmb_settings_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/gmb.settings.dto");
-const farcaster_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/farcaster.dto");
-const facebook_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/facebook.dto");
-const moltbook_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/moltbook.dto");
-const skool_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/skool.dto");
-const whop_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/whop.dto");
-const mewe_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/mewe.dto");
-const tumblr_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/tumblr.dto");
-const threads_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/threads.dto");
+const medium_settings_dto_1 = require("./medium.settings.dto");
+const dev_to_settings_dto_1 = require("./dev.to.settings.dto");
+const hashnode_settings_dto_1 = require("./hashnode.settings.dto");
+const wordpress_dto_1 = require("./wordpress.dto");
+const listmonk_dto_1 = require("./listmonk.dto");
+const gmb_settings_dto_1 = require("./gmb.settings.dto");
+const farcaster_dto_1 = require("./farcaster.dto");
+const facebook_dto_1 = require("./facebook.dto");
+const moltbook_dto_1 = require("./moltbook.dto");
+const skool_dto_1 = require("./skool.dto");
+const whop_dto_1 = require("./whop.dto");
+const mewe_dto_1 = require("./mewe.dto");
+const tumblr_dto_1 = require("./tumblr.dto");
+const threads_dto_1 = require("./threads.dto");
 const allProviders = (setEmpty) => {
     return [
         { value: reddit_dto_1.RedditSettingsDto, name: 'reddit' },
@@ -73,12 +81,12 @@ exports.allProviders = allProviders;
 class EmptySettings {
 }
 exports.EmptySettings = EmptySettings;
-tslib_1.__decorate([
+__decorate([
     (0, class_validator_1.IsIn)((0, exports.allProviders)(EmptySettings).map((p) => p.name), {
         message: `"__type" must be ${(0, exports.allProviders)(EmptySettings)
             .map((p) => p.name)
             .join(', ')}`,
     }),
-    tslib_1.__metadata("design:type", String)
+    __metadata("design:type", String)
 ], EmptySettings.prototype, "__type", void 0);
 //# sourceMappingURL=all.providers.settings.js.map

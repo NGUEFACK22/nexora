@@ -1,44 +1,49 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.IntegrationManager = exports.socialIntegrationList = void 0;
-const tslib_1 = require("tslib");
 require("reflect-metadata");
 const common_1 = require("@nestjs/common");
-const x_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/x.provider");
-const linkedin_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/linkedin.provider");
-const reddit_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/reddit.provider");
-const dev_to_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/dev.to.provider");
-const hashnode_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/hashnode.provider");
-const medium_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/medium.provider");
-const facebook_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/facebook.provider");
-const instagram_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/instagram.provider");
-const youtube_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/youtube.provider");
-const tiktok_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/tiktok.provider");
-const tiktok_business_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/tiktok.business.provider");
-const pinterest_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/pinterest.provider");
-const dribbble_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/dribbble.provider");
-const linkedin_page_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/linkedin.page.provider");
-const threads_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/threads.provider");
-const discord_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/discord.provider");
-const slack_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/slack.provider");
-const mastodon_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/mastodon.provider");
-const bluesky_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/bluesky.provider");
-const lemmy_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/lemmy.provider");
-const instagram_standalone_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/instagram.standalone.provider");
-const farcaster_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/farcaster.provider");
-const telegram_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/telegram.provider");
-const nostr_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/nostr.provider");
-const vk_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/vk.provider");
-const wordpress_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/wordpress.provider");
-const listmonk_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/listmonk.provider");
-const gmb_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/gmb.provider");
-const kick_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/kick.provider");
-const twitch_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/twitch.provider");
-const moltbook_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/moltbook.provider");
-const skool_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/skool.provider");
-const whop_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/whop.provider");
-const mewe_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/mewe.provider");
-const tumblr_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/tumblr.provider");
+const x_provider_1 = require("./social/x.provider");
+const linkedin_provider_1 = require("./social/linkedin.provider");
+const reddit_provider_1 = require("./social/reddit.provider");
+const dev_to_provider_1 = require("./social/dev.to.provider");
+const hashnode_provider_1 = require("./social/hashnode.provider");
+const medium_provider_1 = require("./social/medium.provider");
+const facebook_provider_1 = require("./social/facebook.provider");
+const instagram_provider_1 = require("./social/instagram.provider");
+const youtube_provider_1 = require("./social/youtube.provider");
+const tiktok_provider_1 = require("./social/tiktok.provider");
+const tiktok_business_provider_1 = require("./social/tiktok.business.provider");
+const pinterest_provider_1 = require("./social/pinterest.provider");
+const dribbble_provider_1 = require("./social/dribbble.provider");
+const linkedin_page_provider_1 = require("./social/linkedin.page.provider");
+const threads_provider_1 = require("./social/threads.provider");
+const discord_provider_1 = require("./social/discord.provider");
+const slack_provider_1 = require("./social/slack.provider");
+const mastodon_provider_1 = require("./social/mastodon.provider");
+const bluesky_provider_1 = require("./social/bluesky.provider");
+const lemmy_provider_1 = require("./social/lemmy.provider");
+const instagram_standalone_provider_1 = require("./social/instagram.standalone.provider");
+const farcaster_provider_1 = require("./social/farcaster.provider");
+const telegram_provider_1 = require("./social/telegram.provider");
+const nostr_provider_1 = require("./social/nostr.provider");
+const vk_provider_1 = require("./social/vk.provider");
+const wordpress_provider_1 = require("./social/wordpress.provider");
+const listmonk_provider_1 = require("./social/listmonk.provider");
+const gmb_provider_1 = require("./social/gmb.provider");
+const kick_provider_1 = require("./social/kick.provider");
+const twitch_provider_1 = require("./social/twitch.provider");
+const moltbook_provider_1 = require("./social/moltbook.provider");
+const skool_provider_1 = require("./social/skool.provider");
+const whop_provider_1 = require("./social/whop.provider");
+const mewe_provider_1 = require("./social/mewe.provider");
+const tumblr_provider_1 = require("./social/tumblr.provider");
 exports.socialIntegrationList = [
     new x_provider_1.XProvider(),
     new linkedin_provider_1.LinkedinProvider(),
@@ -187,7 +192,7 @@ let IntegrationManager = class IntegrationManager {
     }
 };
 exports.IntegrationManager = IntegrationManager;
-exports.IntegrationManager = IntegrationManager = tslib_1.__decorate([
+exports.IntegrationManager = IntegrationManager = __decorate([
     (0, common_1.Injectable)()
 ], IntegrationManager);
 //# sourceMappingURL=integration.manager.js.map

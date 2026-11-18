@@ -112,7 +112,9 @@ export declare class IntegrationsController {
     setTime(org: Organization, id: string, body: IntegrationTimeDto): Promise<{
         id: string;
     }>;
-    mentions(org: Organization, body: IntegrationFunctionDto): Promise<any>;
+    mentions(org: Organization, body: IntegrationFunctionDto): Promise<any[] | {
+        none: true;
+    }>;
     functionIntegration(org: Organization, body: IntegrationFunctionDto): Promise<any>;
     disableChannel(org: Organization, id: string): Promise<void>;
     enableChannel(org: Organization, id: string): Promise<void>;

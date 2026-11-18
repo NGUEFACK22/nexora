@@ -1,14 +1,22 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var UsersService_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersService = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
-const users_repository_1 = require("@gitroom/nestjs-libraries/database/prisma/users/users.repository");
+const users_repository_1 = require("./users.repository");
 const client_1 = require("@prisma/client");
-const organization_repository_1 = require("@gitroom/nestjs-libraries/database/prisma/organizations/organization.repository");
-const integration_repository_1 = require("@gitroom/nestjs-libraries/database/prisma/integrations/integration.repository");
-const notification_service_1 = require("@gitroom/nestjs-libraries/database/prisma/notifications/notification.service");
+const organization_repository_1 = require("../organizations/organization.repository");
+const integration_repository_1 = require("../integrations/integration.repository");
+const notification_service_1 = require("../notifications/notification.service");
 let UsersService = UsersService_1 = class UsersService {
     constructor(_usersRepository, _organizationRepository, _integrationRepository, _notificationService) {
         this._usersRepository = _usersRepository;
@@ -107,9 +115,9 @@ let UsersService = UsersService_1 = class UsersService {
     }
 };
 exports.UsersService = UsersService;
-exports.UsersService = UsersService = UsersService_1 = tslib_1.__decorate([
+exports.UsersService = UsersService = UsersService_1 = __decorate([
     (0, common_1.Injectable)(),
-    tslib_1.__metadata("design:paramtypes", [users_repository_1.UsersRepository,
+    __metadata("design:paramtypes", [users_repository_1.UsersRepository,
         organization_repository_1.OrganizationRepository,
         integration_repository_1.IntegrationRepository,
         notification_service_1.NotificationService])

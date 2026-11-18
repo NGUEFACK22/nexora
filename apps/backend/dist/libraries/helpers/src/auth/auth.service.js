@@ -1,13 +1,15 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 exports.decrypt_legacy_using_IV = decrypt_legacy_using_IV;
 exports.encrypt_legacy_using_IV = encrypt_legacy_using_IV;
-const tslib_1 = require("tslib");
 const jsonwebtoken_1 = require("jsonwebtoken");
 const bcrypt_1 = require("bcrypt");
-const crypto_1 = tslib_1.__importDefault(require("crypto"));
-const evp_bytestokey_1 = tslib_1.__importDefault(require("evp_bytestokey"));
+const crypto_1 = __importDefault(require("crypto"));
+const evp_bytestokey_1 = __importDefault(require("evp_bytestokey"));
 const algorithm = 'aes-256-cbc';
 const { keyLength, ivLength } = crypto_1.default.getCipherInfo(algorithm);
 function deriveLegacyKeyIv(secret) {

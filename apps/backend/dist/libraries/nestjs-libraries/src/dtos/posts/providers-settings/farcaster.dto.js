@@ -1,30 +1,38 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FarcasterDto = exports.FarcasterValue = exports.FarcasterId = void 0;
-const tslib_1 = require("tslib");
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 class FarcasterId {
 }
 exports.FarcasterId = FarcasterId;
-tslib_1.__decorate([
+__decorate([
     (0, class_validator_1.IsString)(),
-    tslib_1.__metadata("design:type", String)
+    __metadata("design:type", String)
 ], FarcasterId.prototype, "id", void 0);
 class FarcasterValue {
 }
 exports.FarcasterValue = FarcasterValue;
-tslib_1.__decorate([
+__decorate([
     (0, class_validator_1.ValidateNested)(),
     (0, class_transformer_1.Type)(() => FarcasterId),
-    tslib_1.__metadata("design:type", FarcasterId)
+    __metadata("design:type", FarcasterId)
 ], FarcasterValue.prototype, "value", void 0);
 class FarcasterDto {
 }
 exports.FarcasterDto = FarcasterDto;
-tslib_1.__decorate([
+__decorate([
     (0, class_validator_1.ValidateNested)({ each: true }),
     (0, class_transformer_1.Type)(() => FarcasterValue),
-    tslib_1.__metadata("design:type", Array)
+    __metadata("design:type", Array)
 ], FarcasterDto.prototype, "subreddit", void 0);
 //# sourceMappingURL=farcaster.dto.js.map

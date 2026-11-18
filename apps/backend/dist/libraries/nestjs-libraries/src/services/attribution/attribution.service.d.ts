@@ -3,6 +3,6 @@ import { AttributionProviderManager } from '@gitroom/nestjs-libraries/services/a
 export declare class AttributionService {
     private _attributionProviderManager;
     constructor(_attributionProviderManager: AttributionProviderManager);
-    queryParams(): any;
+    queryParams(): string[];
     lead(user: Pick<User, 'id' | 'email' | 'name' | 'lastName'>, attribution?: Record<string, string>): Promise<void>;
 }

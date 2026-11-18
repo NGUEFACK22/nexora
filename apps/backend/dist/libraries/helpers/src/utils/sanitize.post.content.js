@@ -1,8 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.postContentPlainText = exports.sanitizePostContent = void 0;
-const tslib_1 = require("tslib");
-const isomorphic_dompurify_1 = tslib_1.__importDefault(require("isomorphic-dompurify"));
+const isomorphic_dompurify_1 = __importDefault(require("isomorphic-dompurify"));
 const parse5_1 = require("parse5");
 const ALLOWED_TAGS = [
     'p',

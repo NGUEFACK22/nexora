@@ -55,10 +55,10 @@ export declare class ClippingService {
             path: string;
             thumbnail: string;
             status: string;
-            start: number;
-            end: number;
             content: string;
             title: string;
+            start: number;
+            end: number;
             mediaId: string;
         }[];
         duration: number;
@@ -77,10 +77,10 @@ export declare class ClippingService {
             path: string;
             thumbnail: string;
             status: string;
-            start: number;
-            end: number;
             content: string;
             title: string;
+            start: number;
+            end: number;
             mediaId: string;
         }[];
         duration: number;

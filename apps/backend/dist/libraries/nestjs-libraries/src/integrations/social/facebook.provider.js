@@ -1,15 +1,26 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FacebookProvider = exports.META_GRAPH_API_VERSION = void 0;
-const tslib_1 = require("tslib");
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const facebook_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/facebook.dto");
-const has_extension_1 = require("@gitroom/helpers/utils/has.extension");
-const timer_1 = require("@gitroom/helpers/utils/timer");
-const rules_description_decorator_1 = require("@gitroom/nestjs-libraries/chat/rules.description.decorator");
-const dashboard_function_decorator_1 = require("@gitroom/nestjs-libraries/integrations/dashboard.function.decorator");
+const make_secure_id_1 = require("../../services/make.secure.id");
+const dayjs_1 = __importDefault(require("dayjs"));
+const social_abstract_1 = require("../social.abstract");
+const facebook_dto_1 = require("../../dtos/posts/providers-settings/facebook.dto");
+const has_extension_1 = require("../../../../helpers/src/utils/has.extension");
+const timer_1 = require("../../../../helpers/src/utils/timer");
+const rules_description_decorator_1 = require("../../chat/rules.description.decorator");
+const dashboard_function_decorator_1 = require("../dashboard.function.decorator");
 exports.META_GRAPH_API_VERSION = 'v25.0';
 const META_AI_DISCLOSURE_API_VERSION = 'v27.0';
 const AI_DISCLOSURE_TIMEOUT = 30_000;
@@ -825,13 +836,13 @@ let FacebookProvider = class FacebookProvider extends social_abstract_1.SocialAb
     }
 };
 exports.FacebookProvider = FacebookProvider;
-tslib_1.__decorate([
+__decorate([
     (0, dashboard_function_decorator_1.DashboardFunction)(),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
 ], FacebookProvider.prototype, "pages", null);
-exports.FacebookProvider = FacebookProvider = tslib_1.__decorate([
+exports.FacebookProvider = FacebookProvider = __decorate([
     (0, rules_description_decorator_1.Rules)([
         "Facebook posts can be text only, or include photos or a video. If it's a story, it must have at least one attachment (photo or video), and each media is published as a separate story. Video posts (not stories) can carry an optional title.",
         'If the content of the post (text or pictures) was made with AI, ask the user if they want to mark it as AI, and set made_with_ai to true only when they say yes.',

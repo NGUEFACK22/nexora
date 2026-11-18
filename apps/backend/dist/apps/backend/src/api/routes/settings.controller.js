@@ -1,17 +1,28 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SettingsController = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
-const org_from_request_1 = require("@gitroom/nestjs-libraries/user/org.from.request");
-const user_from_request_1 = require("@gitroom/nestjs-libraries/user/user.from.request");
-const permissions_ability_1 = require("@gitroom/backend/services/auth/permissions/permissions.ability");
-const organization_service_1 = require("@gitroom/nestjs-libraries/database/prisma/organizations/organization.service");
-const add_team_member_dto_1 = require("@gitroom/nestjs-libraries/dtos/settings/add.team.member.dto");
-const admin_add_team_member_dto_1 = require("@gitroom/nestjs-libraries/dtos/settings/admin.add.team.member.dto");
-const shortlink_preference_dto_1 = require("@gitroom/nestjs-libraries/dtos/settings/shortlink-preference.dto");
+const org_from_request_1 = require("../../../../../libraries/nestjs-libraries/src/user/org.from.request");
+const user_from_request_1 = require("../../../../../libraries/nestjs-libraries/src/user/user.from.request");
+const permissions_ability_1 = require("../../services/auth/permissions/permissions.ability");
+const organization_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/organizations/organization.service");
+const add_team_member_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/settings/add.team.member.dto");
+const admin_add_team_member_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/settings/admin.add.team.member.dto");
+const shortlink_preference_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/settings/shortlink-preference.dto");
 const swagger_1 = require("@nestjs/swagger");
-const permission_exception_class_1 = require("@gitroom/backend/services/auth/permissions/permission.exception.class");
+const permission_exception_class_1 = require("../../services/auth/permissions/permission.exception.class");
 let SettingsController = class SettingsController {
     constructor(_organizationService) {
         this._organizationService = _organizationService;
@@ -39,61 +50,61 @@ let SettingsController = class SettingsController {
     }
 };
 exports.SettingsController = SettingsController;
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/team'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.TEAM_MEMBERS], [permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], SettingsController.prototype, "getTeam", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/team'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.TEAM_MEMBERS], [permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, add_team_member_dto_1.AddTeamMemberDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, add_team_member_dto_1.AddTeamMemberDto]),
+    __metadata("design:returntype", Promise)
 ], SettingsController.prototype, "inviteTeamMember", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/team/add'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(1, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, admin_add_team_member_dto_1.AdminAddTeamMemberDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(1, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, admin_add_team_member_dto_1.AdminAddTeamMemberDto]),
+    __metadata("design:returntype", Promise)
 ], SettingsController.prototype, "addTeamMember", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Delete)('/team/:id'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.TEAM_MEMBERS], [permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", void 0)
 ], SettingsController.prototype, "deleteTeamMember", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/shortlink'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], SettingsController.prototype, "getShortlinkPreference", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/shortlink'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, shortlink_preference_dto_1.ShortlinkPreferenceDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, shortlink_preference_dto_1.ShortlinkPreferenceDto]),
+    __metadata("design:returntype", Promise)
 ], SettingsController.prototype, "updateShortlinkPreference", null);
-exports.SettingsController = SettingsController = tslib_1.__decorate([
+exports.SettingsController = SettingsController = __decorate([
     (0, swagger_1.ApiTags)('Settings'),
     (0, common_1.Controller)('/settings'),
-    tslib_1.__metadata("design:paramtypes", [organization_service_1.OrganizationService])
+    __metadata("design:paramtypes", [organization_service_1.OrganizationService])
 ], SettingsController);
 //# sourceMappingURL=settings.controller.js.map

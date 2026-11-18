@@ -1,26 +1,60 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
 const throttler_1 = require("@nestjs/throttler");
-const throttler_provider_1 = require("@gitroom/nestjs-libraries/throttler/throttler.provider");
-const create_org_user_dto_1 = require("@gitroom/nestjs-libraries/dtos/auth/create.org.user.dto");
-const login_user_dto_1 = require("@gitroom/nestjs-libraries/dtos/auth/login.user.dto");
-const auth_service_1 = require("@gitroom/backend/services/auth/auth.service");
-const forgot_return_password_dto_1 = require("@gitroom/nestjs-libraries/dtos/auth/forgot-return.password.dto");
-const forgot_password_dto_1 = require("@gitroom/nestjs-libraries/dtos/auth/forgot.password.dto");
-const resend_activation_dto_1 = require("@gitroom/nestjs-libraries/dtos/auth/resend-activation.dto");
+const throttler_provider_1 = require("../../../../../libraries/nestjs-libraries/src/throttler/throttler.provider");
+const create_org_user_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/auth/create.org.user.dto");
+const login_user_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/auth/login.user.dto");
+const auth_service_1 = require("../../services/auth/auth.service");
+const forgot_return_password_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/auth/forgot-return.password.dto");
+const forgot_password_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/auth/forgot.password.dto");
+const resend_activation_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/auth/resend-activation.dto");
 const swagger_1 = require("@nestjs/swagger");
-const subdomain_management_1 = require("@gitroom/helpers/subdomain/subdomain.management");
-const email_service_1 = require("@gitroom/nestjs-libraries/services/email.service");
+const subdomain_management_1 = require("../../../../../libraries/helpers/src/subdomain/subdomain.management");
+const email_service_1 = require("../../../../../libraries/nestjs-libraries/src/services/email.service");
 const nestjs_real_ip_1 = require("nestjs-real-ip");
-const user_agent_1 = require("@gitroom/nestjs-libraries/user/user.agent");
+const user_agent_1 = require("../../../../../libraries/nestjs-libraries/src/user/user.agent");
 const client_1 = require("@prisma/client");
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
-const Sentry = tslib_1.__importStar(require("@sentry/nestjs"));
-const farcaster_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/farcaster.provider");
-const attribution_service_1 = require("@gitroom/nestjs-libraries/services/attribution/attribution.service");
+const make_secure_id_1 = require("../../../../../libraries/nestjs-libraries/src/services/make.secure.id");
+const Sentry = __importStar(require("@sentry/nestjs"));
+const farcaster_provider_1 = require("../../../../../libraries/nestjs-libraries/src/integrations/social/farcaster.provider");
+const attribution_service_1 = require("../../../../../libraries/nestjs-libraries/src/services/attribution/attribution.service");
 let AuthController = class AuthController {
     constructor(_authService, _emailService, _attributionService) {
         this._authService = _authService;
@@ -282,131 +316,131 @@ let AuthController = class AuthController {
     }
 };
 exports.AuthController = AuthController;
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/can-register'),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", []),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
 ], AuthController.prototype, "canRegister", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/attribution'),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", []),
-    tslib_1.__metadata("design:returntype", void 0)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
 ], AuthController.prototype, "attribution", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/register'),
-    tslib_1.__param(0, (0, common_1.Req)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__param(2, (0, common_1.Res)({ passthrough: false })),
-    tslib_1.__param(3, (0, nestjs_real_ip_1.RealIP)()),
-    tslib_1.__param(4, (0, user_agent_1.UserAgent)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, create_org_user_dto_1.CreateOrgUserDto, Object, String, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.Res)({ passthrough: false })),
+    __param(3, (0, nestjs_real_ip_1.RealIP)()),
+    __param(4, (0, user_agent_1.UserAgent)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, create_org_user_dto_1.CreateOrgUserDto, Object, String, String]),
+    __metadata("design:returntype", Promise)
 ], AuthController.prototype, "register", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/login'),
-    tslib_1.__param(0, (0, common_1.Req)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__param(2, (0, common_1.Res)({ passthrough: false })),
-    tslib_1.__param(3, (0, nestjs_real_ip_1.RealIP)()),
-    tslib_1.__param(4, (0, user_agent_1.UserAgent)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, login_user_dto_1.LoginUserDto, Object, String, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.Res)({ passthrough: false })),
+    __param(3, (0, nestjs_real_ip_1.RealIP)()),
+    __param(4, (0, user_agent_1.UserAgent)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, login_user_dto_1.LoginUserDto, Object, String, String]),
+    __metadata("design:returntype", Promise)
 ], AuthController.prototype, "login", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/forgot'),
-    tslib_1.__param(0, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [forgot_password_dto_1.ForgotPasswordDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [forgot_password_dto_1.ForgotPasswordDto]),
+    __metadata("design:returntype", Promise)
 ], AuthController.prototype, "forgot", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/forgot-return'),
-    tslib_1.__param(0, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [forgot_return_password_dto_1.ForgotReturnPasswordDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [forgot_return_password_dto_1.ForgotReturnPasswordDto]),
+    __metadata("design:returntype", Promise)
 ], AuthController.prototype, "forgotReturn", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/oauth-mobile-callback'),
-    tslib_1.__param(0, (0, common_1.Query)('code')),
-    tslib_1.__param(1, (0, common_1.Query)('state')),
-    tslib_1.__param(2, (0, common_1.Res)({ passthrough: false })),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, String, Object]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, common_1.Query)('code')),
+    __param(1, (0, common_1.Query)('state')),
+    __param(2, (0, common_1.Res)({ passthrough: false })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, Object]),
+    __metadata("design:returntype", void 0)
 ], AuthController.prototype, "mobileCallback", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/oauth/:provider'),
-    tslib_1.__param(0, (0, common_1.Param)('provider')),
-    tslib_1.__param(1, (0, common_1.Query)()),
-    tslib_1.__param(2, (0, common_1.Res)({ passthrough: true })),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Param)('provider')),
+    __param(1, (0, common_1.Query)()),
+    __param(2, (0, common_1.Res)({ passthrough: true })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object, Object]),
+    __metadata("design:returntype", Promise)
 ], AuthController.prototype, "oauthLink", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/activate'),
-    tslib_1.__param(0, (0, common_1.Body)('code')),
-    tslib_1.__param(1, (0, common_1.Body)('datafast_visitor_id')),
-    tslib_1.__param(2, (0, common_1.Res)({ passthrough: false })),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Body)('code')),
+    __param(1, (0, common_1.Body)('datafast_visitor_id')),
+    __param(2, (0, common_1.Res)({ passthrough: false })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, Object]),
+    __metadata("design:returntype", Promise)
 ], AuthController.prototype, "activate", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/resend-activation'),
-    tslib_1.__param(0, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [resend_activation_dto_1.ResendActivationDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [resend_activation_dto_1.ResendActivationDto]),
+    __metadata("design:returntype", Promise)
 ], AuthController.prototype, "resendActivation", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.UseGuards)(throttler_provider_1.ThrottlerRealIpGuard),
     (0, throttler_1.Throttle)({ default: { limit: 30, ttl: 3600000 } }),
     (0, common_1.Post)('/farcaster/signer'),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", []),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
 ], AuthController.prototype, "farcasterSigner", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.UseGuards)(throttler_provider_1.ThrottlerRealIpGuard),
     (0, throttler_1.Throttle)({ default: { limit: 1000, ttl: 3600000 } }),
     (0, common_1.Get)('/farcaster/signer'),
-    tslib_1.__param(0, (0, common_1.Query)('signerUuid')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Query)('signerUuid')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
 ], AuthController.prototype, "farcasterSignerStatus", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/oauth/:provider/redirect'),
-    tslib_1.__param(0, (0, common_1.Param)('provider')),
-    tslib_1.__param(1, (0, common_1.Body)('code')),
-    tslib_1.__param(2, (0, common_1.Body)('state')),
-    tslib_1.__param(3, (0, common_1.Res)({ passthrough: false })),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, String, String, Object]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, common_1.Param)('provider')),
+    __param(1, (0, common_1.Body)('code')),
+    __param(2, (0, common_1.Body)('state')),
+    __param(3, (0, common_1.Res)({ passthrough: false })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, String, Object]),
+    __metadata("design:returntype", void 0)
 ], AuthController.prototype, "oauthRedirect", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/oauth/:provider/exists'),
-    tslib_1.__param(0, (0, common_1.Req)()),
-    tslib_1.__param(1, (0, common_1.Body)('code')),
-    tslib_1.__param(2, (0, common_1.Body)('redirect_uri')),
-    tslib_1.__param(3, (0, common_1.Body)('state')),
-    tslib_1.__param(4, (0, common_1.Param)('provider')),
-    tslib_1.__param(5, (0, common_1.Res)({ passthrough: false })),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, String, String, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)('code')),
+    __param(2, (0, common_1.Body)('redirect_uri')),
+    __param(3, (0, common_1.Body)('state')),
+    __param(4, (0, common_1.Param)('provider')),
+    __param(5, (0, common_1.Res)({ passthrough: false })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, String, String, String, Object]),
+    __metadata("design:returntype", Promise)
 ], AuthController.prototype, "oauthExists", null);
-exports.AuthController = AuthController = tslib_1.__decorate([
+exports.AuthController = AuthController = __decorate([
     (0, swagger_1.ApiTags)('Auth'),
     (0, common_1.Controller)('/auth'),
-    tslib_1.__metadata("design:paramtypes", [auth_service_1.AuthService,
+    __metadata("design:paramtypes", [auth_service_1.AuthService,
         email_service_1.EmailService,
         attribution_service_1.AttributionService])
 ], AuthController);

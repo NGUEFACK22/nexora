@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.checkAuth = void 0;
-const async_storage_1 = require("@gitroom/nestjs-libraries/chat/async.storage");
+const async_storage_1 = require("./async.storage");
 const checkAuth = (inputData, context) => {
     const auth = (0, async_storage_1.getAuth)();
     const authInfo = context?.mcp?.extra?.authInfo || auth;

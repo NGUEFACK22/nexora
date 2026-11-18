@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getTemporalModule = void 0;
 const nestjs_temporal_core_1 = require("nestjs-temporal-core");
-const integration_manager_1 = require("@gitroom/nestjs-libraries/integrations/integration.manager");
-const email_queues_1 = require("@gitroom/nestjs-libraries/temporal/email.queues");
+const integration_manager_1 = require("../integrations/integration.manager");
+const email_queues_1 = require("./email.queues");
 const getTemporalModule = (isWorkers, path, activityClasses) => {
     const excludeQueues = (process.env.EXCLUDE_QUEUE || '')
         .split(',')

@@ -1,15 +1,26 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TiktokBusinessProvider = void 0;
-const tslib_1 = require("tslib");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const tiktok_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/tiktok.dto");
-const timer_1 = require("@gitroom/helpers/utils/timer");
-const has_extension_1 = require("@gitroom/helpers/utils/has.extension");
-const rules_description_decorator_1 = require("@gitroom/nestjs-libraries/chat/rules.description.decorator");
-const tool_decorator_1 = require("@gitroom/nestjs-libraries/integrations/tool.decorator");
+const dayjs_1 = __importDefault(require("dayjs"));
+const make_secure_id_1 = require("../../services/make.secure.id");
+const social_abstract_1 = require("../social.abstract");
+const tiktok_dto_1 = require("../../dtos/posts/providers-settings/tiktok.dto");
+const timer_1 = require("../../../../helpers/src/utils/timer");
+const has_extension_1 = require("../../../../helpers/src/utils/has.extension");
+const rules_description_decorator_1 = require("../../chat/rules.description.decorator");
+const tool_decorator_1 = require("../tool.decorator");
 let TiktokBusinessProvider = class TiktokBusinessProvider extends social_abstract_1.SocialAbstract {
     constructor() {
         super(...arguments);
@@ -779,7 +790,7 @@ let TiktokBusinessProvider = class TiktokBusinessProvider extends social_abstrac
     }
 };
 exports.TiktokBusinessProvider = TiktokBusinessProvider;
-tslib_1.__decorate([
+__decorate([
     (0, tool_decorator_1.Tool)({
         description: 'Load commercial music library tracks that can be attached to a post via the "music" setting',
         dataSchema: [
@@ -790,11 +801,11 @@ tslib_1.__decorate([
             },
         ],
     }),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object, String]),
+    __metadata("design:returntype", Promise)
 ], TiktokBusinessProvider.prototype, "musicSearch", null);
-tslib_1.__decorate([
+__decorate([
     (0, tool_decorator_1.Tool)({
         description: 'Search location tags that can be attached to a post via the "location" setting',
         dataSchema: [
@@ -805,11 +816,11 @@ tslib_1.__decorate([
             },
         ],
     }),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object, String]),
+    __metadata("design:returntype", Promise)
 ], TiktokBusinessProvider.prototype, "locationSearch", null);
-exports.TiktokBusinessProvider = TiktokBusinessProvider = tslib_1.__decorate([
+exports.TiktokBusinessProvider = TiktokBusinessProvider = __decorate([
     (0, rules_description_decorator_1.Rules)([
         'TikTok Business can have one video or one picture or multiple pictures (up to 35), it cannot be without an attachment.',
         'content_posting_method=DIRECT_POST publishes the post to the account. content_posting_method=UPLOAD does NOT publish: it only saves the media as a draft in the user inbox of the TikTok app, where the user must manually complete and publish it. Use DIRECT_POST unless the user explicitly asks to review or edit the post inside the TikTok app first.',

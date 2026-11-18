@@ -1,22 +1,24 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createNestApp = createNestApp;
-const tslib_1 = require("tslib");
-const initialize_sentry_1 = require("@gitroom/nestjs-libraries/sentry/initialize.sentry");
+const initialize_sentry_1 = require("../../../libraries/nestjs-libraries/src/sentry/initialize.sentry");
 (0, initialize_sentry_1.initializeSentry)('backend', true);
-const compression_1 = tslib_1.__importDefault(require("compression"));
-const load_swagger_1 = require("@gitroom/helpers/swagger/load.swagger");
+const compression_1 = __importDefault(require("compression"));
+const load_swagger_1 = require("../../../libraries/helpers/src/swagger/load.swagger");
 const express_1 = require("express");
 process.env.TZ = 'UTC';
-const cookie_parser_1 = tslib_1.__importDefault(require("cookie-parser"));
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const common_1 = require("@nestjs/common");
 const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
-const subscription_exception_1 = require("@gitroom/backend/services/auth/permissions/subscription.exception");
-const posts_validation_exception_1 = require("@gitroom/backend/api/routes/posts.validation.exception");
-const exception_filter_1 = require("@gitroom/nestjs-libraries/services/exception.filter");
-const configuration_checker_1 = require("@gitroom/helpers/configuration/configuration.checker");
-const start_mcp_1 = require("@gitroom/nestjs-libraries/chat/start.mcp");
+const subscription_exception_1 = require("./services/auth/permissions/subscription.exception");
+const posts_validation_exception_1 = require("./api/routes/posts.validation.exception");
+const exception_filter_1 = require("../../../libraries/nestjs-libraries/src/services/exception.filter");
+const configuration_checker_1 = require("../../../libraries/helpers/src/configuration/configuration.checker");
+const start_mcp_1 = require("../../../libraries/nestjs-libraries/src/chat/start.mcp");
 async function createNestApp() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule, {
         rawBody: true,

@@ -1,11 +1,13 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MoltbookProvider = void 0;
-const tslib_1 = require("tslib");
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const moltbook_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/moltbook.dto");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
+const make_secure_id_1 = require("../../services/make.secure.id");
+const social_abstract_1 = require("../social.abstract");
+const moltbook_dto_1 = require("../../dtos/posts/providers-settings/moltbook.dto");
+const dayjs_1 = __importDefault(require("dayjs"));
 const MOLTBOOK_API_BASE = 'https://www.moltbook.com/api/v1';
 class MoltbookProvider extends social_abstract_1.SocialAbstract {
     constructor() {

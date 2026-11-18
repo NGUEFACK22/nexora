@@ -1,8 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.countLength = exports.weightedLength = exports.textSlicer = void 0;
-const tslib_1 = require("tslib");
-const twitter_text_1 = tslib_1.__importDefault(require("twitter-text"));
+const twitter_text_1 = __importDefault(require("twitter-text"));
 const textSlicer = (integrationType, end, text) => {
     if (integrationType !== 'x') {
         return {

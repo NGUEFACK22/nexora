@@ -1,15 +1,26 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EnterpriseController = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
-const auth_service_1 = require("@gitroom/helpers/auth/auth.service");
-const redis_service_1 = require("@gitroom/nestjs-libraries/redis/redis.service");
-const integration_manager_1 = require("@gitroom/nestjs-libraries/integrations/integration.manager");
-const organization_service_1 = require("@gitroom/nestjs-libraries/database/prisma/organizations/organization.service");
-const integration_service_1 = require("@gitroom/nestjs-libraries/database/prisma/integrations/integration.service");
-const posts_service_1 = require("@gitroom/nestjs-libraries/database/prisma/posts/posts.service");
+const auth_service_1 = require("../../../../../libraries/helpers/src/auth/auth.service");
+const redis_service_1 = require("../../../../../libraries/nestjs-libraries/src/redis/redis.service");
+const integration_manager_1 = require("../../../../../libraries/nestjs-libraries/src/integrations/integration.manager");
+const organization_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/organizations/organization.service");
+const integration_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/integrations/integration.service");
+const posts_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/posts/posts.service");
 let EnterpriseController = class EnterpriseController {
     constructor(_integrationManager, _organizationService, _integrationService, _postsService) {
         this._integrationManager = _integrationManager;
@@ -105,31 +116,31 @@ let EnterpriseController = class EnterpriseController {
     }
 };
 exports.EnterpriseController = EnterpriseController;
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/create-user'),
-    tslib_1.__param(0, (0, common_1.Body)('params')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Body)('params')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
 ], EnterpriseController.prototype, "createUser", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/url'),
-    tslib_1.__param(0, (0, common_1.Body)('params')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Body)('params')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
 ], EnterpriseController.prototype, "redirectParams", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/delete-channel'),
-    tslib_1.__param(0, (0, common_1.Body)('params')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Body)('params')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
 ], EnterpriseController.prototype, "deleteChannel", null);
-exports.EnterpriseController = EnterpriseController = tslib_1.__decorate([
+exports.EnterpriseController = EnterpriseController = __decorate([
     (0, swagger_1.ApiTags)('Enterprise'),
     (0, common_1.Controller)('/enterprise'),
-    tslib_1.__metadata("design:paramtypes", [integration_manager_1.IntegrationManager,
+    __metadata("design:paramtypes", [integration_manager_1.IntegrationManager,
         organization_service_1.OrganizationService,
         integration_service_1.IntegrationService,
         posts_service_1.PostsService])

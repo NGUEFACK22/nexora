@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.startMcp = void 0;
-const mastra_service_1 = require("@gitroom/nestjs-libraries/chat/mastra.service");
-const load_tools_service_1 = require("@gitroom/nestjs-libraries/chat/load.tools.service");
+const mastra_service_1 = require("./mastra.service");
+const load_tools_service_1 = require("./load.tools.service");
 const mcp_1 = require("@mastra/mcp");
-const organization_service_1 = require("@gitroom/nestjs-libraries/database/prisma/organizations/organization.service");
-const oauth_service_1 = require("@gitroom/nestjs-libraries/database/prisma/oauth/oauth.service");
+const organization_service_1 = require("../database/prisma/organizations/organization.service");
+const oauth_service_1 = require("../database/prisma/oauth/oauth.service");
 const async_storage_1 = require("./async.storage");
 const oauth_middleware_1 = require("./oauth-middleware");
-const upload_widget_1 = require("@gitroom/nestjs-libraries/chat/ui/upload.widget");
-const clipping_widget_1 = require("@gitroom/nestjs-libraries/chat/ui/clipping.widget");
-const upload_factory_1 = require("@gitroom/nestjs-libraries/upload/upload.factory");
-const mcp_relay_service_1 = require("@gitroom/nestjs-libraries/chat/mcp.relay.service");
+const upload_widget_1 = require("./ui/upload.widget");
+const clipping_widget_1 = require("./ui/clipping.widget");
+const upload_factory_1 = require("../upload/upload.factory");
+const mcp_relay_service_1 = require("./mcp.relay.service");
 const fixAcceptHeader = (req) => {
     const value = 'application/json, text/event-stream';
     req.headers.accept = value;

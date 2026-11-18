@@ -1,13 +1,21 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.IntegrationConnectTool = void 0;
-const tslib_1 = require("tslib");
 const tools_1 = require("@mastra/core/tools");
 const zod_1 = require("zod");
 const common_1 = require("@nestjs/common");
-const integration_service_1 = require("@gitroom/nestjs-libraries/database/prisma/integrations/integration.service");
-const integration_manager_1 = require("@gitroom/nestjs-libraries/integrations/integration.manager");
-const auth_context_1 = require("@gitroom/nestjs-libraries/chat/auth.context");
+const integration_service_1 = require("../../database/prisma/integrations/integration.service");
+const integration_manager_1 = require("../../integrations/integration.manager");
+const auth_context_1 = require("../auth.context");
 let IntegrationConnectTool = class IntegrationConnectTool {
     constructor(_integrationService, _integrationManager) {
         this._integrationService = _integrationService;
@@ -72,9 +80,9 @@ If the URL cannot be created, the result contains output.errors explaining why.
     }
 };
 exports.IntegrationConnectTool = IntegrationConnectTool;
-exports.IntegrationConnectTool = IntegrationConnectTool = tslib_1.__decorate([
+exports.IntegrationConnectTool = IntegrationConnectTool = __decorate([
     (0, common_1.Injectable)(),
-    tslib_1.__metadata("design:paramtypes", [integration_service_1.IntegrationService,
+    __metadata("design:paramtypes", [integration_service_1.IntegrationService,
         integration_manager_1.IntegrationManager])
 ], IntegrationConnectTool);
 //# sourceMappingURL=integration.connect.tool.js.map

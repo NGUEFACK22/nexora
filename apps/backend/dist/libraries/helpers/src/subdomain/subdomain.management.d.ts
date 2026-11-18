@@ -1,1 +1,1 @@
-export declare function getCookieUrlFromDomain(domain: string): any;
+export declare function getCookieUrlFromDomain(domain: string): string;

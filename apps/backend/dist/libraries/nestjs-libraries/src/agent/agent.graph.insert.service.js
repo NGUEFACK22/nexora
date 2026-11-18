@@ -1,17 +1,25 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var AgentGraphInsertService_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AgentGraphInsertService = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
 const messages_1 = require("@langchain/core/messages");
 const langgraph_1 = require("@langchain/langgraph");
 const prompts_1 = require("@langchain/core/prompts");
-const ai_model_1 = require("@gitroom/nestjs-libraries/chat/ai.model");
-const agent_categories_1 = require("@gitroom/nestjs-libraries/agent/agent.categories");
+const ai_model_1 = require("../chat/ai.model");
+const agent_categories_1 = require("./agent.categories");
 const zod_1 = require("zod");
-const agent_topics_1 = require("@gitroom/nestjs-libraries/agent/agent.topics");
-const posts_service_1 = require("@gitroom/nestjs-libraries/database/prisma/posts/posts.service");
+const agent_topics_1 = require("./agent.topics");
+const posts_service_1 = require("../database/prisma/posts/posts.service");
 const model = (0, ai_model_1.langchainModel)('gpt-4o-2024-08-06', 0);
 const category = zod_1.z.object({
     category: zod_1.z.string().describe('The category for the post'),
@@ -108,8 +116,8 @@ AgentGraphInsertService.state = () => new langgraph_1.StateGraph({
         content: null,
     },
 });
-exports.AgentGraphInsertService = AgentGraphInsertService = AgentGraphInsertService_1 = tslib_1.__decorate([
+exports.AgentGraphInsertService = AgentGraphInsertService = AgentGraphInsertService_1 = __decorate([
     (0, common_1.Injectable)(),
-    tslib_1.__metadata("design:paramtypes", [posts_service_1.PostsService])
+    __metadata("design:paramtypes", [posts_service_1.PostsService])
 ], AgentGraphInsertService);
 //# sourceMappingURL=agent.graph.insert.service.js.map

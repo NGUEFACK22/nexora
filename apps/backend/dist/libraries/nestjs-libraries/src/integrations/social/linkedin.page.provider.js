@@ -1,15 +1,26 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LinkedinPageProvider = void 0;
-const tslib_1 = require("tslib");
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
-const linkedin_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/linkedin.provider");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
-const plug_decorator_1 = require("@gitroom/helpers/decorators/plug.decorator");
-const timer_1 = require("@gitroom/helpers/utils/timer");
-const rules_description_decorator_1 = require("@gitroom/nestjs-libraries/chat/rules.description.decorator");
-const dashboard_function_decorator_1 = require("@gitroom/nestjs-libraries/integrations/dashboard.function.decorator");
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
+const make_secure_id_1 = require("../../services/make.secure.id");
+const linkedin_provider_1 = require("./linkedin.provider");
+const dayjs_1 = __importDefault(require("dayjs"));
+const plug_decorator_1 = require("../../../../helpers/src/decorators/plug.decorator");
+const timer_1 = require("../../../../helpers/src/utils/timer");
+const rules_description_decorator_1 = require("../../chat/rules.description.decorator");
+const dashboard_function_decorator_1 = require("../dashboard.function.decorator");
+const social_abstract_1 = require("../social.abstract");
 let LinkedinPageProvider = class LinkedinPageProvider extends linkedin_provider_1.LinkedinProvider {
     constructor() {
         super(...arguments);
@@ -411,13 +422,13 @@ let LinkedinPageProvider = class LinkedinPageProvider extends linkedin_provider_
     }
 };
 exports.LinkedinPageProvider = LinkedinPageProvider;
-tslib_1.__decorate([
+__decorate([
     (0, dashboard_function_decorator_1.DashboardFunction)(),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
 ], LinkedinPageProvider.prototype, "companies", null);
-tslib_1.__decorate([
+__decorate([
     (0, plug_decorator_1.Plug)({
         identifier: 'linkedin-page-autoRepostPost',
         title: 'Auto Repost Posts',
@@ -434,11 +445,11 @@ tslib_1.__decorate([
             },
         ],
     }),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, Object]),
+    __metadata("design:returntype", Promise)
 ], LinkedinPageProvider.prototype, "autoRepostPost", null);
-tslib_1.__decorate([
+__decorate([
     (0, plug_decorator_1.Plug)({
         identifier: 'linkedin-page-autoPlugPost',
         title: 'Auto plug post',
@@ -462,11 +473,11 @@ tslib_1.__decorate([
             },
         ],
     }),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, Object]),
+    __metadata("design:returntype", Promise)
 ], LinkedinPageProvider.prototype, "autoPlugPost", null);
-exports.LinkedinPageProvider = LinkedinPageProvider = tslib_1.__decorate([
+exports.LinkedinPageProvider = LinkedinPageProvider = __decorate([
     (0, rules_description_decorator_1.Rules)('LinkedIn can have maximum one attachment when selecting video, when choosing a carousel on LinkedIn minimum amount of attachment must be two, and only pictures, if uploading a video, LinkedIn can have only one attachment')
 ], LinkedinPageProvider);
 //# sourceMappingURL=linkedin.page.provider.js.map

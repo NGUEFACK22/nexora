@@ -1,14 +1,16 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MastodonProvider = void 0;
-const tslib_1 = require("tslib");
-const make_is_1 = require("@gitroom/nestjs-libraries/services/make.is");
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const ssrf_safe_dispatcher_1 = require("@gitroom/nestjs-libraries/dtos/webhooks/ssrf.safe.dispatcher");
-const timer_1 = require("@gitroom/helpers/utils/timer");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
-const form_data_1 = tslib_1.__importDefault(require("form-data"));
+const make_is_1 = require("../../services/make.is");
+const make_secure_id_1 = require("../../services/make.secure.id");
+const social_abstract_1 = require("../social.abstract");
+const ssrf_safe_dispatcher_1 = require("../../dtos/webhooks/ssrf.safe.dispatcher");
+const timer_1 = require("../../../../helpers/src/utils/timer");
+const dayjs_1 = __importDefault(require("dayjs"));
+const form_data_1 = __importDefault(require("form-data"));
 const stream_1 = require("stream");
 class MastodonProvider extends social_abstract_1.SocialAbstract {
     constructor() {

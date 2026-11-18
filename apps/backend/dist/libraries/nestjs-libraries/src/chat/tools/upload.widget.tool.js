@@ -1,13 +1,21 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UploadWidgetTool = void 0;
-const tslib_1 = require("tslib");
 const tools_1 = require("@mastra/core/tools");
 const zod_1 = require("zod");
 const common_1 = require("@nestjs/common");
-const media_service_1 = require("@gitroom/nestjs-libraries/database/prisma/media/media.service");
-const auth_context_1 = require("@gitroom/nestjs-libraries/chat/auth.context");
-const upload_widget_1 = require("@gitroom/nestjs-libraries/chat/ui/upload.widget");
+const media_service_1 = require("../../database/prisma/media/media.service");
+const auth_context_1 = require("../auth.context");
+const upload_widget_1 = require("../ui/upload.widget");
 let UploadWidgetTool = class UploadWidgetTool {
     constructor(_mediaService) {
         this._mediaService = _mediaService;
@@ -57,8 +65,8 @@ Returns a sessionId: the files the user uploads are reported in the conversation
     }
 };
 exports.UploadWidgetTool = UploadWidgetTool;
-exports.UploadWidgetTool = UploadWidgetTool = tslib_1.__decorate([
+exports.UploadWidgetTool = UploadWidgetTool = __decorate([
     (0, common_1.Injectable)(),
-    tslib_1.__metadata("design:paramtypes", [media_service_1.MediaService])
+    __metadata("design:paramtypes", [media_service_1.MediaService])
 ], UploadWidgetTool);
 //# sourceMappingURL=upload.widget.tool.js.map

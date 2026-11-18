@@ -303,7 +303,7 @@ export declare class IntegrationService {
         integrationId: string;
         plugFunction: string;
     })[]>;
-    loadExisingData(methodName: string, integrationId: string, id: string[]): Promise<any>;
+    loadExisingData(methodName: string, integrationId: string, id: string[]): Promise<string[]>;
     decryptTokens<T extends Partial<Integration>>(integration: T): Promise<T>;
     encryptStoredTokens(afterId?: string): Promise<{
         changed: number;

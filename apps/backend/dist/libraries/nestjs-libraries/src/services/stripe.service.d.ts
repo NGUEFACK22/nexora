@@ -27,7 +27,13 @@ export declare class StripeService extends PaymentProviderAbstract {
         email: string;
     }[]): Promise<void>;
     createOrGetCustomer(organization: Organization): Promise<string>;
-    getPackages(): Promise<any>;
+    getPackages(): Promise<{
+        [x: string]: {
+            name: string;
+            recurring: Stripe.Price.Recurring.Interval;
+            price: number;
+        }[];
+    }>;
     prorate(organizationId: string, body: BillingSubscribeDto): Promise<{
         price: number;
     }>;

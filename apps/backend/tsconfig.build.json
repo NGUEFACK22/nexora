@@ -18,6 +18,10 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
+    // Inline the TypeScript helpers instead of requiring 'tslib' at runtime:
+    // the serverless function must not depend on a module that Vercel's file
+    // tracing can miss (it reported "Cannot find module 'tslib'").
+    "importHelpers": false,
     "outDir": "./dist"
   }
 }

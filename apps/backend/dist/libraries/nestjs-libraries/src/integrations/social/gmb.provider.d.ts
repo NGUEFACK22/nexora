@@ -17,7 +17,7 @@ export declare class GmbProvider extends SocialAbstract implements SocialProvide
     } | undefined;
     refreshToken(refresh_token: string): Promise<AuthTokenDetails>;
     generateAuthUrl(): Promise<{
-        url: any;
+        url: string;
         codeVerifier: string;
         state: string;
     }>;
@@ -26,12 +26,12 @@ export declare class GmbProvider extends SocialAbstract implements SocialProvide
         codeVerifier: string;
         refresh?: string;
     }): Promise<{
-        accessToken: any;
+        accessToken: string;
         expiresIn: number;
-        refreshToken: any;
-        id: any;
-        name: any;
-        picture: any;
+        refreshToken: string;
+        id: string;
+        name: string;
+        picture: string;
         username: string;
     }>;
     pages(accessToken: string): Promise<{

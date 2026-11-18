@@ -1,31 +1,36 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
-const database_module_1 = require("@gitroom/nestjs-libraries/database/prisma/database.module");
-const api_module_1 = require("@gitroom/backend/api/api.module");
+const database_module_1 = require("../../../libraries/nestjs-libraries/src/database/prisma/database.module");
+const api_module_1 = require("./api/api.module");
 const core_1 = require("@nestjs/core");
-const permissions_guard_1 = require("@gitroom/backend/services/auth/permissions/permissions.guard");
-const public_api_module_1 = require("@gitroom/backend/public-api/public.api.module");
-const throttler_provider_1 = require("@gitroom/nestjs-libraries/throttler/throttler.provider");
+const permissions_guard_1 = require("./services/auth/permissions/permissions.guard");
+const public_api_module_1 = require("./public-api/public.api.module");
+const throttler_provider_1 = require("../../../libraries/nestjs-libraries/src/throttler/throttler.provider");
 const throttler_1 = require("@nestjs/throttler");
-const agent_module_1 = require("@gitroom/nestjs-libraries/agent/agent.module");
-const thirdparty_module_1 = require("@gitroom/nestjs-libraries/3rdparties/thirdparty.module");
-const video_module_1 = require("@gitroom/nestjs-libraries/videos/video.module");
+const agent_module_1 = require("../../../libraries/nestjs-libraries/src/agent/agent.module");
+const thirdparty_module_1 = require("../../../libraries/nestjs-libraries/src/3rdparties/thirdparty.module");
+const video_module_1 = require("../../../libraries/nestjs-libraries/src/videos/video.module");
 const setup_1 = require("@sentry/nestjs/setup");
-const sentry_exception_1 = require("@gitroom/nestjs-libraries/sentry/sentry.exception");
-const chat_module_1 = require("@gitroom/nestjs-libraries/chat/chat.module");
-const temporal_module_1 = require("@gitroom/nestjs-libraries/temporal/temporal.module");
+const sentry_exception_1 = require("../../../libraries/nestjs-libraries/src/sentry/sentry.exception");
+const chat_module_1 = require("../../../libraries/nestjs-libraries/src/chat/chat.module");
+const temporal_module_1 = require("../../../libraries/nestjs-libraries/src/temporal/temporal.module");
 const nestjs_temporal_core_1 = require("nestjs-temporal-core");
-const temporal_register_1 = require("@gitroom/nestjs-libraries/temporal/temporal.register");
-const infinite_workflow_register_1 = require("@gitroom/nestjs-libraries/temporal/infinite.workflow.register");
+const temporal_register_1 = require("../../../libraries/nestjs-libraries/src/temporal/temporal.register");
+const infinite_workflow_register_1 = require("../../../libraries/nestjs-libraries/src/temporal/infinite.workflow.register");
 const throttler_storage_redis_1 = require("@nest-lab/throttler-storage-redis");
-const redis_service_1 = require("@gitroom/nestjs-libraries/redis/redis.service");
+const redis_service_1 = require("../../../libraries/nestjs-libraries/src/redis/redis.service");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
-exports.AppModule = AppModule = tslib_1.__decorate([
+exports.AppModule = AppModule = __decorate([
     (0, common_1.Global)(),
     (0, common_1.Module)({
         imports: [

@@ -86,7 +86,7 @@ export declare class MediaController {
     } | {
         path: string;
     }>;
-    uploadFile(org: Organization, req: Request, res: Response, endpoint: string): Promise<any>;
+    uploadFile(org: Organization, req: Request, res: Response, endpoint: string): Promise<import("@aws-sdk/client-s3").CompleteMultipartUploadCommandOutput | Response<any, Record<string, any>>>;
     getMediaStatus(org: Organization, id: string): Promise<{
         id: string;
         name: string;

@@ -4,9 +4,9 @@ exports.LocalStorage = void 0;
 const fs_1 = require("fs");
 const path_1 = require("path");
 const promises_1 = require("stream/promises");
-const webhook_url_validator_1 = require("@gitroom/nestjs-libraries/dtos/webhooks/webhook.url.validator");
-const ssrf_safe_dispatcher_1 = require("@gitroom/nestjs-libraries/dtos/webhooks/ssrf.safe.dispatcher");
-const data_url_1 = require("@gitroom/nestjs-libraries/upload/data.url");
+const webhook_url_validator_1 = require("../dtos/webhooks/webhook.url.validator");
+const ssrf_safe_dispatcher_1 = require("../dtos/webhooks/ssrf.safe.dispatcher");
+const data_url_1 = require("./data.url");
 const { fileTypeFromBuffer } = require('file-type');
 const LOCAL_STORAGE_ALLOWED_MIME = new Set([
     'image/jpeg',

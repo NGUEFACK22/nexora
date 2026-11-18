@@ -1,7 +1,15 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PrismaTransaction = exports.PrismaRepository = exports.PrismaService = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
 const client_1 = require("@prisma/client");
 let PrismaService = class PrismaService extends client_1.PrismaClient {
@@ -23,9 +31,9 @@ let PrismaService = class PrismaService extends client_1.PrismaClient {
     }
 };
 exports.PrismaService = PrismaService;
-exports.PrismaService = PrismaService = tslib_1.__decorate([
+exports.PrismaService = PrismaService = __decorate([
     (0, common_1.Injectable)(),
-    tslib_1.__metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [])
 ], PrismaService);
 let PrismaRepository = class PrismaRepository {
     constructor(_prismaService) {
@@ -34,9 +42,9 @@ let PrismaRepository = class PrismaRepository {
     }
 };
 exports.PrismaRepository = PrismaRepository;
-exports.PrismaRepository = PrismaRepository = tslib_1.__decorate([
+exports.PrismaRepository = PrismaRepository = __decorate([
     (0, common_1.Injectable)(),
-    tslib_1.__metadata("design:paramtypes", [PrismaService])
+    __metadata("design:paramtypes", [PrismaService])
 ], PrismaRepository);
 let PrismaTransaction = class PrismaTransaction {
     constructor(_prismaService) {
@@ -45,8 +53,8 @@ let PrismaTransaction = class PrismaTransaction {
     }
 };
 exports.PrismaTransaction = PrismaTransaction;
-exports.PrismaTransaction = PrismaTransaction = tslib_1.__decorate([
+exports.PrismaTransaction = PrismaTransaction = __decorate([
     (0, common_1.Injectable)(),
-    tslib_1.__metadata("design:paramtypes", [PrismaService])
+    __metadata("design:paramtypes", [PrismaService])
 ], PrismaTransaction);
 //# sourceMappingURL=prisma.service.js.map

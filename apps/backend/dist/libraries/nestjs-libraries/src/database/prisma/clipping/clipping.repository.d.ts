@@ -24,10 +24,10 @@ export declare class ClippingRepository {
             path: string | null;
             thumbnail: string | null;
             status: string;
-            start: number;
-            end: number;
             content: string;
             title: string;
+            start: number;
+            end: number;
             mediaId: string | null;
             clippingId: string;
             draftedAt: Date | null;
@@ -63,10 +63,10 @@ export declare class ClippingRepository {
             path: string;
             thumbnail: string;
             status: string;
-            start: number;
-            end: number;
             content: string;
             title: string;
+            start: number;
+            end: number;
             mediaId: string;
         }[];
         duration: number;
@@ -147,10 +147,10 @@ export declare class ClippingRepository {
         path: string | null;
         thumbnail: string | null;
         status: string;
-        start: number;
-        end: number;
         content: string;
         title: string;
+        start: number;
+        end: number;
         mediaId: string | null;
         clippingId: string;
         draftedAt: Date | null;

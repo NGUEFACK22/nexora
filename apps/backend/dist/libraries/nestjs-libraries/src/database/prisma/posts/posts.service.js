@@ -1,42 +1,76 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostsService = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
-const posts_repository_1 = require("@gitroom/nestjs-libraries/database/prisma/posts/posts.repository");
-const create_post_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/create.post.dto");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
-const integration_manager_1 = require("@gitroom/nestjs-libraries/integrations/integration.manager");
+const posts_repository_1 = require("./posts.repository");
+const create_post_dto_1 = require("../../../dtos/posts/create.post.dto");
+const dayjs_1 = __importDefault(require("dayjs"));
+const integration_manager_1 = require("../../../integrations/integration.manager");
 const lodash_1 = require("lodash");
 const uuid_1 = require("uuid");
-const integration_service_1 = require("@gitroom/nestjs-libraries/database/prisma/integrations/integration.service");
-const make_is_1 = require("@gitroom/nestjs-libraries/services/make.is");
-const utc_1 = tslib_1.__importDefault(require("dayjs/plugin/utc"));
-const media_service_1 = require("@gitroom/nestjs-libraries/database/prisma/media/media.service");
-const short_link_service_1 = require("@gitroom/nestjs-libraries/short-linking/short.link.service");
-const posts_list_minify_1 = require("@gitroom/helpers/utils/posts.list.minify");
-const ssrf_safe_dispatcher_1 = require("@gitroom/nestjs-libraries/dtos/webhooks/ssrf.safe.dispatcher");
-const sharp_1 = tslib_1.__importDefault(require("sharp"));
-const upload_factory_1 = require("@gitroom/nestjs-libraries/upload/upload.factory");
+const integration_service_1 = require("../integrations/integration.service");
+const make_is_1 = require("../../../services/make.is");
+const utc_1 = __importDefault(require("dayjs/plugin/utc"));
+const media_service_1 = require("../media/media.service");
+const short_link_service_1 = require("../../../short-linking/short.link.service");
+const posts_list_minify_1 = require("../../../../../helpers/src/utils/posts.list.minify");
+const ssrf_safe_dispatcher_1 = require("../../../dtos/webhooks/ssrf.safe.dispatcher");
+const sharp_1 = __importDefault(require("sharp"));
+const upload_factory_1 = require("../../../upload/upload.factory");
 const stream_1 = require("stream");
 const path_1 = require("path");
-const openai_service_1 = require("@gitroom/nestjs-libraries/openai/openai.service");
+const openai_service_1 = require("../../../openai/openai.service");
 dayjs_1.default.extend(utc_1.default);
-const Sentry = tslib_1.__importStar(require("@sentry/nestjs"));
+const Sentry = __importStar(require("@sentry/nestjs"));
 const nestjs_temporal_core_1 = require("nestjs-temporal-core");
 const common_2 = require("@temporalio/common");
-const temporal_search_attribute_1 = require("@gitroom/nestjs-libraries/temporal/temporal.search.attribute");
-const timer_1 = require("@gitroom/helpers/utils/timer");
-const redis_service_1 = require("@gitroom/nestjs-libraries/redis/redis.service");
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const refresh_integration_service_1 = require("@gitroom/nestjs-libraries/integrations/refresh.integration.service");
-const has_extension_1 = require("@gitroom/helpers/utils/has.extension");
-const strip_links_1 = require("@gitroom/helpers/utils/strip.links");
+const temporal_search_attribute_1 = require("../../../temporal/temporal.search.attribute");
+const timer_1 = require("../../../../../helpers/src/utils/timer");
+const redis_service_1 = require("../../../redis/redis.service");
+const social_abstract_1 = require("../../../integrations/social.abstract");
+const refresh_integration_service_1 = require("../../../integrations/refresh.integration.service");
+const has_extension_1 = require("../../../../../helpers/src/utils/has.extension");
+const strip_links_1 = require("../../../../../helpers/src/utils/strip.links");
 const class_validator_1 = require("class-validator");
 const class_transformer_1 = require("class-transformer");
-const strip_html_validation_1 = require("@gitroom/helpers/utils/strip.html.validation");
-const sanitize_post_content_1 = require("@gitroom/helpers/utils/sanitize.post.content");
-const count_length_1 = require("@gitroom/helpers/utils/count.length");
+const strip_html_validation_1 = require("../../../../../helpers/src/utils/strip.html.validation");
+const sanitize_post_content_1 = require("../../../../../helpers/src/utils/sanitize.post.content");
+const count_length_1 = require("../../../../../helpers/src/utils/count.length");
 let PostsService = class PostsService {
     constructor(_postRepository, _integrationManager, _integrationService, _mediaService, _shortLinkService, _openaiService, _temporalService, _refreshIntegrationService) {
         this._postRepository = _postRepository;
@@ -1106,9 +1140,9 @@ let PostsService = class PostsService {
     }
 };
 exports.PostsService = PostsService;
-exports.PostsService = PostsService = tslib_1.__decorate([
+exports.PostsService = PostsService = __decorate([
     (0, common_1.Injectable)(),
-    tslib_1.__metadata("design:paramtypes", [posts_repository_1.PostsRepository,
+    __metadata("design:paramtypes", [posts_repository_1.PostsRepository,
         integration_manager_1.IntegrationManager,
         integration_service_1.IntegrationService,
         media_service_1.MediaService,

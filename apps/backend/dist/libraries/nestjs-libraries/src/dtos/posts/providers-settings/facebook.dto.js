@@ -1,7 +1,15 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FacebookDto = exports.FACEBOOK_PRESETS = exports.FACEBOOK_PRESET_MAX_CHARS = void 0;
-const tslib_1 = require("tslib");
 const class_validator_1 = require("class-validator");
 const class_validator_jsonschema_1 = require("class-validator-jsonschema");
 exports.FACEBOOK_PRESET_MAX_CHARS = 130;
@@ -84,39 +92,39 @@ exports.FACEBOOK_PRESETS = [
 class FacebookDto {
 }
 exports.FacebookDto = FacebookDto;
-tslib_1.__decorate([
+__decorate([
     (0, class_validator_jsonschema_1.JSONSchema)({
         description: 'Link to attach as a preview card (image, title, domain), used only for text posts without media. A URL inside the content alone shows as plain text with no card',
     }),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.ValidateIf)(p => p.url),
     (0, class_validator_1.IsUrl)(),
-    tslib_1.__metadata("design:type", String)
+    __metadata("design:type", String)
 ], FacebookDto.prototype, "url", void 0);
-tslib_1.__decorate([
+__decorate([
     (0, class_validator_1.IsIn)(['post', 'story']),
     (0, class_validator_1.IsOptional)(),
-    tslib_1.__metadata("design:type", String)
+    __metadata("design:type", String)
 ], FacebookDto.prototype, "post_type", void 0);
-tslib_1.__decorate([
+__decorate([
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
-    tslib_1.__metadata("design:type", String)
+    __metadata("design:type", String)
 ], FacebookDto.prototype, "text_format_preset_id", void 0);
-tslib_1.__decorate([
+__decorate([
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     (0, class_validator_jsonschema_1.JSONSchema)({
         description: 'Title of the video, used only for video (non-story) posts',
     }),
-    tslib_1.__metadata("design:type", String)
+    __metadata("design:type", String)
 ], FacebookDto.prototype, "title", void 0);
-tslib_1.__decorate([
+__decorate([
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_jsonschema_1.JSONSchema)({
         description: 'Labels the post as AI generated. Text, link and photo posts only - Facebook has no AI label for the video posts and stories published here, so it is discarded for those.',
     }),
-    tslib_1.__metadata("design:type", Boolean)
+    __metadata("design:type", Boolean)
 ], FacebookDto.prototype, "made_with_ai", void 0);
 //# sourceMappingURL=facebook.dto.js.map

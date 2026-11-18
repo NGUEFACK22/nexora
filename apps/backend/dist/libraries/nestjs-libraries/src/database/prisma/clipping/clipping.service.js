@@ -1,27 +1,38 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClippingService = exports.ClippingStop = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
 const common_2 = require("@temporalio/common");
 const nestjs_temporal_core_1 = require("nestjs-temporal-core");
-const clipping_repository_1 = require("@gitroom/nestjs-libraries/database/prisma/clipping/clipping.repository");
-const upload_factory_1 = require("@gitroom/nestjs-libraries/upload/upload.factory");
-const subscription_service_1 = require("@gitroom/nestjs-libraries/database/prisma/subscriptions/subscription.service");
-const organization_service_1 = require("@gitroom/nestjs-libraries/database/prisma/organizations/organization.service");
-const integration_service_1 = require("@gitroom/nestjs-libraries/database/prisma/integrations/integration.service");
-const posts_service_1 = require("@gitroom/nestjs-libraries/database/prisma/posts/posts.service");
-const media_service_1 = require("@gitroom/nestjs-libraries/database/prisma/media/media.service");
-const openai_service_1 = require("@gitroom/nestjs-libraries/openai/openai.service");
-const deepgram_service_1 = require("@gitroom/nestjs-libraries/deepgram/deepgram.service");
-const temporal_search_attribute_1 = require("@gitroom/nestjs-libraries/temporal/temporal.search.attribute");
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const make_is_1 = require("@gitroom/nestjs-libraries/services/make.is");
+const clipping_repository_1 = require("./clipping.repository");
+const upload_factory_1 = require("../../../upload/upload.factory");
+const subscription_service_1 = require("../subscriptions/subscription.service");
+const organization_service_1 = require("../organizations/organization.service");
+const integration_service_1 = require("../integrations/integration.service");
+const posts_service_1 = require("../posts/posts.service");
+const media_service_1 = require("../media/media.service");
+const openai_service_1 = require("../../../openai/openai.service");
+const deepgram_service_1 = require("../../../deepgram/deepgram.service");
+const temporal_search_attribute_1 = require("../../../temporal/temporal.search.attribute");
+const social_abstract_1 = require("../../../integrations/social.abstract");
+const make_is_1 = require("../../../services/make.is");
 const crypto_1 = require("crypto");
-const redis_service_1 = require("@gitroom/nestjs-libraries/redis/redis.service");
-const timer_1 = require("@gitroom/helpers/utils/timer");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
-const permission_exception_class_1 = require("@gitroom/backend/services/auth/permissions/permission.exception.class");
+const redis_service_1 = require("../../../redis/redis.service");
+const timer_1 = require("../../../../../helpers/src/utils/timer");
+const dayjs_1 = __importDefault(require("dayjs"));
+const permission_exception_class_1 = require("../../../../../../apps/backend/src/services/auth/permissions/permission.exception.class");
 class ClippingStop extends common_2.ApplicationFailure {
     constructor(message) {
         super((0, social_abstract_1.truncateForTemporal)(message, 2000), 'clipping_stop', true);
@@ -655,9 +666,9 @@ let ClippingService = class ClippingService {
     }
 };
 exports.ClippingService = ClippingService;
-exports.ClippingService = ClippingService = tslib_1.__decorate([
+exports.ClippingService = ClippingService = __decorate([
     (0, common_1.Injectable)(),
-    tslib_1.__metadata("design:paramtypes", [clipping_repository_1.ClippingRepository,
+    __metadata("design:paramtypes", [clipping_repository_1.ClippingRepository,
         subscription_service_1.SubscriptionService,
         organization_service_1.OrganizationService,
         integration_service_1.IntegrationService,

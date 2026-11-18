@@ -1,12 +1,23 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AnalyticsController = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
-const org_from_request_1 = require("@gitroom/nestjs-libraries/user/org.from.request");
+const org_from_request_1 = require("../../../../../libraries/nestjs-libraries/src/user/org.from.request");
 const swagger_1 = require("@nestjs/swagger");
-const integration_service_1 = require("@gitroom/nestjs-libraries/database/prisma/integrations/integration.service");
-const posts_service_1 = require("@gitroom/nestjs-libraries/database/prisma/posts/posts.service");
+const integration_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/integrations/integration.service");
+const posts_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/posts/posts.service");
 let AnalyticsController = class AnalyticsController {
     constructor(_integrationService, _postsService) {
         this._integrationService = _integrationService;
@@ -20,28 +31,28 @@ let AnalyticsController = class AnalyticsController {
     }
 };
 exports.AnalyticsController = AnalyticsController;
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/:integration'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('integration')),
-    tslib_1.__param(2, (0, common_1.Query)('date')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('integration')),
+    __param(2, (0, common_1.Query)('date')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, String]),
+    __metadata("design:returntype", Promise)
 ], AnalyticsController.prototype, "getIntegration", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/post/:postId'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('postId')),
-    tslib_1.__param(2, (0, common_1.Query)('date')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('postId')),
+    __param(2, (0, common_1.Query)('date')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, String]),
+    __metadata("design:returntype", Promise)
 ], AnalyticsController.prototype, "getPostAnalytics", null);
-exports.AnalyticsController = AnalyticsController = tslib_1.__decorate([
+exports.AnalyticsController = AnalyticsController = __decorate([
     (0, swagger_1.ApiTags)('Analytics'),
     (0, common_1.Controller)('/analytics'),
-    tslib_1.__metadata("design:paramtypes", [integration_service_1.IntegrationService,
+    __metadata("design:paramtypes", [integration_service_1.IntegrationService,
         posts_service_1.PostsService])
 ], AnalyticsController);
 //# sourceMappingURL=analytics.controller.js.map

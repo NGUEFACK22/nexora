@@ -5,10 +5,10 @@ const client_s3_1 = require("@aws-sdk/client-s3");
 const s3_request_presigner_1 = require("@aws-sdk/s3-request-presigner");
 const lib_storage_1 = require("@aws-sdk/lib-storage");
 require("multer");
-const make_is_1 = require("@gitroom/nestjs-libraries/services/make.is");
-const webhook_url_validator_1 = require("@gitroom/nestjs-libraries/dtos/webhooks/webhook.url.validator");
-const ssrf_safe_dispatcher_1 = require("@gitroom/nestjs-libraries/dtos/webhooks/ssrf.safe.dispatcher");
-const data_url_1 = require("@gitroom/nestjs-libraries/upload/data.url");
+const make_is_1 = require("../services/make.is");
+const webhook_url_validator_1 = require("../dtos/webhooks/webhook.url.validator");
+const ssrf_safe_dispatcher_1 = require("../dtos/webhooks/ssrf.safe.dispatcher");
+const data_url_1 = require("./data.url");
 const { fileTypeFromBuffer } = require('file-type');
 const ALLOWED_MIME_TYPES = new Set([
     'image/jpeg',

@@ -112,5 +112,5 @@ export declare class PublicController {
     modifySubscription(params: string): Promise<{
         success: boolean;
     }>;
-    streamFile(query: OnlyURL, res: Response, req: Request): Promise<any>;
+    streamFile(query: OnlyURL, res: Response, req: Request): Promise<Response<any, Record<string, any>>>;
 }

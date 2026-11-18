@@ -1,13 +1,24 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MediaWidgetController = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
 const platform_express_1 = require("@nestjs/platform-express");
-const org_from_request_1 = require("@gitroom/nestjs-libraries/user/org.from.request");
-const media_service_1 = require("@gitroom/nestjs-libraries/database/prisma/media/media.service");
-const multer_stream_engine_1 = require("@gitroom/nestjs-libraries/upload/multer.stream.engine");
+const org_from_request_1 = require("../../../../../libraries/nestjs-libraries/src/user/org.from.request");
+const media_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/media/media.service");
+const multer_stream_engine_1 = require("../../../../../libraries/nestjs-libraries/src/upload/multer.stream.engine");
 let MediaWidgetController = class MediaWidgetController {
     constructor(_mediaService) {
         this._mediaService = _mediaService;
@@ -23,28 +34,28 @@ let MediaWidgetController = class MediaWidgetController {
     }
 };
 exports.MediaWidgetController = MediaWidgetController;
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/upload'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', (0, multer_stream_engine_1.streamUploadOptions)())),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Req)()),
-    tslib_1.__param(2, (0, common_1.UploadedFile)()),
-    tslib_1.__param(3, (0, common_1.Body)('adjust')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Req)()),
+    __param(2, (0, common_1.UploadedFile)()),
+    __param(3, (0, common_1.Body)('adjust')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, Object, String]),
+    __metadata("design:returntype", Promise)
 ], MediaWidgetController.prototype, "upload", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/status'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Req)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", void 0)
 ], MediaWidgetController.prototype, "status", null);
-exports.MediaWidgetController = MediaWidgetController = tslib_1.__decorate([
+exports.MediaWidgetController = MediaWidgetController = __decorate([
     (0, swagger_1.ApiTags)('Media'),
     (0, common_1.Controller)('/media-widget'),
-    tslib_1.__metadata("design:paramtypes", [media_service_1.MediaService])
+    __metadata("design:paramtypes", [media_service_1.MediaService])
 ], MediaWidgetController);
 //# sourceMappingURL=media.widget.controller.js.map

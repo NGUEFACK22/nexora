@@ -158,9 +158,9 @@ export declare class PostsService {
             ordersItems: {
                 id: string;
                 integrationId: string;
-                price: number;
                 orderId: string;
                 quantity: number;
+                price: number;
             }[];
             seller: {
                 id: string;
@@ -340,11 +340,52 @@ export declare class PostsService {
             }[];
             originalGroup: string;
             originalPublishDate: any;
-            exportedAt: string;
+            exportedAt: `${string}-${string}-${string}T${string}:${string}:${string}Z`;
         };
     }>;
     getPostsByGroup(orgId: string, group: string): Promise<{
-        siblings: any;
+        siblings: {
+            group: string;
+            posts: {
+                image: any[];
+                integration?: {
+                    id: string;
+                    name: string;
+                    picture: string;
+                    providerIdentifier: string;
+                    profile: string;
+                };
+                error: string | null;
+                id: string;
+                description: string | null;
+                createdAt: Date;
+                updatedAt: Date;
+                deletedAt: Date | null;
+                organizationId: string;
+                publishDate: Date;
+                state: import(".prisma/client").$Enums.State;
+                integrationId: string;
+                content: string;
+                delay: number;
+                group: string;
+                batchId: string | null;
+                title: string | null;
+                parentPostId: string | null;
+                releaseId: string | null;
+                releaseURL: string | null;
+                settings: string | null;
+                submittedForOrderId: string | null;
+                submittedForOrganizationId: string | null;
+                approvedSubmitForOrder: import(".prisma/client").$Enums.APPROVED_SUBMIT_FOR_ORDER;
+                creationMethod: import(".prisma/client").$Enums.CreationMethod;
+                lastMessageId: string | null;
+                intervalInDays: number | null;
+                childrenPost: Post[];
+            }[];
+            integrationPicture: string;
+            integration: string;
+            settings: any;
+        }[];
         group: string;
         posts: {
             image: any[];

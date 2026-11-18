@@ -1,15 +1,23 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmailService = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
-const agentmail_provider_1 = require("@gitroom/nestjs-libraries/emails/agentmail.provider");
-const resend_provider_1 = require("@gitroom/nestjs-libraries/emails/resend.provider");
-const empty_provider_1 = require("@gitroom/nestjs-libraries/emails/empty.provider");
-const node_mailer_provider_1 = require("@gitroom/nestjs-libraries/emails/node.mailer.provider");
-const ses_provider_1 = require("@gitroom/nestjs-libraries/emails/ses.provider");
+const agentmail_provider_1 = require("../emails/agentmail.provider");
+const resend_provider_1 = require("../emails/resend.provider");
+const empty_provider_1 = require("../emails/empty.provider");
+const node_mailer_provider_1 = require("../emails/node.mailer.provider");
+const ses_provider_1 = require("../emails/ses.provider");
 const nestjs_temporal_core_1 = require("nestjs-temporal-core");
-const timer_1 = require("@gitroom/helpers/utils/timer");
+const timer_1 = require("../../../helpers/src/utils/timer");
 const crypto_1 = require("crypto");
 let EmailService = class EmailService {
     constructor(_temporalService) {
@@ -135,8 +143,8 @@ let EmailService = class EmailService {
     }
 };
 exports.EmailService = EmailService;
-exports.EmailService = EmailService = tslib_1.__decorate([
+exports.EmailService = EmailService = __decorate([
     (0, common_1.Injectable)(),
-    tslib_1.__metadata("design:paramtypes", [nestjs_temporal_core_1.TemporalService])
+    __metadata("design:paramtypes", [nestjs_temporal_core_1.TemporalService])
 ], EmailService);
 //# sourceMappingURL=email.service.js.map

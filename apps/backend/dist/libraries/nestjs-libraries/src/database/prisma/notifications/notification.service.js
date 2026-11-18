@@ -1,14 +1,22 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NotificationService = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
-const notifications_repository_1 = require("@gitroom/nestjs-libraries/database/prisma/notifications/notifications.repository");
-const email_service_1 = require("@gitroom/nestjs-libraries/services/email.service");
-const organization_repository_1 = require("@gitroom/nestjs-libraries/database/prisma/organizations/organization.repository");
+const notifications_repository_1 = require("./notifications.repository");
+const email_service_1 = require("../../../services/email.service");
+const organization_repository_1 = require("../organizations/organization.repository");
 const nestjs_temporal_core_1 = require("nestjs-temporal-core");
 const common_2 = require("@temporalio/common");
-const temporal_search_attribute_1 = require("@gitroom/nestjs-libraries/temporal/temporal.search.attribute");
+const temporal_search_attribute_1 = require("../../../temporal/temporal.search.attribute");
 let NotificationService = class NotificationService {
     constructor(_notificationRepository, _emailService, _organizationRepository, _temporalService) {
         this._notificationRepository = _notificationRepository;
@@ -84,9 +92,9 @@ let NotificationService = class NotificationService {
     }
 };
 exports.NotificationService = NotificationService;
-exports.NotificationService = NotificationService = tslib_1.__decorate([
+exports.NotificationService = NotificationService = __decorate([
     (0, common_1.Injectable)(),
-    tslib_1.__metadata("design:paramtypes", [notifications_repository_1.NotificationsRepository,
+    __metadata("design:paramtypes", [notifications_repository_1.NotificationsRepository,
         email_service_1.EmailService,
         organization_repository_1.OrganizationRepository,
         nestjs_temporal_core_1.TemporalService])

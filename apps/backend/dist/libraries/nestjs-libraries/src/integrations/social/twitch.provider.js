@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TwitchProvider = void 0;
-const make_is_1 = require("@gitroom/nestjs-libraries/services/make.is");
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const twitch_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/twitch.dto");
-const timer_1 = require("@gitroom/helpers/utils/timer");
+const make_is_1 = require("../../services/make.is");
+const make_secure_id_1 = require("../../services/make.secure.id");
+const social_abstract_1 = require("../social.abstract");
+const twitch_dto_1 = require("../../dtos/posts/providers-settings/twitch.dto");
+const timer_1 = require("../../../../helpers/src/utils/timer");
 class TwitchProvider extends social_abstract_1.SocialAbstract {
     constructor() {
         super(...arguments);

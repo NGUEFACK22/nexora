@@ -1,15 +1,26 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ListmonkProvider = void 0;
-const tslib_1 = require("tslib");
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
+const make_secure_id_1 = require("../../services/make.secure.id");
 const social_abstract_1 = require("../social.abstract");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
-const listmonk_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/listmonk.dto");
-const auth_service_1 = require("@gitroom/helpers/auth/auth.service");
-const slugify_1 = tslib_1.__importDefault(require("slugify"));
-const tool_decorator_1 = require("@gitroom/nestjs-libraries/integrations/tool.decorator");
-const rules_description_decorator_1 = require("@gitroom/nestjs-libraries/chat/rules.description.decorator");
+const dayjs_1 = __importDefault(require("dayjs"));
+const listmonk_dto_1 = require("../../dtos/posts/providers-settings/listmonk.dto");
+const auth_service_1 = require("../../../../helpers/src/auth/auth.service");
+const slugify_1 = __importDefault(require("slugify"));
+const tool_decorator_1 = require("../tool.decorator");
+const rules_description_decorator_1 = require("../../chat/rules.description.decorator");
 let ListmonkProvider = class ListmonkProvider extends social_abstract_1.SocialAbstract {
     constructor() {
         super(...arguments);
@@ -213,19 +224,19 @@ let ListmonkProvider = class ListmonkProvider extends social_abstract_1.SocialAb
     }
 };
 exports.ListmonkProvider = ListmonkProvider;
-tslib_1.__decorate([
+__decorate([
     (0, tool_decorator_1.Tool)({ description: 'List of available lists', dataSchema: [] }),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, Object, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object, String, Object]),
+    __metadata("design:returntype", Promise)
 ], ListmonkProvider.prototype, "list", null);
-tslib_1.__decorate([
+__decorate([
     (0, tool_decorator_1.Tool)({ description: 'List of available templates', dataSchema: [] }),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, Object, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object, String, Object]),
+    __metadata("design:returntype", Promise)
 ], ListmonkProvider.prototype, "templates", null);
-exports.ListmonkProvider = ListmonkProvider = tslib_1.__decorate([
+exports.ListmonkProvider = ListmonkProvider = __decorate([
     (0, rules_description_decorator_1.Rules)('ListMonk sends the content as an email: pictures go inside the content as <img src="..."> where they should appear, the src must be a picture from the media library (upload it with uploadFromUrlTool first), attachments are not sent')
 ], ListmonkProvider);
 //# sourceMappingURL=listmonk.provider.js.map

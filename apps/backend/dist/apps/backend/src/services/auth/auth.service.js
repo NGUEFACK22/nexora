@@ -1,18 +1,29 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
 const client_1 = require("@prisma/client");
-const create_org_user_dto_1 = require("@gitroom/nestjs-libraries/dtos/auth/create.org.user.dto");
-const users_service_1 = require("@gitroom/nestjs-libraries/database/prisma/users/users.service");
-const organization_service_1 = require("@gitroom/nestjs-libraries/database/prisma/organizations/organization.service");
-const auth_service_1 = require("@gitroom/helpers/auth/auth.service");
-const providers_manager_1 = require("@gitroom/backend/services/auth/providers/providers.manager");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
-const email_service_1 = require("@gitroom/nestjs-libraries/services/email.service");
-const newsletter_service_1 = require("@gitroom/nestjs-libraries/newsletter/newsletter.service");
-const attribution_service_1 = require("@gitroom/nestjs-libraries/services/attribution/attribution.service");
+const create_org_user_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/auth/create.org.user.dto");
+const users_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/users/users.service");
+const organization_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/organizations/organization.service");
+const auth_service_1 = require("../../../../../libraries/helpers/src/auth/auth.service");
+const providers_manager_1 = require("./providers/providers.manager");
+const dayjs_1 = __importDefault(require("dayjs"));
+const email_service_1 = require("../../../../../libraries/nestjs-libraries/src/services/email.service");
+const newsletter_service_1 = require("../../../../../libraries/nestjs-libraries/src/newsletter/newsletter.service");
+const attribution_service_1 = require("../../../../../libraries/nestjs-libraries/src/services/attribution/attribution.service");
 let AuthService = class AuthService {
     constructor(_userService, _organizationService, _emailService, _providerManager, _attributionService) {
         this._userService = _userService;
@@ -225,9 +236,9 @@ let AuthService = class AuthService {
     }
 };
 exports.AuthService = AuthService;
-exports.AuthService = AuthService = tslib_1.__decorate([
+exports.AuthService = AuthService = __decorate([
     (0, common_1.Injectable)(),
-    tslib_1.__metadata("design:paramtypes", [users_service_1.UsersService,
+    __metadata("design:paramtypes", [users_service_1.UsersService,
         organization_service_1.OrganizationService,
         email_service_1.EmailService,
         providers_manager_1.AuthProviderManager,

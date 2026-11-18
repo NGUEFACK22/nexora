@@ -19,6 +19,9 @@ export declare class CopilotController {
     }>;
     getMessagesList(organization: Organization, threadId: string): Promise<any>;
     getList(organization: Organization): Promise<{
-        threads: any;
+        threads: {
+            id: string;
+            title: string;
+        }[];
     }>;
 }

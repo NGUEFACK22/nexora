@@ -1,14 +1,22 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.InstagramStandaloneProvider = void 0;
-const tslib_1 = require("tslib");
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const instagram_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/instagram.dto");
-const instagram_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/instagram.provider");
-const facebook_provider_1 = require("@gitroom/nestjs-libraries/integrations/social/facebook.provider");
-const rules_description_decorator_1 = require("@gitroom/nestjs-libraries/chat/rules.description.decorator");
+const make_secure_id_1 = require("../../services/make.secure.id");
+const dayjs_1 = __importDefault(require("dayjs"));
+const social_abstract_1 = require("../social.abstract");
+const instagram_dto_1 = require("../../dtos/posts/providers-settings/instagram.dto");
+const instagram_provider_1 = require("./instagram.provider");
+const facebook_provider_1 = require("./facebook.provider");
+const rules_description_decorator_1 = require("../../chat/rules.description.decorator");
 const instagramProvider = new instagram_provider_1.InstagramProvider();
 let InstagramStandaloneProvider = class InstagramStandaloneProvider extends social_abstract_1.SocialAbstract {
     constructor() {
@@ -144,7 +152,7 @@ let InstagramStandaloneProvider = class InstagramStandaloneProvider extends soci
     }
 };
 exports.InstagramStandaloneProvider = InstagramStandaloneProvider;
-exports.InstagramStandaloneProvider = InstagramStandaloneProvider = tslib_1.__decorate([
+exports.InstagramStandaloneProvider = InstagramStandaloneProvider = __decorate([
     (0, rules_description_decorator_1.Rules)([
         "Instagram should have at least one attachment, if it's a story, it can have only one picture.",
         'If the content of the post (text, pictures or video) was made with AI, ask the user if they want to mark it as AI, and set made_with_ai to true only when they say yes.',

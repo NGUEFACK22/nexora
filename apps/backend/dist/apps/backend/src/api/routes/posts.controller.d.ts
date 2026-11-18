@@ -186,11 +186,52 @@ export declare class PostsController {
             }[];
             originalGroup: string;
             originalPublishDate: any;
-            exportedAt: string;
+            exportedAt: `${string}-${string}-${string}T${string}:${string}:${string}Z`;
         };
     }>;
     getPostsByGroup(org: Organization, group: string): Promise<{
-        siblings: any;
+        siblings: {
+            group: string;
+            posts: {
+                image: any[];
+                integration?: {
+                    id: string;
+                    name: string;
+                    picture: string;
+                    providerIdentifier: string;
+                    profile: string;
+                };
+                error: string | null;
+                id: string;
+                description: string | null;
+                createdAt: Date;
+                updatedAt: Date;
+                deletedAt: Date | null;
+                organizationId: string;
+                publishDate: Date;
+                state: import(".prisma/client").$Enums.State;
+                integrationId: string;
+                content: string;
+                delay: number;
+                group: string;
+                batchId: string | null;
+                title: string | null;
+                parentPostId: string | null;
+                releaseId: string | null;
+                releaseURL: string | null;
+                settings: string | null;
+                submittedForOrderId: string | null;
+                submittedForOrganizationId: string | null;
+                approvedSubmitForOrder: import(".prisma/client").$Enums.APPROVED_SUBMIT_FOR_ORDER;
+                creationMethod: import(".prisma/client").$Enums.CreationMethod;
+                lastMessageId: string | null;
+                intervalInDays: number | null;
+                childrenPost: import(".prisma/client").Post[];
+            }[];
+            integrationPicture: string;
+            integration: string;
+            settings: any;
+        }[];
         group: string;
         posts: {
             image: any[];

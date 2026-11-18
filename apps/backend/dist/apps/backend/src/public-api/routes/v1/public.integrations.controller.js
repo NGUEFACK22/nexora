@@ -1,48 +1,85 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PublicIntegrationsController = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
-const multer_stream_engine_1 = require("@gitroom/nestjs-libraries/upload/multer.stream.engine");
+const multer_stream_engine_1 = require("../../../../../../libraries/nestjs-libraries/src/upload/multer.stream.engine");
 const lodash_1 = require("lodash");
 const swagger_1 = require("@nestjs/swagger");
-const org_from_request_1 = require("@gitroom/nestjs-libraries/user/org.from.request");
-const include_deleted_from_request_1 = require("@gitroom/nestjs-libraries/user/include.deleted.from.request");
-const oauth_user_id_from_request_1 = require("@gitroom/nestjs-libraries/user/oauth.user.id.from.request");
-const integration_service_1 = require("@gitroom/nestjs-libraries/database/prisma/integrations/integration.service");
-const permissions_ability_1 = require("@gitroom/backend/services/auth/permissions/permissions.ability");
-const posts_service_1 = require("@gitroom/nestjs-libraries/database/prisma/posts/posts.service");
+const org_from_request_1 = require("../../../../../../libraries/nestjs-libraries/src/user/org.from.request");
+const include_deleted_from_request_1 = require("../../../../../../libraries/nestjs-libraries/src/user/include.deleted.from.request");
+const oauth_user_id_from_request_1 = require("../../../../../../libraries/nestjs-libraries/src/user/oauth.user.id.from.request");
+const integration_service_1 = require("../../../../../../libraries/nestjs-libraries/src/database/prisma/integrations/integration.service");
+const permissions_ability_1 = require("../../../services/auth/permissions/permissions.ability");
+const posts_service_1 = require("../../../../../../libraries/nestjs-libraries/src/database/prisma/posts/posts.service");
 const platform_express_1 = require("@nestjs/platform-express");
-const media_service_1 = require("@gitroom/nestjs-libraries/database/prisma/media/media.service");
-const get_posts_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/get.posts.dto");
-const change_post_status_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/change.post.status.dto");
-const update_post_settings_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/update.post.settings.dto");
-const permission_exception_class_1 = require("@gitroom/backend/services/auth/permissions/permission.exception.class");
-const video_dto_1 = require("@gitroom/nestjs-libraries/dtos/videos/video.dto");
-const video_function_dto_1 = require("@gitroom/nestjs-libraries/dtos/videos/video.function.dto");
-const upload_dto_1 = require("@gitroom/nestjs-libraries/dtos/media/upload.dto");
-const get_media_dto_1 = require("@gitroom/nestjs-libraries/dtos/media/get.media.dto");
-const clipping_dto_1 = require("@gitroom/nestjs-libraries/dtos/clipping/clipping.dto");
-const connect_link_dto_1 = require("@gitroom/nestjs-libraries/dtos/integrations/connect.link.dto");
-const clipping_service_1 = require("@gitroom/nestjs-libraries/database/prisma/clipping/clipping.service");
-const notification_service_1 = require("@gitroom/nestjs-libraries/database/prisma/notifications/notification.service");
-const get_notifications_dto_1 = require("@gitroom/nestjs-libraries/dtos/notifications/get.notifications.dto");
-const Sentry = tslib_1.__importStar(require("@sentry/nestjs"));
-const integration_manager_1 = require("@gitroom/nestjs-libraries/integrations/integration.manager");
-const validation_schemas_helper_1 = require("@gitroom/nestjs-libraries/chat/validation.schemas.helper");
-const refresh_integration_service_1 = require("@gitroom/nestjs-libraries/integrations/refresh.integration.service");
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const posts_validation_exception_1 = require("@gitroom/backend/api/routes/posts.validation.exception");
-const users_service_1 = require("@gitroom/nestjs-libraries/database/prisma/users/users.service");
-const super_admin_guard_1 = require("@gitroom/backend/services/auth/super.admin.guard");
-const timer_1 = require("@gitroom/helpers/utils/timer");
-const redis_service_1 = require("@gitroom/nestjs-libraries/redis/redis.service");
-const admin_stats_service_1 = require("@gitroom/nestjs-libraries/database/prisma/admin-stats/admin-stats.service");
-const organization_service_1 = require("@gitroom/nestjs-libraries/database/prisma/organizations/organization.service");
-const get_org_activity_dto_1 = require("@gitroom/nestjs-libraries/dtos/analytics/get.org.activity.dto");
-const reset_credits_dto_1 = require("@gitroom/nestjs-libraries/dtos/billing/reset.credits.dto");
-const subscription_service_1 = require("@gitroom/nestjs-libraries/database/prisma/subscriptions/subscription.service");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
+const media_service_1 = require("../../../../../../libraries/nestjs-libraries/src/database/prisma/media/media.service");
+const get_posts_dto_1 = require("../../../../../../libraries/nestjs-libraries/src/dtos/posts/get.posts.dto");
+const change_post_status_dto_1 = require("../../../../../../libraries/nestjs-libraries/src/dtos/posts/change.post.status.dto");
+const update_post_settings_dto_1 = require("../../../../../../libraries/nestjs-libraries/src/dtos/posts/update.post.settings.dto");
+const permission_exception_class_1 = require("../../../services/auth/permissions/permission.exception.class");
+const video_dto_1 = require("../../../../../../libraries/nestjs-libraries/src/dtos/videos/video.dto");
+const video_function_dto_1 = require("../../../../../../libraries/nestjs-libraries/src/dtos/videos/video.function.dto");
+const upload_dto_1 = require("../../../../../../libraries/nestjs-libraries/src/dtos/media/upload.dto");
+const get_media_dto_1 = require("../../../../../../libraries/nestjs-libraries/src/dtos/media/get.media.dto");
+const clipping_dto_1 = require("../../../../../../libraries/nestjs-libraries/src/dtos/clipping/clipping.dto");
+const connect_link_dto_1 = require("../../../../../../libraries/nestjs-libraries/src/dtos/integrations/connect.link.dto");
+const clipping_service_1 = require("../../../../../../libraries/nestjs-libraries/src/database/prisma/clipping/clipping.service");
+const notification_service_1 = require("../../../../../../libraries/nestjs-libraries/src/database/prisma/notifications/notification.service");
+const get_notifications_dto_1 = require("../../../../../../libraries/nestjs-libraries/src/dtos/notifications/get.notifications.dto");
+const Sentry = __importStar(require("@sentry/nestjs"));
+const integration_manager_1 = require("../../../../../../libraries/nestjs-libraries/src/integrations/integration.manager");
+const validation_schemas_helper_1 = require("../../../../../../libraries/nestjs-libraries/src/chat/validation.schemas.helper");
+const refresh_integration_service_1 = require("../../../../../../libraries/nestjs-libraries/src/integrations/refresh.integration.service");
+const social_abstract_1 = require("../../../../../../libraries/nestjs-libraries/src/integrations/social.abstract");
+const posts_validation_exception_1 = require("../../../api/routes/posts.validation.exception");
+const users_service_1 = require("../../../../../../libraries/nestjs-libraries/src/database/prisma/users/users.service");
+const super_admin_guard_1 = require("../../../services/auth/super.admin.guard");
+const timer_1 = require("../../../../../../libraries/helpers/src/utils/timer");
+const redis_service_1 = require("../../../../../../libraries/nestjs-libraries/src/redis/redis.service");
+const admin_stats_service_1 = require("../../../../../../libraries/nestjs-libraries/src/database/prisma/admin-stats/admin-stats.service");
+const organization_service_1 = require("../../../../../../libraries/nestjs-libraries/src/database/prisma/organizations/organization.service");
+const get_org_activity_dto_1 = require("../../../../../../libraries/nestjs-libraries/src/dtos/analytics/get.org.activity.dto");
+const reset_credits_dto_1 = require("../../../../../../libraries/nestjs-libraries/src/dtos/billing/reset.credits.dto");
+const subscription_service_1 = require("../../../../../../libraries/nestjs-libraries/src/database/prisma/subscriptions/subscription.service");
+const dayjs_1 = __importDefault(require("dayjs"));
 let PublicIntegrationsController = class PublicIntegrationsController {
     constructor(_integrationService, _postsService, _mediaService, _notificationService, _integrationManager, _refreshIntegrationService, _usersService, _adminStatsService, _organizationService, _clippingService, _subscriptionService) {
         this._integrationService = _integrationService;
@@ -422,313 +459,313 @@ let PublicIntegrationsController = class PublicIntegrationsController {
     }
 };
 exports.PublicIntegrationsController = PublicIntegrationsController;
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/upload'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', (0, multer_stream_engine_1.streamUploadOptions)())),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.UploadedFile)('file')),
-    tslib_1.__param(2, (0, common_1.Body)('adjust')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.UploadedFile)('file')),
+    __param(2, (0, common_1.Body)('adjust')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, String]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "uploadSimple", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/upload-from-url'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, upload_dto_1.UploadDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, upload_dto_1.UploadDto]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "uploadsFromUrl", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/find-slot/:id'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "findSlotIntegration", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/posts'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Query)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, get_posts_dto_1.GetPostsDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, get_posts_dto_1.GetPostsDto]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "getPosts", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/posts'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.POSTS_PER_MONTH]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "createPost", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Delete)('/posts/:id'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "deletePost", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Delete)('/posts/group/:group'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('group')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('group')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", void 0)
 ], PublicIntegrationsController.prototype, "deletePostByGroup", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/is-connected'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "getActiveIntegrations", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/media'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Query)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, get_media_dto_1.GetMediaDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, get_media_dto_1.GetMediaDto]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "getMedia", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/media/:id/status'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "getMediaStatus", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/me'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, oauth_user_id_from_request_1.GetOAuthUserIdFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, oauth_user_id_from_request_1.GetOAuthUserIdFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "getMe", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/groups'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "listGroups", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/integrations'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Query)('group')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Query)('group')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "listIntegration", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/social/:integration'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.CHANNEL]),
-    tslib_1.__param(0, (0, common_1.Param)('integration')),
-    tslib_1.__param(1, (0, common_1.Query)('refresh')),
-    tslib_1.__param(2, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Param)('integration')),
+    __param(1, (0, common_1.Query)('refresh')),
+    __param(2, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, Object]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "getIntegrationUrl", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/integrations/connect'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.CHANNEL]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, connect_link_dto_1.ConnectLinkDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, connect_link_dto_1.ConnectLinkDto]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "createConnectLink", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/users'),
     (0, common_1.UseGuards)(super_admin_guard_1.SuperAdminGuard),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Query)('name')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Query)('name')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "listUsers", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/debug/posts/:id'),
     (0, common_1.UseGuards)(super_admin_guard_1.SuperAdminGuard),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "getPostTimeline", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/debug/account'),
     (0, common_1.UseGuards)(super_admin_guard_1.SuperAdminGuard),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "getAccountOverview", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/debug/channels'),
     (0, common_1.UseGuards)(super_admin_guard_1.SuperAdminGuard),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, include_deleted_from_request_1.GetIncludeDeletedFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Boolean]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, include_deleted_from_request_1.GetIncludeDeletedFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Boolean]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "getChannelHealth", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/debug/activity'),
     (0, common_1.UseGuards)(super_admin_guard_1.SuperAdminGuard),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, include_deleted_from_request_1.GetIncludeDeletedFromRequest)()),
-    tslib_1.__param(2, (0, common_1.Query)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Boolean, get_org_activity_dto_1.GetOrgActivityDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, include_deleted_from_request_1.GetIncludeDeletedFromRequest)()),
+    __param(2, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Boolean, get_org_activity_dto_1.GetOrgActivityDto]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "getOrgActivity", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/credits/reset'),
     (0, common_1.UseGuards)(super_admin_guard_1.SuperAdminGuard),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, reset_credits_dto_1.ResetCreditsDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, reset_credits_dto_1.ResetCreditsDto]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "resetCredits", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/notifications'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Query)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, get_notifications_dto_1.GetNotificationsDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, get_notifications_dto_1.GetNotificationsDto]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "getNotifications", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/generate-video'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, video_dto_1.VideoDto]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, video_dto_1.VideoDto]),
+    __metadata("design:returntype", void 0)
 ], PublicIntegrationsController.prototype, "generateVideo", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/video/function'),
-    tslib_1.__param(0, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [video_function_dto_1.VideoFunctionDto]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [video_function_dto_1.VideoFunctionDto]),
+    __metadata("design:returntype", void 0)
 ], PublicIntegrationsController.prototype, "videoFunction", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/clipping'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, clipping_dto_1.ClippingDto]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, clipping_dto_1.ClippingDto]),
+    __metadata("design:returntype", void 0)
 ], PublicIntegrationsController.prototype, "startClipping", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/clipping'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Query)('page')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Number]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Query)('page')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Number]),
+    __metadata("design:returntype", void 0)
 ], PublicIntegrationsController.prototype, "getClippings", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/clipping/:id'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", void 0)
 ], PublicIntegrationsController.prototype, "getClipping", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Delete)('/integrations/:id'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "deleteChannel", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/integration-settings/:id'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "getIntegrationSettings", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/posts/:id/missing'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "getMissingContent", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Put)('/posts/:id/settings'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, update_post_settings_dto_1.UpdatePostSettingsDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, update_post_settings_dto_1.UpdatePostSettingsDto]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "updatePostSettings", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Put)('/posts/:id/status'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, change_post_status_dto_1.ChangePostStatusDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, change_post_status_dto_1.ChangePostStatusDto]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "changePostStatus", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Put)('/posts/:id/release-id'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__param(2, (0, common_1.Body)('releaseId')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __param(2, (0, common_1.Body)('releaseId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, String]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "updateReleaseId", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/analytics/:integration'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('integration')),
-    tslib_1.__param(2, (0, common_1.Query)('date')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('integration')),
+    __param(2, (0, common_1.Query)('date')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, String]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "getAnalytics", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/analytics/post/:postId'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('postId')),
-    tslib_1.__param(2, (0, common_1.Query)('date')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('postId')),
+    __param(2, (0, common_1.Query)('date')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, String]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "getPostAnalytics", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/integration-trigger/:id'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, Object]),
+    __metadata("design:returntype", Promise)
 ], PublicIntegrationsController.prototype, "triggerIntegrationTool", null);
-exports.PublicIntegrationsController = PublicIntegrationsController = tslib_1.__decorate([
+exports.PublicIntegrationsController = PublicIntegrationsController = __decorate([
     (0, swagger_1.ApiTags)('Public API'),
     (0, common_1.Controller)('/public/v1'),
-    tslib_1.__metadata("design:paramtypes", [integration_service_1.IntegrationService,
+    __metadata("design:paramtypes", [integration_service_1.IntegrationService,
         posts_service_1.PostsService,
         media_service_1.MediaService,
         notification_service_1.NotificationService,

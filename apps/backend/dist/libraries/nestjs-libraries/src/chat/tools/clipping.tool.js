@@ -1,14 +1,22 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClippingTool = void 0;
-const tslib_1 = require("tslib");
 const tools_1 = require("@mastra/core/tools");
 const zod_1 = require("zod");
 const common_1 = require("@nestjs/common");
-const clipping_service_1 = require("@gitroom/nestjs-libraries/database/prisma/clipping/clipping.service");
-const auth_context_1 = require("@gitroom/nestjs-libraries/chat/auth.context");
-const upload_factory_1 = require("@gitroom/nestjs-libraries/upload/upload.factory");
-const clipping_widget_1 = require("@gitroom/nestjs-libraries/chat/ui/clipping.widget");
+const clipping_service_1 = require("../../database/prisma/clipping/clipping.service");
+const auth_context_1 = require("../auth.context");
+const upload_factory_1 = require("../../upload/upload.factory");
+const clipping_widget_1 = require("../ui/clipping.widget");
 let ClippingTool = class ClippingTool {
     constructor(_clippingService) {
         this._clippingService = _clippingService;
@@ -99,8 +107,8 @@ let ClippingTool = class ClippingTool {
     }
 };
 exports.ClippingTool = ClippingTool;
-exports.ClippingTool = ClippingTool = tslib_1.__decorate([
+exports.ClippingTool = ClippingTool = __decorate([
     (0, common_1.Injectable)(),
-    tslib_1.__metadata("design:paramtypes", [clipping_service_1.ClippingService])
+    __metadata("design:paramtypes", [clipping_service_1.ClippingService])
 ], ClippingTool);
 //# sourceMappingURL=clipping.tool.js.map

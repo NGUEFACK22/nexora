@@ -1,12 +1,23 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MediumProvider = void 0;
-const tslib_1 = require("tslib");
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
-const medium_settings_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/medium.settings.dto");
-const tool_decorator_1 = require("@gitroom/nestjs-libraries/integrations/tool.decorator");
+const social_abstract_1 = require("../social.abstract");
+const dayjs_1 = __importDefault(require("dayjs"));
+const make_secure_id_1 = require("../../services/make.secure.id");
+const medium_settings_dto_1 = require("../../dtos/posts/providers-settings/medium.settings.dto");
+const tool_decorator_1 = require("../tool.decorator");
 class MediumProvider extends social_abstract_1.SocialAbstract {
     constructor() {
         super(...arguments);
@@ -112,10 +123,10 @@ class MediumProvider extends social_abstract_1.SocialAbstract {
     }
 }
 exports.MediumProvider = MediumProvider;
-tslib_1.__decorate([
+__decorate([
     (0, tool_decorator_1.Tool)({ description: 'List of publications', dataSchema: [] }),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object, String]),
+    __metadata("design:returntype", Promise)
 ], MediumProvider.prototype, "publications", null);
 //# sourceMappingURL=medium.provider.js.map

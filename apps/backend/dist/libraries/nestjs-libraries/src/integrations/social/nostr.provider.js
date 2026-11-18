@@ -1,13 +1,15 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NostrProvider = void 0;
-const tslib_1 = require("tslib");
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
+const make_secure_id_1 = require("../../services/make.secure.id");
+const dayjs_1 = __importDefault(require("dayjs"));
+const social_abstract_1 = require("../social.abstract");
 const nostr_tools_1 = require("nostr-tools");
-const ws_1 = tslib_1.__importDefault(require("ws"));
-const auth_service_1 = require("@gitroom/helpers/auth/auth.service");
+const ws_1 = __importDefault(require("ws"));
+const auth_service_1 = require("../../../../helpers/src/auth/auth.service");
 global.WebSocket = ws_1.default;
 const list = [
     'wss://nos.lol',

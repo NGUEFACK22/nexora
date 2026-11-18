@@ -19,7 +19,7 @@ export declare class YoutubeProvider extends SocialAbstract implements SocialPro
     refreshErrorMessage(err: any): string | undefined;
     refreshToken(refresh_token: string): Promise<AuthTokenDetails>;
     generateAuthUrl(): Promise<{
-        url: any;
+        url: string;
         codeVerifier: string;
         state: string;
     }>;
@@ -28,23 +28,33 @@ export declare class YoutubeProvider extends SocialAbstract implements SocialPro
         codeVerifier: string;
         refresh?: string;
     }): Promise<{
-        accessToken: any;
+        accessToken: string;
         expiresIn: number;
-        refreshToken: any;
-        id: any;
-        name: any;
-        picture: any;
+        refreshToken: string;
+        id: string;
+        name: string;
+        picture: string;
         username: string;
     }>;
-    pages(accessToken: string): Promise<any>;
+    pages(accessToken: string): Promise<{
+        id: string;
+        name: string;
+        picture: {
+            data: {
+                url: string;
+            };
+        };
+        username: string;
+        subscriberCount: string;
+    }[]>;
     fetchPageInformation(accessToken: string, data: {
         id: string;
     }): Promise<{
-        id: any;
-        name: any;
+        id: string;
+        name: string;
         access_token: string;
-        picture: any;
-        username: any;
+        picture: string;
+        username: string;
     }>;
     reConnect(id: string, requiredId: string, accessToken: string): Promise<Omit<AuthTokenDetails, 'refreshToken' | 'expiresIn'>>;
     private static readonly YOUTUBE_CHUNK_SIZE;

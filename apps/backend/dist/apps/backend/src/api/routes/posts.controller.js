@@ -1,23 +1,34 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostsController = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
-const posts_service_1 = require("@gitroom/nestjs-libraries/database/prisma/posts/posts.service");
-const org_from_request_1 = require("@gitroom/nestjs-libraries/user/org.from.request");
-const get_posts_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/get.posts.dto");
-const get_posts_list_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/get.posts.list.dto");
-const permissions_ability_1 = require("@gitroom/backend/services/auth/permissions/permissions.ability");
+const posts_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/posts/posts.service");
+const org_from_request_1 = require("../../../../../libraries/nestjs-libraries/src/user/org.from.request");
+const get_posts_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/posts/get.posts.dto");
+const get_posts_list_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/posts/get.posts.list.dto");
+const permissions_ability_1 = require("../../services/auth/permissions/permissions.ability");
 const swagger_1 = require("@nestjs/swagger");
-const generator_dto_1 = require("@gitroom/nestjs-libraries/dtos/generator/generator.dto");
-const create_generated_posts_dto_1 = require("@gitroom/nestjs-libraries/dtos/generator/create.generated.posts.dto");
-const agent_graph_service_1 = require("@gitroom/nestjs-libraries/agent/agent.graph.service");
-const user_from_request_1 = require("@gitroom/nestjs-libraries/user/user.from.request");
-const short_link_service_1 = require("@gitroom/nestjs-libraries/short-linking/short.link.service");
-const create_tag_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/create.tag.dto");
-const permission_exception_class_1 = require("@gitroom/backend/services/auth/permissions/permission.exception.class");
-const posts_validation_exception_1 = require("@gitroom/backend/api/routes/posts.validation.exception");
-const add_comment_dto_1 = require("@gitroom/nestjs-libraries/dtos/comments/add.comment.dto");
+const generator_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/generator/generator.dto");
+const create_generated_posts_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/generator/create.generated.posts.dto");
+const agent_graph_service_1 = require("../../../../../libraries/nestjs-libraries/src/agent/agent.graph.service");
+const user_from_request_1 = require("../../../../../libraries/nestjs-libraries/src/user/user.from.request");
+const short_link_service_1 = require("../../../../../libraries/nestjs-libraries/src/short-linking/short.link.service");
+const create_tag_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/posts/create.tag.dto");
+const permission_exception_class_1 = require("../../services/auth/permissions/permission.exception.class");
+const posts_validation_exception_1 = require("./posts.validation.exception");
+const add_comment_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/comments/add.comment.dto");
 const nestjs_real_ip_1 = require("nestjs-real-ip");
 let PostsController = class PostsController {
     constructor(_postsService, _agentGraphService, _shortLinkService) {
@@ -147,227 +158,227 @@ let PostsController = class PostsController {
     }
 };
 exports.PostsController = PostsController;
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/:id/statistics'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
 ], PostsController.prototype, "getStatistics", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/:id/missing'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
 ], PostsController.prototype, "getMissingContent", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/:id/release-url'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
 ], PostsController.prototype, "getReleaseURL", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Put)('/:id/release-id'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__param(2, (0, common_1.Body)('releaseId')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __param(2, (0, common_1.Body)('releaseId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, String]),
+    __metadata("design:returntype", Promise)
 ], PostsController.prototype, "updateReleaseId", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/should-shortlink'),
-    tslib_1.__param(0, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], PostsController.prototype, "shouldShortlink", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/:id/comments'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__param(3, (0, nestjs_real_ip_1.RealIP)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, add_comment_dto_1.CreatePublicCommentDto, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __param(2, (0, common_1.Body)()),
+    __param(3, (0, nestjs_real_ip_1.RealIP)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, add_comment_dto_1.CreatePublicCommentDto, String]),
+    __metadata("design:returntype", Promise)
 ], PostsController.prototype, "createComment", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Put)('/comments/:commentId/resolve'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('commentId')),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, add_comment_dto_1.ResolveCommentDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('commentId')),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, add_comment_dto_1.ResolveCommentDto]),
+    __metadata("design:returntype", Promise)
 ], PostsController.prototype, "resolveComment", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/tags'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], PostsController.prototype, "getTags", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/tags'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, create_tag_dto_1.CreateTagDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, create_tag_dto_1.CreateTagDto]),
+    __metadata("design:returntype", Promise)
 ], PostsController.prototype, "createTag", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Put)('/tags/:id'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__param(2, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, create_tag_dto_1.CreateTagDto, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, create_tag_dto_1.CreateTagDto, String]),
+    __metadata("design:returntype", Promise)
 ], PostsController.prototype, "editTag", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Delete)('/tags/:id'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
 ], PostsController.prototype, "deleteTag", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Query)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, get_posts_dto_1.GetPostsDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, get_posts_dto_1.GetPostsDto]),
+    __metadata("design:returntype", Promise)
 ], PostsController.prototype, "getPosts", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/find-slot'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], PostsController.prototype, "findSlot", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/find-slot/:id'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
 ], PostsController.prototype, "findSlotIntegration", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/list'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Query)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, get_posts_list_dto_1.GetPostsListDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, get_posts_list_dto_1.GetPostsListDto]),
+    __metadata("design:returntype", Promise)
 ], PostsController.prototype, "getPostsList", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/old'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Query)('date')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Query)('date')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", void 0)
 ], PostsController.prototype, "oldPosts", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/group/:group/debug-export'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(2, (0, common_1.Param)('group')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(2, (0, common_1.Param)('group')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, String]),
+    __metadata("design:returntype", Promise)
 ], PostsController.prototype, "getPostGroupDebugExport", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/group/:group'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('group')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('group')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", void 0)
 ], PostsController.prototype, "getPostsByGroup", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/:id'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", void 0)
 ], PostsController.prototype, "getPost", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/valid'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
 ], PostsController.prototype, "validatePosts", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.POSTS_PER_MONTH]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
 ], PostsController.prototype, "createPost", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/generator/draft'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.POSTS_PER_MONTH]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, create_generated_posts_dto_1.CreateGeneratedPostsDto]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, create_generated_posts_dto_1.CreateGeneratedPostsDto]),
+    __metadata("design:returntype", void 0)
 ], PostsController.prototype, "generatePostsDraft", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/generator'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.POSTS_PER_MONTH]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__param(2, (0, common_1.Res)({ passthrough: false })),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, generator_dto_1.GeneratorDto, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.Res)({ passthrough: false })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, generator_dto_1.GeneratorDto, Object]),
+    __metadata("design:returntype", Promise)
 ], PostsController.prototype, "generatePosts", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Delete)('/:group'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('group')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('group')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", void 0)
 ], PostsController.prototype, "deletePost", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Put)('/:id/date'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__param(2, (0, common_1.Body)('date')),
-    tslib_1.__param(3, (0, common_1.Body)('action')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String, String, String]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __param(2, (0, common_1.Body)('date')),
+    __param(3, (0, common_1.Body)('action')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, String, String]),
+    __metadata("design:returntype", void 0)
 ], PostsController.prototype, "changeDate", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/separate-posts'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
 ], PostsController.prototype, "separatePosts", null);
-exports.PostsController = PostsController = tslib_1.__decorate([
+exports.PostsController = PostsController = __decorate([
     (0, swagger_1.ApiTags)('Posts'),
     (0, common_1.Controller)('/posts'),
-    tslib_1.__metadata("design:paramtypes", [posts_service_1.PostsService,
+    __metadata("design:paramtypes", [posts_service_1.PostsService,
         agent_graph_service_1.AgentGraphService,
         short_link_service_1.ShortLinkService])
 ], PostsController);

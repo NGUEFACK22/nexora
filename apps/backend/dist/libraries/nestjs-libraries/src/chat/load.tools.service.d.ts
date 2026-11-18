@@ -1,3 +1,4 @@
+import { Agent } from '@mastra/core/agent';
 import { ModuleRef } from '@nestjs/core';
 export declare const AgentState: import("zod").ZodObject<{
     proverbs: import("zod").ZodDefault<import("zod").ZodArray<import("zod").ZodString, "many">>;
@@ -11,5 +12,5 @@ export declare class LoadToolsService {
     constructor(_moduleRef: ModuleRef);
     loadTools(mcpOnly?: boolean): Promise<Record<string, any>>;
     coreToolNames(): string[];
-    agent(): Promise<any>;
+    agent(): Promise<Agent<"Nexora", Record<string, any>, undefined, any, import("@mastra/core/agent").AgentEditorConfig>>;
 }

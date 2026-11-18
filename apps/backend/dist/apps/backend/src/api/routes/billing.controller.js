@@ -1,23 +1,37 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BillingController = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
-const subscription_service_1 = require("@gitroom/nestjs-libraries/database/prisma/subscriptions/subscription.service");
-const org_from_request_1 = require("@gitroom/nestjs-libraries/user/org.from.request");
-const billing_subscribe_dto_1 = require("@gitroom/nestjs-libraries/dtos/billing/billing.subscribe.dto");
-const admin_apply_coupon_dto_1 = require("@gitroom/nestjs-libraries/dtos/billing/admin.apply.coupon.dto");
+const subscription_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/subscriptions/subscription.service");
+const org_from_request_1 = require("../../../../../libraries/nestjs-libraries/src/user/org.from.request");
+const billing_subscribe_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/billing/billing.subscribe.dto");
+const admin_apply_coupon_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/billing/admin.apply.coupon.dto");
 const swagger_1 = require("@nestjs/swagger");
-const user_from_request_1 = require("@gitroom/nestjs-libraries/user/user.from.request");
-const notification_service_1 = require("@gitroom/nestjs-libraries/database/prisma/notifications/notification.service");
-const auth_service_1 = require("@gitroom/helpers/auth/auth.service");
-const users_service_1 = require("@gitroom/nestjs-libraries/database/prisma/users/users.service");
-const payment_service_1 = require("@gitroom/nestjs-libraries/services/payment/payment.service");
-const billing_sync_dto_1 = require("@gitroom/nestjs-libraries/dtos/billing/billing.sync.dto");
-const billing_cancel_dto_1 = require("@gitroom/nestjs-libraries/dtos/billing/billing.cancel.dto");
-const permissions_ability_1 = require("@gitroom/backend/services/auth/permissions/permissions.ability");
-const permission_exception_class_1 = require("@gitroom/backend/services/auth/permissions/permission.exception.class");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
+const user_from_request_1 = require("../../../../../libraries/nestjs-libraries/src/user/user.from.request");
+const notification_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/notifications/notification.service");
+const auth_service_1 = require("../../../../../libraries/helpers/src/auth/auth.service");
+const users_service_1 = require("../../../../../libraries/nestjs-libraries/src/database/prisma/users/users.service");
+const payment_service_1 = require("../../../../../libraries/nestjs-libraries/src/services/payment/payment.service");
+const billing_sync_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/billing/billing.sync.dto");
+const billing_cancel_dto_1 = require("../../../../../libraries/nestjs-libraries/src/dtos/billing/billing.cancel.dto");
+const permissions_ability_1 = require("../../services/auth/permissions/permissions.ability");
+const permission_exception_class_1 = require("../../services/auth/permissions/permission.exception.class");
+const dayjs_1 = __importDefault(require("dayjs"));
 let BillingController = class BillingController {
     constructor(_subscriptionService, _notificationService, _usersService, _paymentService) {
         this._subscriptionService = _subscriptionService;
@@ -187,208 +201,208 @@ let BillingController = class BillingController {
     }
 };
 exports.BillingController = BillingController;
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/check/:id'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Param)('id')),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "checkId", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/check-discount'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "checkDiscount", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/apply-discount'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "applyDiscount", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/finish-trial'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "finishTrial", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/is-trial-finished'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "isTrialFinished", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/embedded'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__param(3, (0, common_1.Req)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, billing_subscribe_dto_1.BillingSubscribeDto, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(2, (0, common_1.Body)()),
+    __param(3, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, billing_subscribe_dto_1.BillingSubscribeDto, Object]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "embedded", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/subscribe'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__param(3, (0, common_1.Req)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, billing_subscribe_dto_1.BillingSubscribeDto, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(2, (0, common_1.Body)()),
+    __param(3, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, billing_subscribe_dto_1.BillingSubscribeDto, Object]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "subscribe", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/sync'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, billing_sync_dto_1.BillingSyncDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, billing_sync_dto_1.BillingSyncDto]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "sync", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/portal'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "modifyPayment", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/invoices'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "getInvoices", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/renewal'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "getRenewal", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/'),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", void 0)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
 ], BillingController.prototype, "getCurrentBilling", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/cancel'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, billing_cancel_dto_1.BillingCancelDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, billing_cancel_dto_1.BillingCancelDto]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "cancel", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/prorate'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, billing_subscribe_dto_1.BillingSubscribeDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, billing_subscribe_dto_1.BillingSubscribeDto]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "prorate", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/charges'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(1, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(1, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "getCharges", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/refund-charges'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(1, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(1, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, Object]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "refundCharges", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/cancel-subscription'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(1, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(1, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "cancelSubscription", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/coupon-info'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(1, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(1, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "couponInfo", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/apply-coupon'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(1, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__param(2, (0, common_1.Body)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, admin_apply_coupon_dto_1.AdminApplyCouponDto]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(1, (0, org_from_request_1.GetOrgFromRequest)()),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, admin_apply_coupon_dto_1.AdminApplyCouponDto]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "applyCoupon", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/cancel-coupon'),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(1, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(1, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "cancelCoupon", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Get)('/chatbase-refund/preview'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__param(0, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "chatbaseRefundPreview", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/chatbase-refund'),
     (0, permissions_ability_1.CheckPolicies)([permission_exception_class_1.AuthorizationActions.Create, permission_exception_class_1.Sections.ADMIN]),
-    tslib_1.__param(0, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(1, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(1, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "chatbaseRefund", null);
-tslib_1.__decorate([
+__decorate([
     (0, common_1.Post)('/add-subscription'),
-    tslib_1.__param(0, (0, common_1.Body)()),
-    tslib_1.__param(1, (0, user_from_request_1.GetUserFromRequest)()),
-    tslib_1.__param(2, (0, org_from_request_1.GetOrgFromRequest)()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, Object]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, user_from_request_1.GetUserFromRequest)()),
+    __param(2, (0, org_from_request_1.GetOrgFromRequest)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, Object]),
+    __metadata("design:returntype", Promise)
 ], BillingController.prototype, "addSubscription", null);
-exports.BillingController = BillingController = tslib_1.__decorate([
+exports.BillingController = BillingController = __decorate([
     (0, swagger_1.ApiTags)('Billing'),
     (0, common_1.Controller)('/billing'),
-    tslib_1.__metadata("design:paramtypes", [subscription_service_1.SubscriptionService,
+    __metadata("design:paramtypes", [subscription_service_1.SubscriptionService,
         notification_service_1.NotificationService,
         users_service_1.UsersService,
         payment_service_1.PaymentService])

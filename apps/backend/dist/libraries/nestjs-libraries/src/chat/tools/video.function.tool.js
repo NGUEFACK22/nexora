@@ -1,13 +1,24 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VideoFunctionTool = void 0;
-const tslib_1 = require("tslib");
 const tools_1 = require("@mastra/core/tools");
 const common_1 = require("@nestjs/common");
-const video_manager_1 = require("@gitroom/nestjs-libraries/videos/video.manager");
-const zod_1 = tslib_1.__importDefault(require("zod"));
+const video_manager_1 = require("../../videos/video.manager");
+const zod_1 = __importDefault(require("zod"));
 const core_1 = require("@nestjs/core");
-const auth_context_1 = require("@gitroom/nestjs-libraries/chat/auth.context");
+const auth_context_1 = require("../auth.context");
 let VideoFunctionTool = class VideoFunctionTool {
     constructor(_videoManagerService, _moduleRef) {
         this._videoManagerService = _videoManagerService;
@@ -48,9 +59,9 @@ let VideoFunctionTool = class VideoFunctionTool {
     }
 };
 exports.VideoFunctionTool = VideoFunctionTool;
-exports.VideoFunctionTool = VideoFunctionTool = tslib_1.__decorate([
+exports.VideoFunctionTool = VideoFunctionTool = __decorate([
     (0, common_1.Injectable)(),
-    tslib_1.__metadata("design:paramtypes", [video_manager_1.VideoManager,
+    __metadata("design:paramtypes", [video_manager_1.VideoManager,
         core_1.ModuleRef])
 ], VideoFunctionTool);
 //# sourceMappingURL=video.function.tool.js.map

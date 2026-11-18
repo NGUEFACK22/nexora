@@ -1,16 +1,27 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PinterestProvider = void 0;
-const tslib_1 = require("tslib");
-const make_secure_id_1 = require("@gitroom/nestjs-libraries/services/make.secure.id");
-const pinterest_dto_1 = require("@gitroom/nestjs-libraries/dtos/posts/providers-settings/pinterest.dto");
-const form_data_1 = tslib_1.__importDefault(require("form-data"));
-const timer_1 = require("@gitroom/helpers/utils/timer");
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
-const tool_decorator_1 = require("@gitroom/nestjs-libraries/integrations/tool.decorator");
-const rules_description_decorator_1 = require("@gitroom/nestjs-libraries/chat/rules.description.decorator");
-const has_extension_1 = require("@gitroom/helpers/utils/has.extension");
+const make_secure_id_1 = require("../../services/make.secure.id");
+const pinterest_dto_1 = require("../../dtos/posts/providers-settings/pinterest.dto");
+const form_data_1 = __importDefault(require("form-data"));
+const timer_1 = require("../../../../helpers/src/utils/timer");
+const social_abstract_1 = require("../social.abstract");
+const dayjs_1 = __importDefault(require("dayjs"));
+const tool_decorator_1 = require("../tool.decorator");
+const rules_description_decorator_1 = require("../../chat/rules.description.decorator");
+const has_extension_1 = require("../../../../helpers/src/utils/has.extension");
 let PinterestProvider = class PinterestProvider extends social_abstract_1.SocialAbstract {
     constructor() {
         super(...arguments);
@@ -465,13 +476,13 @@ let PinterestProvider = class PinterestProvider extends social_abstract_1.Social
     }
 };
 exports.PinterestProvider = PinterestProvider;
-tslib_1.__decorate([
+__decorate([
     (0, tool_decorator_1.Tool)({ description: 'List of boards', dataSchema: [] }),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String]),
-    tslib_1.__metadata("design:returntype", Promise)
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
 ], PinterestProvider.prototype, "boards", null);
-exports.PinterestProvider = PinterestProvider = tslib_1.__decorate([
+exports.PinterestProvider = PinterestProvider = __decorate([
     (0, rules_description_decorator_1.Rules)('Pinterest requires at least one media, if posting a video, you must have two attachment, one for video, one for the cover picture, When posting a video, there can be only one, if posting images, there can be maximum 5')
 ], PinterestProvider);
 //# sourceMappingURL=pinterest.provider.js.map

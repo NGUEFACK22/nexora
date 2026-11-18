@@ -1,3 +1,3 @@
 export declare class ExtractContentService {
-    extractContent(url: string): Promise<any>;
+    extractContent(url: string): Promise<string>;
 }

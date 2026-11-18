@@ -1,24 +1,38 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.IntegrationService = void 0;
-const tslib_1 = require("tslib");
 const common_1 = require("@nestjs/common");
-const integration_repository_1 = require("@gitroom/nestjs-libraries/database/prisma/integrations/integration.repository");
-const integration_manager_1 = require("@gitroom/nestjs-libraries/integrations/integration.manager");
-const notification_service_1 = require("@gitroom/nestjs-libraries/database/prisma/notifications/notification.service");
-const dayjs_1 = tslib_1.__importDefault(require("dayjs"));
-const timer_1 = require("@gitroom/helpers/utils/timer");
-const redis_service_1 = require("@gitroom/nestjs-libraries/redis/redis.service");
-const social_abstract_1 = require("@gitroom/nestjs-libraries/integrations/social.abstract");
-const upload_factory_1 = require("@gitroom/nestjs-libraries/upload/upload.factory");
+const integration_repository_1 = require("./integration.repository");
+const integration_manager_1 = require("../../../integrations/integration.manager");
+const notification_service_1 = require("../notifications/notification.service");
+const dayjs_1 = __importDefault(require("dayjs"));
+const timer_1 = require("../../../../../helpers/src/utils/timer");
+const redis_service_1 = require("../../../redis/redis.service");
+const social_abstract_1 = require("../../../integrations/social.abstract");
+const upload_factory_1 = require("../../../upload/upload.factory");
 const lodash_1 = require("lodash");
-const utc_1 = tslib_1.__importDefault(require("dayjs/plugin/utc"));
-const autopost_repository_1 = require("@gitroom/nestjs-libraries/database/prisma/autopost/autopost.repository");
-const refresh_integration_service_1 = require("@gitroom/nestjs-libraries/integrations/refresh.integration.service");
+const utc_1 = __importDefault(require("dayjs/plugin/utc"));
+const autopost_repository_1 = require("../autopost/autopost.repository");
+const refresh_integration_service_1 = require("../../../integrations/refresh.integration.service");
 const nestjs_temporal_core_1 = require("nestjs-temporal-core");
 const crypto_1 = require("crypto");
 const common_2 = require("@temporalio/common");
-const encryption_service_1 = require("@gitroom/nestjs-libraries/services/encryption.service");
+const encryption_service_1 = require("../../../services/encryption.service");
 dayjs_1.default.extend(utc_1.default);
 let IntegrationService = class IntegrationService {
     constructor(_integrationRepository, _autopostsRepository, _integrationManager, _notificationService, _refreshIntegrationService, _temporalService, _encryptionService) {
@@ -445,10 +459,10 @@ let IntegrationService = class IntegrationService {
     }
 };
 exports.IntegrationService = IntegrationService;
-exports.IntegrationService = IntegrationService = tslib_1.__decorate([
+exports.IntegrationService = IntegrationService = __decorate([
     (0, common_1.Injectable)(),
-    tslib_1.__param(4, (0, common_1.Inject)((0, common_1.forwardRef)(() => refresh_integration_service_1.RefreshIntegrationService))),
-    tslib_1.__metadata("design:paramtypes", [integration_repository_1.IntegrationRepository,
+    __param(4, (0, common_1.Inject)((0, common_1.forwardRef)(() => refresh_integration_service_1.RefreshIntegrationService))),
+    __metadata("design:paramtypes", [integration_repository_1.IntegrationRepository,
         autopost_repository_1.AutopostRepository,
         integration_manager_1.IntegrationManager,
         notification_service_1.NotificationService,
