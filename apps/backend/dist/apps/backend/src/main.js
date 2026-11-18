@@ -7,8 +7,6 @@ const initialize_sentry_1 = require("@gitroom/nestjs-libraries/sentry/initialize
 const compression_1 = tslib_1.__importDefault(require("compression"));
 const load_swagger_1 = require("@gitroom/helpers/swagger/load.swagger");
 const express_1 = require("express");
-const worker_1 = require("@temporalio/worker");
-worker_1.Runtime.install({ shutdownSignals: [] });
 process.env.TZ = 'UTC';
 const cookie_parser_1 = tslib_1.__importDefault(require("cookie-parser"));
 const common_1 = require("@nestjs/common");
