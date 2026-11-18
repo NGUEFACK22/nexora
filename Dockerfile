@@ -16,7 +16,7 @@ WORKDIR /app
 COPY . /app
 
 RUN pnpm install \
- && NODE_OPTIONS="--max-old-space-size=4096" pnpm --filter ./apps/backend run build \
+ \
  && NODE_OPTIONS="--max-old-space-size=4096" pnpm --filter ./apps/orchestrator run build
 
 EXPOSE 3000
