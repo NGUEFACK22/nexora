@@ -1,0 +1,1 @@
+{"version":3,"file":"email.queues.js","sourceRoot":"","sources":["../../../../../../../libraries/nestjs-libraries/src/temporal/email.queues.ts"],"names":[],"mappings":";;;AAMa,QAAA,WAAW,GAAG;IAEzB,QAAQ,EAAE,EAAE,SAAS,EAAE,OAAO,EAAE,SAAS,EAAE,CAAC,EAAE;IAE9C,IAAI,EAAE,EAAE,SAAS,EAAE,YAAY,EAAE,SAAS,EAAE,CAAC,EAAE;CAChD,CAAC"}
