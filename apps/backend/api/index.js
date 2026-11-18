@@ -3,7 +3,7 @@
 // The raw Express instance handles (req, res) directly — no serverless-http.
 process.env.SERVERLESS = 'true';
 
-const { createNestApp } = require('../dist/apps/backend/src/main.js');
+const { createNestApp } = require('../dist/bundle.js');
 
 let cached;
 

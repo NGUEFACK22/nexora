@@ -4,7 +4,7 @@
   "functions": {
     "api/index.js": {
       "maxDuration": 60,
-      "includeFiles": "dist/**,node_modules/**"
+      "includeFiles": "dist/bundle.js,node_modules/.prisma/**,node_modules/@prisma/**,node_modules/bcrypt/**,node_modules/@temporalio/**"
     }
   },
   "rewrites": [{ "source": "/(.*)", "destination": "/api/index.js" }]
