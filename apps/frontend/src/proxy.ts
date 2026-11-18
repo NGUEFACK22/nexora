@@ -183,5 +183,8 @@ export async function proxy(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: '/((?!api/|_next/|_static/|_vercel|[\\w-]+\\.\\w+).*)',
+  // 'backend/' is the same-origin proxy to the API (see next.config.js): it
+  // must reach the backend untouched, without any auth redirect.
+  matcher:
+    '/((?!api/|backend/|_next/|_static/|_vercel|[\\w-]+\\.\\w+).*)',
 };
