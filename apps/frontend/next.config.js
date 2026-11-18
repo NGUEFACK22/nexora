@@ -75,31 +75,38 @@ const nextConfig = {
     ];
   },
   async rewrites() {
-    return [
-      // Same-origin proxy to the backend (NEXT_PUBLIC_CLIENT_BACKEND_URL).
-      // The browser then talks to /backend/* on the frontend domain, so the
-      // session cookie is first-party: the backend sets it with the Domain of
-      // FRONTEND_URL, which a browser refuses when the API lives on another
-      // registrable domain (two *.vercel.app projects can never share it).
-      ...(process.env.BACKEND_INTERNAL_URL
-        ? [
-            {
-              source: '/backend/:path*',
-              destination: `${process.env.BACKEND_INTERNAL_URL.replace(
-                /\/+$/,
-                ''
-              )}/:path*`,
-            },
-          ]
-        : []),
-      {
-        source: '/uploads/:path*',
-        destination:
-          process.env.STORAGE_PROVIDER === 'local'
-            ? '/api/uploads/:path*'
-            : '/404',
-      },
-    ];
+    // Same-origin proxy to the backend (NEXT_PUBLIC_CLIENT_BACKEND_URL).
+    // The browser then talks to /backend/* on the frontend domain, so the
+    // session cookie is first-party: the backend sets it with the Domain of
+    // FRONTEND_URL, which a browser refuses when the API lives on another
+    // registrable domain (two *.vercel.app projects can never share it).
+    //
+    // beforeFiles, not afterFiles: the middleware in src/proxy.ts redirects
+    // signed-out visitors to /auth, and it runs before afterFiles rewrites.
+    const backendProxy = process.env.BACKEND_INTERNAL_URL
+      ? [
+          {
+            source: '/backend/:path*',
+            destination: `${process.env.BACKEND_INTERNAL_URL.replace(
+              /\/+$/,
+              ''
+            )}/:path*`,
+          },
+        ]
+      : [];
+
+    return {
+      beforeFiles: backendProxy,
+      afterFiles: [
+        {
+          source: '/uploads/:path*',
+          destination:
+            process.env.STORAGE_PROVIDER === 'local'
+              ? '/api/uploads/:path*'
+              : '/404',
+        },
+      ],
+    };
   },
 };
 

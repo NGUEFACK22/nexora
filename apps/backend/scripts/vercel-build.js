@@ -18,30 +18,37 @@ const tscBin = path.join(repoRoot, 'node_modules', 'typescript', 'bin', 'tsc');
 const distDir = path.join(backendDir, 'dist');
 const incrementalInfo = path.join(backendDir, 'tsconfig.tsbuildinfo');
 
-if (!fs.existsSync(tscBin)) {
-  console.error(`TypeScript not found at ${tscBin} (run pnpm install first)`);
-  process.exit(1);
-}
+// The compiled dist is committed in this repository (see apps/backend/dist),
+// so the deployment works even when the TypeScript toolchain is not where this
+// script expects it (Vercel may install the workspace dependencies elsewhere).
+// Compiling is only an optimisation: it keeps dist in sync with the sources.
+const hasTsc = fs.existsSync(tscBin);
 
-// A committed/stale tsbuildinfo makes tsc believe the output is up to date and
-// skip emitting, which would deploy an empty or outdated dist.
-if (fs.existsSync(incrementalInfo)) {
-  fs.rmSync(incrementalInfo, { force: true });
-}
+if (hasTsc) {
+  // A committed/stale tsbuildinfo makes tsc believe the output is up to date and
+  // skip emitting, which would deploy an empty or outdated dist.
+  if (fs.existsSync(incrementalInfo)) {
+    fs.rmSync(incrementalInfo, { force: true });
+  }
 
-const build = spawnSync(process.execPath, [tscBin, '-p', tsconfig], {
-  stdio: 'inherit',
-  cwd: backendDir,
-});
+  const build = spawnSync(process.execPath, [tscBin, '-p', tsconfig], {
+    stdio: 'inherit',
+    cwd: backendDir,
+  });
 
-// tsc emits JavaScript even when it reports type errors (noEmitOnError is off).
-// On a fresh install the type packages can differ from the local ones (the
-// deployment only needs the emitted JS), so a non-zero exit is not fatal: the
-// entrypoint check below is what decides whether the build produced runnable
-// output.
-if (build.status !== 0) {
+  // tsc emits JavaScript even when it reports type errors (noEmitOnError is off).
+  // On a fresh install the type packages can differ from the local ones (the
+  // deployment only needs the emitted JS), so a non-zero exit is not fatal: the
+  // entrypoint check below is what decides whether the build produced runnable
+  // output.
+  if (build.status !== 0) {
+    console.warn(
+      `tsc reported errors (exit ${build.status}); continuing because the JavaScript was emitted`
+    );
+  }
+} else {
   console.warn(
-    `tsc reported errors (exit ${build.status}); continuing because the JavaScript was emitted`
+    `TypeScript not found at ${tscBin}; deploying the committed dist as-is`
   );
 }
 
