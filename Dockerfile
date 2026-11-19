@@ -26,7 +26,8 @@ COPY . /app
 
 RUN pnpm install --frozen-lockfile \
   && NODE_OPTIONS="--max-old-space-size=4096" node var/scripts/build-backend.js \
-  && NODE_OPTIONS="--max-old-space-size=4096" pnpm --filter ./apps/orchestrator run build
+  && NODE_OPTIONS="--max-old-space-size=4096" pnpm --filter ./apps/orchestrator run build \
+  && node var/scripts/rewrite-dist-paths.js
 
 EXPOSE 3000
 

@@ -24,3 +24,4 @@ reports
 .env
 .zwork
 analyse-projet
+**/tsconfig.tsbuildinfo
