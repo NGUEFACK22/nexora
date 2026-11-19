@@ -1,7 +1,7 @@
-# Render blueprint for the Nexora runtime container.
+﻿# Render blueprint for the Nexora runtime container.
 #
 # One Docker service runs the Temporal server, the NestJS backend API and the
-# Temporal orchestrator worker (see Dockerfile and ecosystem.railway.cjs).
+# Temporal orchestrator worker (see Dockerfile and var/docker/entrypoint.sh).
 # The Next.js frontend stays on Vercel and reaches this service through its
 # same-origin /backend/* proxy.
 #
@@ -9,11 +9,11 @@
 # blueprint is created, so no credential is ever committed to the repository.
 services:
   - type: web
-    name: nexora-backend
+    name: nexora
     runtime: docker
     dockerfilePath: ./Dockerfile
-    # Temporal + the API + the worker in one instance need real memory:
-    # the free 512 MB instance is not enough (the worker is restarted by pm2).
+    # Temporal + the API + the worker in one instance need real memory: the
+    # free 512 MB instance OOMs, so use at least the starter plan.
     plan: starter
     region: frankfurt
     healthCheckPath: /
@@ -26,9 +26,9 @@ services:
       - key: MAIN_URL
         value: 'https://nexora-eta-gold.vercel.app'
       - key: NEXT_PUBLIC_BACKEND_URL
-        value: 'https://nexora-backend.onrender.com'
+        value: 'https://nexora-hdjl.onrender.com'
       - key: BACKEND_INTERNAL_URL
-        value: 'https://nexora-backend.onrender.com'
+        value: 'https://nexora-hdjl.onrender.com'
       - key: TEMPORAL_ADDRESS
         value: '127.0.0.1:7233'
       - key: STORAGE_PROVIDER
