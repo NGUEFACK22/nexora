@@ -1,0 +1,78 @@
+# Render blueprint for the Nexora runtime container.
+#
+# One Docker service runs the Temporal server, the NestJS backend API and the
+# Temporal orchestrator worker (see Dockerfile and ecosystem.railway.cjs).
+# The Next.js frontend stays on Vercel and reaches this service through its
+# same-origin /backend/* proxy.
+#
+# Secrets are declared with `sync: false`: Render asks for them when the
+# blueprint is created, so no credential is ever committed to the repository.
+services:
+  - type: web
+    name: nexora-backend
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    # Temporal + the API + the worker in one instance need real memory:
+    # the free 512 MB instance is not enough (the worker is restarted by pm2).
+    plan: starter
+    region: frankfurt
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: IS_GENERAL
+        value: 'true'
+      - key: FRONTEND_URL
+        value: 'https://nexora-eta-gold.vercel.app'
+      - key: MAIN_URL
+        value: 'https://nexora-eta-gold.vercel.app'
+      - key: NEXT_PUBLIC_BACKEND_URL
+        value: 'https://nexora-backend.onrender.com'
+      - key: BACKEND_INTERNAL_URL
+        value: 'https://nexora-backend.onrender.com'
+      - key: TEMPORAL_ADDRESS
+        value: '127.0.0.1:7233'
+      - key: STORAGE_PROVIDER
+        value: 'cloudflare'
+      - key: CLOUDFLARE_REGION
+        value: 'auto'
+      - key: EMAIL_PROVIDER
+        value: 'agentmail'
+      - key: AI_PROVIDER
+        value: 'google'
+      - key: AI_MODEL
+        value: 'gemini-2.5-flash'
+      # --- Secrets: filled in the Render dashboard when creating the service.
+      - key: DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: ENCRYPTION_PROVIDER
+        value: 'local'
+      - key: ENCRYPTION_KEY
+        sync: false
+      - key: CLOUDFLARE_ACCOUNT_ID
+        sync: false
+      - key: CLOUDFLARE_ACCESS_KEY
+        sync: false
+      - key: CLOUDFLARE_SECRET_ACCESS_KEY
+        sync: false
+      - key: CLOUDFLARE_BUCKETNAME
+        sync: false
+      - key: CLOUDFLARE_BUCKET_URL
+        sync: false
+      - key: EMAIL_FROM_ADDRESS
+        sync: false
+      - key: EMAIL_FROM_NAME
+        value: 'Nexora'
+      - key: AGENTMAIL_API_KEY
+        sync: false
+      - key: AGENTMAIL_INBOX_ID
+        sync: false
+      - key: GOOGLE_GENERATIVE_AI_API_KEY
+        sync: false
+      - key: TELEGRAM_TOKEN
+        sync: false
+      - key: TELEGRAM_BOT_NAME
+        sync: false
