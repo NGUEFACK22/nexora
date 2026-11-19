@@ -1,6 +1,26 @@
-import { TemporalModule } from 'nestjs-temporal-core';
+import { Module } from '@nestjs/common';
+import { TemporalModule, TemporalService } from 'nestjs-temporal-core';
 import { socialIntegrationList } from '@gitroom/nestjs-libraries/integrations/integration.manager';
 import { emailQueues } from '@gitroom/nestjs-libraries/temporal/email.queues';
+
+// No Temporal server configured (e.g. a serverless deployment): services that
+// start workflows keep working, they simply never schedule anything.
+// A DynamicModule is required - a bare { provide, useValue } object is not a
+// valid entry of a NestJS module `imports` array.
+export const getTemporalStubModule = () => ({
+  module: TemporalStubModule,
+  global: true,
+  providers: [
+    {
+      provide: TemporalService,
+      useValue: { client: { getRawClient: () => undefined } },
+    },
+  ],
+  exports: [TemporalService],
+});
+
+@Module({})
+class TemporalStubModule {}
 
 export const getTemporalModule = (
   isWorkers: boolean,

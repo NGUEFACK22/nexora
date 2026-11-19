@@ -12,8 +12,10 @@ import { VideoModule } from '@gitroom/nestjs-libraries/videos/video.module';
 import { SentryModule } from '@sentry/nestjs/setup';
 import { FILTER } from '@gitroom/nestjs-libraries/sentry/sentry.exception';
 import { ChatModule } from '@gitroom/nestjs-libraries/chat/chat.module';
-import { getTemporalModule } from '@gitroom/nestjs-libraries/temporal/temporal.module';
-import { TemporalService } from 'nestjs-temporal-core';
+import {
+  getTemporalModule,
+  getTemporalStubModule,
+} from '@gitroom/nestjs-libraries/temporal/temporal.module';
 import { TemporalRegisterMissingSearchAttributesModule } from '@gitroom/nestjs-libraries/temporal/temporal.register';
 import { InfiniteWorkflowRegisterModule } from '@gitroom/nestjs-libraries/temporal/infinite.workflow.register';
 import { ThrottlerStorageRedisService } from '@nest-lab/throttler-storage-redis';
@@ -40,12 +42,7 @@ import { ioRedis } from '@gitroom/nestjs-libraries/redis/redis.service';
       : [
           // No Temporal server configured (e.g. Vercel serverless): services
           // that start workflows degrade gracefully — nothing is scheduled.
-          {
-            provide: TemporalService,
-            useValue: {
-              client: { getRawClient: () => undefined },
-            } as any,
-          },
+          getTemporalStubModule(),
         ]),
     ThrottlerModule.forRoot({
       throttlers: [
