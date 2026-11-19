@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "node apps/backend/scripts/vercel-build.js",
+  "installCommand": "pnpm install --prod=false",
+  "outputDirectory": "apps/backend/public",
+  "functions": {
+    "api/index.js": {
+      "maxDuration": 60,
+      "includeFiles": "apps/backend/dist/**"
+    }
+  },
+  "rewrites": [{ "source": "/(.*)", "destination": "/api/index.js" }]
+}
