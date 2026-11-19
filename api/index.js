@@ -26,6 +26,32 @@ function getApp() {
 }
 
 module.exports = async function handler(req, res) {
+  // Temporary deployment diagnostic: reports what the function bundle actually
+  // contains. Removed once the deployment is stable.
+  if (req.url && req.url.startsWith('/__diag')) {
+    const fs = require('fs');
+    const path = require('path');
+    const list = (dir) => {
+      try {
+        return fs.readdirSync(dir).slice(0, 40);
+      } catch (err) {
+        return `ERR ${err.code || err.message}`;
+      }
+    };
+    res.statusCode = 200;
+    res.setHeader('content-type', 'application/json');
+    res.end(
+      JSON.stringify({
+        cwd: process.cwd(),
+        task: list('/var/task'),
+        distExists: fs.existsSync('/var/task/apps/backend/dist'),
+        distTop: list('/var/task/apps/backend/dist'),
+        nodeModules: list('/var/task/node_modules'),
+      })
+    );
+    return undefined;
+  }
+
   try {
     const app = await getApp();
     return app(req, res);
