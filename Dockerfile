@@ -7,8 +7,9 @@
 FROM node:22.23.4-bookworm-slim
 
 ENV NODE_ENV=production
-# The orchestrator talks to the Temporal server started in this same container.
-ENV TEMPORAL_ADDRESS=127.0.0.1:7233
+# TEMPORAL_ADDRESS is intentionally NOT set: on the free plan there is no
+# Temporal server, and the backend then uses its no-Temporal stub module.
+# Set it in the platform environment (with a real server) to enable scheduling.
 
 RUN apt-get update && apt-get install -y --no-install-recommends bash ca-certificates curl \
   && rm -rf /var/lib/apt/lists/*
