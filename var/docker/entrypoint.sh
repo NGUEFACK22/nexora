@@ -12,6 +12,11 @@ echo "=== NEXORA ENTRYPOINT (sans Temporal) ==="
 echo "node: $(node --version 2>&1)"
 echo "PORT=${PORT:-<non defini>}"
 
+# Node auto-sets a ~256 MB V8 heap in a 512 MB container, which is not enough
+# for NestJS + Prisma + the AI libraries at boot. Leave ~110 MB for the native
+# side so the cgroup limit is not hit.
+export NODE_OPTIONS="--max-old-space-size=400"
+
 node --experimental-require-module /app/apps/backend/dist/apps/backend/src/main.js 2>&1
 STATUS=$?
 echo "=== API TERMINEE avec code $STATUS ==="
